@@ -63,7 +63,7 @@
 #### E mais tarde quando você for empurrar os arquivos para o github isso evitará problemas
 
 ### git remote add origin Sua_Chave_SSH
-#### Para adicionar um acesso remoto via chave SSH para poder usa-lá depois
+#### Para adicionar um acesso remoto via chave SSH para poder usa-lá depois.
 
 
 
