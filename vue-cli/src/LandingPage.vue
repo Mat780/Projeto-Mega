@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import BannerHome from './components/BannerHome.vue'
+import BannerHome from './components/HomeComp/BannerHome.vue'
 export default {
   components: { BannerHome },
     name: 'LandingPage',
