@@ -11,7 +11,7 @@
                 <section class="BannerHomeSection">
                     <img :src="buttonImg" id="BannerHomeImgButton">
                     <div id="BannerHomeButtonText">
-                        Acessar Laudos
+                        Acessar Laudos  
                     </div>
                 </section>
 
