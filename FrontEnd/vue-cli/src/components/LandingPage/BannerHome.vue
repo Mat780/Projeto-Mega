@@ -36,7 +36,7 @@ export default {
 
     methods: {
         ChangeLogin() {
-            this.$router.push({ path: '/Login' });
+            this.$router.push({ path: '/Login/Adm' });
         },
     },
 };
