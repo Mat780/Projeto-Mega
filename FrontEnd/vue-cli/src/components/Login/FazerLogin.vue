@@ -10,7 +10,7 @@
         <form>
             <div class="GrupoLogin">
                 <img :src='Pessoa'>
-                <input type="text" class="ControleLogin" v-model="password" placeholder="Escreva aqui seu CPF">
+                <input type="text" class="ControleLogin" v-model="text" placeholder="Escreva aqui seu CPF">
             </div>
             <div class="GrupoLogin">
                 <img :src='Chave'>
@@ -21,7 +21,7 @@
             </div>
             <div id="LoginCadeado">
                 <img id='LoginCadeadoImg' :src='Cadeado'>
-                <p>Esqueceu sua senha? <a>Clique aqui!</a></p>
+                <p>Esqueceu sua senha? <a>Clique aqui</a></p>
             </div>
         </form>
 
@@ -35,7 +35,9 @@ export default {
         return{
             Pessoa: './img/Pessoa.svg',
             Chave: './img/Chave.svg',
-            Cadeado: './img/Cadeado.svg'
+            Cadeado: './img/Cadeado.svg',
+            CPF: '',
+            Senha: ''
         }
     }
 }
@@ -94,6 +96,7 @@ img{
     margin-top: 3vh;
     height: 6vh;
     width: 18vw;
+    cursor: pointer;
 
     font-size: 20px;
     font-weight: 800;

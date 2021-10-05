@@ -32,7 +32,7 @@ export default {
     name: "Cabecalho",
     data(){
         return{
-            pato: '/img/DuckHealth_SVG.svg',
+            pato: '/img/DuckHealth.svg',
             active: false
         }
     },
