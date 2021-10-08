@@ -1,4 +1,3 @@
-
 <template>
      <div>
           <head>
@@ -13,7 +12,7 @@
                />
           </head>
 
-          <CadastrarMedico/>
+          <CadastrarMedico />
      </div>
 </template>
 
@@ -21,15 +20,13 @@
 import CadastrarMedico from "../components/Adm/CadastrarMedico.vue";
 import CadastrarPaciente from "../components/Adm/CadastrarPaciente.vue";
 import EditarMedico from "../components/Adm/EditarMedico.vue";
-import EditarPaciente from '../components/Adm/EditarPaciente.vue';
+import EditarPaciente from "../components/Adm/EditarPaciente.vue";
 import SideBar from "../components/Adm/SideBar.vue";
 export default {
      name: "Adm",
      components: {
-
           CadastrarMedico,
      },
 };
 </script>
         
-
