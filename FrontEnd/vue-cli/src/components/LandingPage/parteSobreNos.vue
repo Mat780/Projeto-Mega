@@ -28,7 +28,7 @@ export default {
     name: "parteSobreNos",
     data() {
         return {
-            imagen7: "/img/imagen7.png",
+            imagen7: "/img/imagen4.png",
         };
     },
 };
@@ -38,13 +38,12 @@ export default {
 #content {
     display: flex;
     color: rgba(46, 74, 125, 0.8);
-
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 4%;
+    padding-bottom: 4%;
     background-image: url("/img/Bola.png");
     background-repeat: no-repeat;
     background-position: top;
-    background-position-y: -550%;
+    background-position-y: -250%;
 }
 
 .parte_Direita {

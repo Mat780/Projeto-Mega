@@ -53,7 +53,7 @@ export default {
             const element = document.getElementById('content');
             element.scrollIntoView({
                 behavior: 'smooth',
-                block: 'end'
+                block: 'end' 
             });
         },
 

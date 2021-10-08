@@ -84,7 +84,7 @@ p {
 }
 
 .EndHomeSec {
-    padding: 2% 0 4% 0;
+    padding: 2% 0 3% 0;
     display: grid;
     grid-template-columns: 50% 50%;
 }

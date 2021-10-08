@@ -1,5 +1,13 @@
 <template>
     <div id="LandingPage">
+        <head>
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="//fonts.googleapis.com/css?family=Nunito"
+            />
+            <title>Landing Page!</title>
+        </head>
         <CabecalhoHome />
         <BannerHome/>
         <ParteSobreNos/>

@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
 import Login from '../views/Login.vue'
 import Adm from '../views/Adm.vue'
-import ListarPacientes from '../views/ListarPacientes.vue'
+import ListarPacientes from '@/views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
 
@@ -18,12 +18,12 @@ const routes = [
     component: Login
   },
   {
-    path: '/Login/Adm',
+    path: '/Adm',
     name: 'Adm',
     component: Adm
   },
   {
-    path: '/Login/ListarPacientes',
+    path: '/ListarPacientes',
     name: 'ListarPacientes',
     component: ListarPacientes
   },
@@ -33,7 +33,7 @@ const routes = [
     component: ListaLaudos
   },
   {
-    path: '/Login/ListarPacientes/Upload',
+    path: '/Upload',
     name: 'Upload',
     component: Upload
   }

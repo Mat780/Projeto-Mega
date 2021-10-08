@@ -75,6 +75,7 @@ export default {
 .exames {
     font-weight: 900;
     width: 100%;
+    height: 86.7vh;
     background-color: rgba(255, 214, 102, 1);
     border-radius: 0 222px 0 222px;
 }
@@ -97,11 +98,14 @@ export default {
 .listas_row {
     display: flex;
     justify-content: space-around;
+    padding-top: 2%;
 }
 
 .listas_colun {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 1.5%;
+
 }
 
 .cima {
