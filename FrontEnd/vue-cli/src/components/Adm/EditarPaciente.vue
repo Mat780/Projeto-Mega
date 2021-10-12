@@ -1,5 +1,11 @@
 <template>
   <div>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+      />
+    </head>
     <div id="pagcompleta">
       <div id="ladoesquerdo">
         <img :src="paciente" id="paciente" />
@@ -7,7 +13,6 @@
 
       <div id="ladodireito">
       <h1>
-        <span id="cadastrar">Cadastrar </span>
         Editar
         <span id="paciente1">Paciente</span>
         </h1>
@@ -30,14 +35,14 @@
           <i class="fas fa-address-card"></i>
           <input
             class="entradas"
-            type="password"
+            type="text"
             placeholder="Senha"
             required
           />
           <i class="fas fa-key"></i>
           <input
             class="entradas"
-            type="password"
+            type="text"
             placeholder="Confirmar Senha"
             required
           />
@@ -81,12 +86,12 @@ export default {
 
 #pagcompleta {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
 }
 
 #paciente {
   width: 80%;
-  height: 90vh;
+  height: 99vh;
 }
 
 h1 {
@@ -98,16 +103,12 @@ h1 {
   margin-left: 0.9%;
 }
 
-#cadastrar {
-  color: black;
-}
 #paciente1 {
   color: red;
 }
 
 form {
   width: 100%;
-  height: 90%;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -116,36 +117,44 @@ form {
 .entradas {
   width: 80%;
   height: 9vh;
-  background: #f5f5f5;
+
+  display: flex;
+  background-color: #f5f5f5;
   border: 2px solid #2e4a7d;
   box-sizing: border-box;
   border-radius: 8px;
-  margin-top: 1%;
+
   text-align: left;
   padding-left: 8%;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  outline: none;
+  color: #2e4a7d;
+}
+
+.entradas::placeholder{
   font-size: 30px;
-  font-weight: 900;
-  background-color: #f5f5f5;
-  display: flex;
 }
 
 .fas {
   width: 5%;
   margin-left: 3%;
   position: relative;
-  bottom: 7.5%;
-  font-size: 200%;
+  bottom: 43px;
+  right: 8px;
+  font-size: 175%;
   color: #2e4a7d;
 }
 
 #botao {
   width: 79%;
-  height: 10%;
+  height: 10vh;
   color: white;
   font-size: 30px;
   background: #2e4a7d;
   border-radius: 20px;
-  margin-top: 3%;
   cursor: pointer;
   transition: 1s;
 }

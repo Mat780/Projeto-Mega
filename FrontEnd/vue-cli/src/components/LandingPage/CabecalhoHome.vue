@@ -32,7 +32,7 @@ export default {
     name: "Cabecalho",
     data(){
         return{
-            pato: '/img/DuckHealth_SVG.svg',
+            pato: '/img/DuckHealth.svg',
             active: false
         }
     },
@@ -67,7 +67,7 @@ export default {
 
         scrollContato(){
             const element = document.getElementById('Contato');
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: 'smooth' , block: 'end'});
         },
 
         mounted() {

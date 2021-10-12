@@ -17,13 +17,13 @@ export default {
   name: "SideBar",
   data() {
     return {
-      pato: "/img/DuckHealth_SVG.svg",
+      pato: "/img/DuckHealth.svg",
       logout: "/img/logout.png",
     };
   },
   methods: {
     ChangeLogin() {
-      this.$router.push({ path: "@/Login" });
+      this.$router.push({ path: "/Login" });
     },
   },
 };
@@ -59,8 +59,8 @@ export default {
 
 
 #logout {
-  padding-top: 28%;
-  margin-left: 33%;
+  padding-left: 25%;
+  padding-top: 18%;
   cursor: pointer;
 }
 </style>

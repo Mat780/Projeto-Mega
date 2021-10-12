@@ -1,12 +1,18 @@
 <template>
   <div>
+    <head>
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+        />
+    </head>
     <div id="pagcompleta">
       <div id="ladoesquerdo">
         <img :src="paciente" id="paciente" />
       </div>
 
       <div id="ladodireito">
-        <h1>Cadastrar Novo <span>Paciente</span></h1>
+        <h1>Cadastrar <span>Paciente</span></h1>
         
         <form>
           <input
@@ -27,14 +33,14 @@
           <i class="fas fa-address-card"></i>
           <input
             class="entradas"
-            type="password"
+            type="text"
             placeholder="Senha"
             required
           />
           <i class="fas fa-key"></i>
           <input
             class="entradas"
-            type="password"
+            type="text"
             placeholder="Confirmar Senha"
             required
           />
@@ -57,7 +63,7 @@
 
 <script>
 export default {
-  name: "CadastrarMedico",
+  name: "CadastrarPaciente",
   data() {
     return {
       paciente: "/img/paciente.png",
@@ -78,17 +84,18 @@ export default {
 
 #pagcompleta {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
 }
 
 #paciente {
   width: 80%;
-  height: 90vh;
+  height: 99.12vh;
 }
 
 h1 {
-  font-size: 70px;
-  margin-top: 3%;
+  font-size: 55px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   width: 90%;
   font-weight: 800;
   color: #2e4a7d;
@@ -102,46 +109,55 @@ span {
 
 form {
   width: 100%;
-  height: 90%;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
 }
 
+
+
 .entradas {
   width: 80%;
   height: 9vh;
-  background: #f5f5f5;
+
+  display: flex;
+  background-color: #f5f5f5;
   border: 2px solid #2e4a7d;
   box-sizing: border-box;
   border-radius: 8px;
-  margin-top: 1%;
+
   text-align: left;
   padding-left: 8%;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  outline: none;
+  color: #2e4a7d;
+}
+
+.entradas::placeholder{
   font-size: 30px;
-  font-weight: 900;
-  background-color: #f5f5f5;
-  display: flex;
-  
 }
 
 .fas {
   width: 5%;
   margin-left: 3%;
   position: relative;
-  bottom: 7.5%;
-  font-size: 200%;
+  bottom: 43px;
+  right: 8px;
+  font-size: 175%;
   color: #2e4a7d;
 }
 
 #botao {
   width: 79%;
-  height: 10%;
+  height: 10vh;
   color: white;
   font-size: 30px;
   background: #2e4a7d;
   border-radius: 20px;
-  margin-top: 3%;
+  margin-top: 2%;
   cursor: pointer;
   transition: 1s;
 }

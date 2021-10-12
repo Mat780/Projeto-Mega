@@ -1,54 +1,150 @@
 <template>
-     <div id="content">
-          <div class="parte_Direita">
-               <img :src="imagen7" id="imagen7" />
-          </div>
-          <div id="meio"></div>
-          <div class="parte_Esquerda">
-               <h1 id="titulo">Sobre Nós</h1>
-               <p id="descricao">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Harum, nesciunt, iusto suscipit modi optio molestias vero
-                    perferendis itaque illum similique voluptas porro vel labore
-                    totam id placeat quidem a earum. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Doloribus facilis adipisci
-                    pariatur deserunt nulla illo itaque! Ipsum veritatis
-                    aspernatur ad delectus iusto assumenda et ea dignissimos
-                    obcaecati quod, id repudiandae. Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Commodi, reiciendis eius
-                    aliquid numquam ab ea, velit pariatur.
-               </p>
-          </div>
-     </div>
+    <div id="content">
+        <div>
+            <div class="parte_Direita">
+                <button class="LandingBotoes" @click="TrocarEsquerda">
+                    <img class="LandingBotoesImg" :src="SetaEsquerda">
+                </button>
+
+                <img :src="ImgAtt" style="width: 80%;transition: 0.5s;">
+
+                <button class="LandingBotoes" @click="TrocarDireita">
+                    <img class="LandingBotoesImg" :src="SetaDireita">
+                </button>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; height: 4.2vh;">
+                <div id="BolinhasDoCarrossel">
+                    <div class="BolasCarrossel">
+                        <div v-if="Bcarro1" class="BolasCarrosselIluminada"></div>
+                    </div>
+                    <div class="BolasCarrossel">
+                        <div v-if="Bcarro2" class="BolasCarrosselIluminada"></div>
+                    </div>
+                    <div class="BolasCarrossel">
+                        <div v-if="Bcarro3" class="BolasCarrosselIluminada"></div>
+                    </div>
+                    <div class="BolasCarrossel">
+                        <div v-if="Bcarro4" class="BolasCarrosselIluminada"></div>
+                    </div>
+                    <div class="BolasCarrossel">
+                        <div v-if="Bcarro5" class="BolasCarrosselIluminada"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="parte_Esquerda">
+            <h1 id="titulo">Sobre Nós</h1>
+            <p id="descricao">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
+                nesciunt, iusto suscipit modi optio molestias vero perferendis
+                itaque illum similique voluptas porro vel labore totam id
+                placeat quidem a earum. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Doloribus facilis adipisci pariatur deserunt
+                nulla illo itaque! Ipsum veritatis aspernatur ad delectus iusto
+                assumenda et ea dignissimos obcaecati quod, id repudiandae.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Commodi, reiciendis eius aliquid numquam ab ea, velit pariatur.
+            </p>
+        </div>
+    </div>
 </template>
 
 <script>
+
 export default {
-     name: "parteSobreNos",
-     data() {
-          return {
-               imagen7: "/img/imagen4.png",
-          };
-     },
+    name: "parteSobreNos",
+    data() {
+        return {
+            SetaEsquerda: '/img/SetaEsquerda.svg',
+            SetaDireita: '/img/SetaDireita.svg',
+            cont: 0,
+            ImgAtt: '/img/imagen7.png',
+            imagen7: "/img/imagen7.png",
+            Bcarro1: true,
+            Bcarro2: false,
+            Bcarro3: false,
+            Bcarro4: false,
+            Bcarro5: false,
+            Carrossel2: '/img/Carrossel2.svg',
+            Carrossel3: '/img/Carrossel3.svg',
+            Carrossel4: '/img/Carrossel4.svg',
+            Carrossel5: '/img/Carrossel5.svg'
+        };
+    },
+    methods: {
+        TrocaDeImgs(){
+            if(this.cont == 0){
+                this.ImgAtt = this.imagen7;
+                this.Bcarro1 = true;
+
+                this.Bcarro5 = false;
+                this.Bcarro2 = false;  
+
+            } else if (this.cont == 1){
+                this.ImgAtt = this.Carrossel2;
+                this.Bcarro2 = true;
+
+                this.Bcarro1 = false;
+                this.Bcarro3 = false;
+
+            } else if (this.cont == 2){
+                this.ImgAtt = this.Carrossel3;
+                this.Bcarro3 = true;
+
+                this.Bcarro2 = false;
+                this.Bcarro4 = false;
+
+            } else if (this.cont == 3){
+                this.ImgAtt = this.Carrossel4;
+                this.Bcarro4 = true;
+
+                this.Bcarro3 = false;
+                this.Bcarro5 = false;
+            } else if (this.cont == 4){
+                this.ImgAtt = this.Carrossel5;
+                this.Bcarro5 = true;
+
+                this.Bcarro1 = false;
+                this.Bcarro4 = false;
+            }
+        },
+        TrocarEsquerda(){
+            if(this.cont == 0){
+                this.cont = 4;
+            } else {
+                this.cont--;
+            }
+            this.TrocaDeImgs();
+        },
+        TrocarDireita(){
+            if(this.cont == 4){
+                this.cont = 0;
+            } else {
+                this.cont++;
+            }
+            this.TrocaDeImgs();
+        }
+    },  
 };
 </script>
 
 <style scoped>
 #content {
-     display: flex;
-     color: rgba(46, 74, 125, 0.8);
-     padding-top: 4%;
-     padding-bottom: 4%;
-     background-image: url("/img/Bola.png");
-     background-repeat: no-repeat;
-     background-position: top;
-     background-position-y: -250%;
+    display: flex;
+    color: rgba(46, 74, 125, 0.8);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-image: url("/img/Bola.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-position-y: -40vh;
 }
-
 .parte_Direita {
-     width: 50%;
-     height: 65vh;
-     background-color: transparent;
+    display: flex;
+    width: 50vw;
+    height: 65vh;
+    padding-left: 1%;
+    background-color: transparent;
 }
 #imagen7 {
      width: 75%;
@@ -72,5 +168,48 @@ export default {
      line-height: 28px;
      text-align: justify;
      margin-top: 5%;
+}
+
+.LandingBotoesImg{
+    max-width: 4vw;
+}
+
+.LandingBotoes{ 
+    border: none;
+    background: none;
+    align-self: center;
+    align-items: center;
+}
+
+#BolinhasDoCarrossel{
+    display: flex;
+    align-items: center;
+
+    padding: 0px 1vw 0px 1vw;
+    border-radius: 1rem;
+    background-color: #f2f2f2;
+}
+
+.BolasCarrossel{
+    border-radius: 50%;
+    display: inline-block;
+
+    height: 2.5vh;
+    width: 1.3vw;
+    margin-right: 0.3vw;
+
+    background-color: #C4C4C4;
+}
+.BolasCarrosselIluminada{
+    border-radius: 50%;
+    margin-left: 0.15vw;
+    margin-top: 0.1vh;
+
+
+    height: 2vh;
+    width: 0.9vw;
+    margin-right: 0.3vw;
+
+    background-color: #FFD666;
 }
 </style>

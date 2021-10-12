@@ -1,28 +1,21 @@
 <template>
   <div class="conteiner">
-    <head>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="//fonts.googleapis.com/css?family=Nunito"
-      />
-    </head>
     <div class="content">
       <SideBar />
-      <upload />
+      <CompUpload />
     </div>
   </div>
 </template>
 
 <script>
 import SideBar from "../components/Adm/SideBar.vue";
-import upload from "../components/Upload/upload.vue";
+import CompUpload from "../components/Upload/CompUpload.vue"
 
 export default {
-  name: "ListaLaudos",
+  name: "Upload",
   components: {
     SideBar,
-    upload,
+    CompUpload,
   },
 };
 </script>
@@ -39,7 +32,6 @@ export default {
   height: 100vh;
   display: flex;
   color: #2e4a7d;
-  font-family: "Nunito";
   background-color: rgba(235, 242, 245, 1);
 }
 </style>

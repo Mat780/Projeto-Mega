@@ -5,10 +5,10 @@ import Adicionar from '../views/Adicionar.vue'
 import ListarPacientes from '../views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
-import Adm from '../views/Adm.vue'
-import Editar from '../views/Editar.vue'
-// import Batata from '../views/Batata.vue'
-
+import CadastrarPaciente from '../components/Adm/CadastrarPaciente.vue'
+import CadastrarMedico from '../components/Adm/CadastrarMedico.vue'
+import EditarPaciente from '../components/Adm/EditarPaciente.vue'
+import EditarMedico from '../components/Adm/EditarMedico.vue'
 
 const routes = [
   {
@@ -52,16 +52,26 @@ const routes = [
     component: Upload
   },
   {
-    path: '/Adm',
-    name: 'Adm',
-    component: Adm
+    path: '/Login/Adm/CadastrarPaciente',
+    name: 'CadastrarPaciente',
+    component: CadastrarPaciente
   },
-  // {
-  //   path:'/Batata',
-  //   name:'Batata',
-  //   component: Batata
-  // },
-  
+  {
+    path: '/Login/Adm/EditarPaciente',
+    name: 'EditarPaciente',
+    component: EditarPaciente
+  },
+  {
+    path: '/Login/Adm/CadastrarMedico',
+    name: 'CadastrarMedico',
+    component: CadastrarMedico
+  },
+  {
+    path: '/Login/Adm/EditarMedico',
+    name: 'EditarMedico',
+    component: EditarMedico
+  }
+
 ]
 
 const router = createRouter({

@@ -1,5 +1,11 @@
 <template>
      <div>
+     <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+      />
+     </head>
           <div id="pagcompleta">
                <div id="ladoesquerdo">
                     <img :src="doctor" id="doctor" />
@@ -37,7 +43,7 @@
                          <i class="fas fa-user"></i>
                          <input
                               class="entradas"
-                              type="password"
+                              type="text"
                               placeholder="Senha"
                               required
                               v-model="senha"
@@ -45,21 +51,12 @@
                          <i class="fas fa-key"></i>
                          <input
                               class="entradas"
-                              type="password"
+                              type="text"
                               placeholder="Confirmar Senha"
                               required
                               v-model="confirmarsenha"
                          />
                          <i class="fas fa-key"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Médico(a) responsável"
-                              required
-                              v-model="medicoaresponsavel"
-                         />
-                         
-                         <i class="fas fa-stethoscope"></i>
                          <input
                               id="botao"
                               type="button"
@@ -119,12 +116,12 @@ export default {
 
 #pagcompleta {
      display: grid;
-     grid-template-columns: auto auto;
+     grid-template-columns: 50% 50%;
 }
 
 #doctor {
      width: 80%;
-     height: 100vh;
+     height: 99vh;
 }
 
 h1 {
@@ -133,51 +130,57 @@ h1 {
      width: 90%;
      font-weight: 800;
      color: #2e4a7d;
-     margin-left: 14%;
 }
 
 span {
      color: red;
 }
 form {
-     width: 100%;
-     height: 100%;
      background-color: #ffffff;
      display: flex;
      flex-direction: column;
 }
 
 .entradas {
-     width: 80%;
-     height: 9vh;
-     background: #f5f5f5;
-     border: 2px solid #2e4a7d;
-     box-sizing: border-box;
-     border-radius: 8px;
-     text-align: left;
-     padding-left: 10%;
-     font-size: 30px;
-     font-weight: 900;
-     background-color: #f5f5f5;
+  width: 80%;
+  height: 9vh;
+
+  display: flex;
+  background-color: #f5f5f5;
+  border: 2px solid #2e4a7d;
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  text-align: left;
+  padding-left: 8%;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  outline: none;
+  color: #2e4a7d;
 }
 
+.entradas::placeholder{
+  font-size: 30px;
+}
 .fas {
-     width: 5%;
-     margin-left: 3%;
-     position: relative;
-     bottom: 6%;
-     font-size: 200%;
-     color: #2e4a7d;
+  width: 5%;
+  margin-left: 4%;
+  position: relative;
+  bottom: 43px;
+  right: 8px;
+  font-size: 175%;
+  color: #2e4a7d;
 }
 
 #botao {
      width: 79%;
-     height: 10%;
+     height: 10vh;
      color: white;
      font-size: 30px;
      background: #2e4a7d;
      border-radius: 20px;
-     margin-top: 1.5%;
      cursor: pointer;
      transition: 1s;
 }

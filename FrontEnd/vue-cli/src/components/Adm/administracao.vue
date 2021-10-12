@@ -1,11 +1,13 @@
 <template>
   <div class="conteiner">
-      <!-- <modal v-if="showModal" @close="showModal = false" /> -->
+    <!-- <modal v-if="showModal" @close="showModal = false" /> -->
     <div class="content content1">
       <div class=".identificacao identificacao">
-        <img :src="imagem8" class="imagems imagem8" />
-        <h2 class="titulo">Lista de Pacientes</h2>
-        <button class="btn btnPacientes" @click="AbrirCadastrarPaciente">
+        <div style="display: flex; width: 100%;">
+          <img :src="imagem8" class="imagems imagem8" />
+          <h2 class="titulo">Lista de Pacientes</h2>
+        </div>
+        <button class="btn btnAdd" @click="AbrirCadastrarPaciente">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -30,9 +32,11 @@
     <!-- content1 -->
     <div class="content content2">
       <div class="identificacao identificacao2">
-        <img :src="imagem5" class="imagems imagem5" />
-        <h2 class="titulo tituloM">Lista de Médicos</h2>
-        <button class="btn btnMedicos" @click="AbrirCadastrarMedico">
+        <div style="display: flex; width: 100%;">
+          <img :src="imagem5" class="imagems imagem5" />
+          <h2 class="titulo tituloM">Lista de Médicos</h2>
+        </div>
+        <button class="btn btnAdd" @click="AbrirCadastrarMedico">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -43,12 +47,8 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
-            <button class="btn btn2">
-              <img
-                :src="editar"
-                class="btn2Editar"
-                
-              />
+            <button class="btn btn2" @click="AbrirEditarMedico">
+              <img :src="editar" class="btn2Editar" />
             </button>
             <button class="btn btn3">
               <img :src="excluir" class="btn3Excluir" />
@@ -69,8 +69,8 @@ export default {
   data() {
     return {
       showModal: false,
-      imagem5: "/img/imagem5.png",
-      imagem8: "/img/imagem8.png",
+      imagem5: "/img/Medica.svg",
+      imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
@@ -78,14 +78,17 @@ export default {
   },
   methods: {
     AbrirCadastrarPaciente() {
-     //  this.showModal = true;
-      this.$router.push("/Adicionar");
+      //  this.showModal = true;
+      this.$router.push("/Login/Adm/CadastrarPaciente");
     },
     AbrirEditarPaciente() {
-      this.$router.push("/Editar");
+      this.$router.push("/Login/Adm/EditarPaciente");
     },
-    AbrirCadastrarMedico(){
-      this.$router.push("/")
+    AbrirCadastrarMedico() {
+      this.$router.push("/Login/Adm/CadastrarMedico");
+    },
+    AbrirEditarMedico(){
+      this.$router.push("/Login/Adm/EditarMedico");
     }
   },
 };
@@ -118,20 +121,16 @@ export default {
   padding-top: 3%;
   padding-bottom: 2%;
 }
-.identificacao2 {
-  padding-bottom: 2.4%;
-}
 
 .imagems {
-  width: 14%;
+  width: 4.8vw;
   height: 100%;
 }
 
 .titulo {
-  font-size: 28px;
-  margin-top: 3%;
-  position: relative;
-  right: 18%;
+  font-size: 1.5em;
+  align-self: center;
+  margin-left: 2%;
 }
 
 .tituloM {
@@ -142,7 +141,6 @@ export default {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  margin-top: 3.5%;
   border: none;
   background-color: #2e4a7d;
   display: flex;
@@ -150,6 +148,10 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: 1s;
+}
+
+.btnAdd {
+  align-self: center;
 }
 
 .btn:hover {
@@ -176,7 +178,7 @@ export default {
 
 .listaFilhas {
   width: 98%;
-  height: 15%;
+  height: 20%;
   border-radius: 8px;
   background-image: linear-gradient(to top, #ffd66680, #ffd666);
   display: flex;
@@ -195,10 +197,10 @@ export default {
 }
 
 .btns {
-  width: 17%;
   display: flex;
-  justify-content: space-between;
-  padding: 3% 0 0 6%;
+  width: 27%;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .btn2Editar {
