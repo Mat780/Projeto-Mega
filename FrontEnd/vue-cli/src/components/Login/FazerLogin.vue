@@ -4,20 +4,23 @@
             Bem-vindo
         </h2>
         <h4>
-            Acesse seus <label class="ColorLaudos">laudos</label> agora!
+            Acesse seus <label style="color: #FFD666;">laudos</label> agora!
         </h4>
 
         <form>
             <div class="GrupoLogin">
                 <img :src='Pessoa'>
-                <input type="text" class="ControleLogin" v-model="text" placeholder="Escreva aqui seu CPF">
+                <input type="text" class="ControleLogin" v-model="CPF " placeholder="Escreva aqui seu CPF">
             </div>
             <div class="GrupoLogin">
                 <img :src='Chave'>
-                <input type="password" class="ControleLogin" v-model="password" placeholder="Escreva aqui sua senha">
+                <input :type="TypeSenha" class="ControleLogin" v-model="Senha" placeholder="Escreva aqui sua senha">
+                <button style="width: 15%; border: none; background: none" @click="TrocaOlho">
+                    <img :src="Olho" style="padding-top: 0.8vh">
+                </button>
             </div>
             <div>
-                <button id="LoginEntrar">Entrar</button>
+                <button id="LoginEntrar" @click="TrocaPag">Entrar</button>
             </div>
             <div id="LoginCadeado">
                 <img id='LoginCadeadoImg' :src='Cadeado'>
@@ -29,6 +32,7 @@
 </template>
 
 <script>
+
 export default {
     name: "FazerLogin",
     data(){
@@ -36,10 +40,26 @@ export default {
             Pessoa: './img/Pessoa.svg',
             Chave: './img/Chave.svg',
             Cadeado: './img/Cadeado.svg',
+            Olho: './img/OlhoFechado.svg',
+            TypeSenha: 'password',
             CPF: '',
             Senha: ''
         }
-    }
+    },
+    methods: {
+        TrocaOlho(){
+            if(this.TypeSenha == 'password'){
+                this.TypeSenha = 'text';
+                this.Olho = './img/OlhoAberto.svg'
+            } else {
+                this.TypeSenha = 'password';
+                this.Olho = './img/OlhoFechado.svg'
+            }
+        },
+        TrocaPag(){
+            this.$router.push({ path: '/Login/Adm'});
+        }
+    },
 }
 </script>
 
@@ -54,9 +74,6 @@ export default {
     text-align: center;
 }
 
-.ColorLaudos{
-    color:  #FFD666;
-}
 
 form{
     padding-top: 3.5vh;
@@ -81,7 +98,7 @@ form{
     outline: none;
     border: none;
     height: 5.6vh;
-    width: 15.65vw;
+    width: 15vw;
 }
 
 img{

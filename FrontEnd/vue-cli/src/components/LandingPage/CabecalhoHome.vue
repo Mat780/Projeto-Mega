@@ -53,7 +53,7 @@ export default {
             const element = document.getElementById('content');
             element.scrollIntoView({
                 behavior: 'smooth',
-                block: 'end'
+                block: 'end' 
             });
         },
 
@@ -67,7 +67,7 @@ export default {
 
         scrollContato(){
             const element = document.getElementById('Contato');
-            element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({ behavior: 'smooth' , block: 'end'});
         },
 
         mounted() {

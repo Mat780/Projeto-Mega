@@ -1,13 +1,7 @@
-import { createApp } from 'vue';
-import Pagina from './Pagina.vue';
-import router from './router';
-
-const pag = createApp(Pagina).use(router);
-
-pag.mount('#app');
+import { createApp } from 'vue'
+import Vue from 'vue'
+import Pagina from './Pagina.vue'
+import router from './router'
 
 
-//createApp(Pagina).use(router).mount('#app');
-
-//createApp(LandingPage).mount('#app')
-//import LandingPage from './LandingPage.vue'
+createApp(Pagina).use(router).mount('#app')

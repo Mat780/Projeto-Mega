@@ -32,10 +32,10 @@ export default {
     },
     data(){
         return{
-            DuckHealth: './img/DuckHealth.svg',
-            DuckHealth2: './img/DuckHealth.png',
-            Bg1: './img/LoginBg1.svg',
-            Bg2: './img/LoginBg2.svg'
+            DuckHealth: '/img/DuckHealth.svg',
+            DuckHealth2: '/img/DuckHealth.png',
+            Bg1: '/img/LoginBg1.svg',
+            Bg2: '/img/LoginBg2.svg'
         }
     },
     methods: {

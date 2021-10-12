@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="EndHomeSec">
+        <section class="EndHomeSec" id="EndHome">
             <div id="EndHomeList">
                 <h1>Endereço</h1>
                 <div class="EndHomeListDiv">
@@ -84,7 +84,7 @@ p {
 }
 
 .EndHomeSec {
-    padding: 2% 0 4% 0;
+    padding: 2% 0 3% 0;
     display: grid;
     grid-template-columns: 50% 50%;
 }
