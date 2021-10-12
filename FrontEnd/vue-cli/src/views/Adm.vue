@@ -1,32 +1,41 @@
 <template>
-     <div>
-          <head>
-               <link
-                    rel="stylesheet"
-                    type="text/css"
-                    href="//fonts.googleapis.com/css?family=Nunito"
-               />
-               <link
-                    rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-               />
-          </head>
-
-          <CadastrarMedico />
+     <head>
+          <link
+               rel="stylesheet"
+               type="text/css"
+               href="//fonts.googleapis.com/css?family=Nunito"
+          />
+     </head>
+     <div class="conteiner">
+          <SideBar />
+          <administracao />
      </div>
 </template>
 
 <script>
-import CadastrarMedico from "../components/Adm/CadastrarMedico.vue";
-import CadastrarPaciente from "../components/Adm/CadastrarPaciente.vue";
-import EditarMedico from "../components/Adm/EditarMedico.vue";
-import EditarPaciente from "../components/Adm/EditarPaciente.vue";
+import administracao from "../components/Adm/administracao.vue";
 import SideBar from "../components/Adm/SideBar.vue";
 export default {
      name: "Adm",
      components: {
-          CadastrarMedico,
+          administracao,
+          SideBar,
      },
 };
 </script>
-        
+
+<style scoped>
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     color: #2e4a7d;
+     font-family: "Nunito";
+}
+
+.conteiner {
+     width: 100vw;
+     height: 100vh;
+     display: flex;
+}
+</style>

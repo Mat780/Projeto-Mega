@@ -4,5 +4,5 @@ import router from './router'
 
 createApp(Pagina).use(router).mount('#app')
 
-//createApp(LandingPage).mount('#app')
+// createApp(LandingPage).mount('#app')
 //import LandingPage from './LandingPage.vue'

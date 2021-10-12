@@ -46,14 +46,7 @@
                               required
                          />
                          <i class="fas fa-key"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Médico(a) responsável"
-                              required
-                              v-model="medicoaresponsavel"
-                         />
-                         <i class="fas fa-stethoscope"></i>
+
                          <input id="botao" type="button" value="Cadastrar" />
                     </form>
                </div>
