@@ -1,21 +1,58 @@
 <template>
   <div class="contenier">
     <div class="contentCima">
-        <div class="MeusPacientes">
-            <label class="MeusFiltros">Meus Filtros:</label>
-            <button class="btn"></button>
+      <div class="MeusPacientes">
+        <span class="MeusFiltros">Filtrar por:</span>
+        <button class="btn">
+          <img :src="filtrar" class="imgFiltrar" />
+          <p class="text">Meus Pacientes</p>
+        </button>
+      </div>
+      <div class="pesquisar">
+        <span class="MeusFiltros">Buscar por:</span>
+        <div class="divPesquisar">
+          <button class="btnPesquisar">
+            <img :src="pesquisar" class="imgPesquisar" />
+          </button>
+          <input
+            type="text"
+            class="inputPesquisar"
+            placeholder="Pesquisar"
+          />
         </div>
-        <div class="pesquisar"></div>
-        <div class="personaMedico"></div>
+      </div>
+      <div class="personaMedico">
+        <div class="TextPersona">
+          <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
+          <span class="medico">Médico</span>
+        </div>
+        <img :src="imagem5" class="imagem5" />
+      </div>
     </div>
     <hr class="linha" />
-    <div class="contentEmbaixo"></div>
+    <div class="contentEmbaixo">
+      <div class="contentEmbaixo2">
+        <pacientes />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import pacientes from "../listas/pacientes"
+
 export default {
   name: "listaPacientes",
+  components: {
+    pacientes,
+  },
+  data() {
+    return {
+      filtrar: "../img/filtrar.png",
+      pesquisar: "../img/pesquisar.png",
+      imagem5: "../img/imagem5.png",
+    };
+  },
 };
 </script>
 
@@ -23,7 +60,6 @@ export default {
 .contenier {
   width: 93%;
   height: 100%;
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,33 +70,128 @@ export default {
   height: 15%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
 }
 
-.MeusPacientes{
-    width: 15%;
-    border: 1px solid gold;
+.MeusPacientes {
+  width: 15%;
+  padding-top: 0.5%;
 }
 
-.pesquisar{
-    width: 55%;
-    border: 1px solid firebrick;
+.MeusFiltros {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
 }
 
-.personaMedico{
-    width: 25%;
-    border: 1px solid;
+.btn {
+  width: 80%;
+  height: 55%;
+  border-radius: 30px;
+  background-color: #2e4a7d;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  display: flex;
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+.text {
+  padding-top: 1%;
+  padding-left: 18%;
+  text-align: left;
+}
+
+.imgFiltrar {
+  width: 27%;
+  position: relative;
+  top: 20%;
+  left: 8%;
+}
+
+.pesquisar {
+  width: 60%;
+  padding-top: 0.5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divPesquisar {
+  width: 85%;
+  height: 50%;
+  background-color: rgb(238, 236, 236);
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+  margin-top: 1%;
+  border-radius: 8px;
+  border: 1px solid rgba(211, 226, 229, 1);
+}
+
+.btnPesquisar {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.inputPesquisar {
+  width: 80%;
+  height: 60%;
+  color: #2e4a7d;
+  font-size: 17px;
+  padding-left: 2%;
+  border-radius: 8px;
+  border: none;
+  margin-left: 2%;
+}
+
+.inputPesquisar::placeholder {
+  font-size: 17px;
+}
+
+.personaMedico {
+  width: 22%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 0 0 0;
+}
+
+.TextPersona {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagem5 {
+  width: 30%;
+  height: 85%;
+}
+
+.olaMedido {
+  font-size: 17px;
+  font-weight: 900;
+  margin-top: 15%;
+}
+
+.medico {
+  font-weight: 700;
+  color: rgba(46, 74, 125, 0.5);
 }
 
 .linha {
   width: 90%;
-  border: 1.0px solid #2e4a7d;
+  border: 1px solid #2e4a7d;
   background-color: #2e4a7d;
 }
 
 .contentEmbaixo {
   width: 90%;
-  height: 85%;
-  border: 1px solid red;
+  height: 82%;
+  margin-top: 2%;
+  overflow-y: scroll;
 }
+
+.contentEmbaixo2{
+  width: 99%;
+  height: 100%;
+}
+
 </style>

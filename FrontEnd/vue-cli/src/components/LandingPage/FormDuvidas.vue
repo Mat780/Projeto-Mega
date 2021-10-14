@@ -8,49 +8,43 @@
     </head>
     <div class="conteiner" id="Contato">
       <form
-        action="https://api.staticforms.xyz/submit"
-        method="post"
-        class="contentDuvida"
-      >
-      
-        <input
-          type="hidden"
-          name="accessKey"
-          value="6a0a6c0e-449a-43b9-8a40-63bbfaa6842a"
-        />
-        
-        <div class="nome_email">
-          <div class="nome">
-            <input
-              type="text"
-              name="name"
-              class="inputRow name"
-              placeholder="Nome"
-              required
-            />
-          </div>
-          <div class="email">
-            <input
-              type="text"
-              name="email"
-              class="inputRow email"
-              placeholder="Email"
-              required
-            />
-          </div>
-        </div>
-        <div class="ajuda">
-          <input
-            type="text"
-            name="message"
-            class="inputAjuda"
-            placeholder="Como podemos ajudar? Escreva sua dúvida"
-            required
-          />
-        </div>
-        <button class="btn">Enviar Mensagem</button>
-      </form>
-
+				ref="form"
+				@submit.prevent="sendEmail"
+				class="contentDuvida"
+			>
+				<div class="nome_email">
+					<div class="nome">
+						<input
+							type="text"
+							name="UserName"
+							class="inputRow name"
+							placeholder="Nome"
+							:v-model="Name"
+							required
+						/>
+					</div>
+					<div class="email">
+						<input
+							type="text"
+							name="UserEmail"
+							class="inputRow email"
+							placeholder="Email"
+							:v-model="Email"
+							required
+						/>
+					</div>
+				</div>
+				<div class="ajuda">
+          <input type="text"
+						name="Msg"
+						class="inputAjuda"
+						placeholder="Como podemos ajudar? Escreva sua dúvida"
+						:v-model="Msg"
+						required>
+						
+				</div>
+				<input class="btn" type="submit" value="Enviar">
+			</form>
       <div class="direita">
         <h2 id="contatos">Contatos</h2>
         <div class="ultimadiv">
@@ -88,6 +82,8 @@
 </template>
 
 <script>
+import emailjs from "emailjs-com"
+
 export default {
   name: "FormDuvidas",
   data() {
@@ -98,6 +94,17 @@ export default {
       linkedin: "/img/Linkedin.png",
     };
   },
+  methods: {
+		sendEmail(event) {
+		emailjs.sendForm('service_MegaJrPS', 'template_FormsMegaJrPs', this.$refs.form, 'user_3U0V4u52tmL6BC5OTJvsT')
+			.then((result) => {
+				alert('Seu email foi enviado com sucesso, obrigado pela preferencia, a clinica Duck Health agradece', result.text);
+			}, (error) => {
+				console.log('FAILED...', error.text);
+			});
+			event.target.reset();
+		}
+	},
 };
 </script>
 

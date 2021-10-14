@@ -2,7 +2,7 @@
   <div class="conteiner">
     <div class="content content1">
       <div class=".identificacao identificacao">
-        <img :src="imagem8" class="imagems imagem8" />
+        <img :src="imagem6" class="imagems imagem8" />
         <h2 class="titulo">Lista de Pacientes</h2>
         <button class="btn btnPacientes">
           <img :src="adicionar" class="imgAdd" />
@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       imagem5: "/img/imagem5.png",
-      imagem8: "/img/imagem8.png",
+      imagem6: "/img/imagem6.png",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",

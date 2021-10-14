@@ -28,7 +28,7 @@ const routes = [
     component: ListarPacientes
   },
   {
-    path: '/Login/ListaLaudos',
+    path: '/ListaLaudos',
     name: 'ListaLaudos',
     component: ListaLaudos
   },
