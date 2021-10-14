@@ -24,6 +24,7 @@
 
 <script>
 import laudos from "../listas/laudos";
+import Laudos from "../listas/laudos.vue";
 
 export default {
   name: "listaLaudos",
@@ -43,7 +44,6 @@ export default {
 .conteiner {
   width: 93vw;
   height: 100vh;
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,10 +94,9 @@ export default {
 }
 
 .olPaciente {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
-  position: relative;
-  top: 40%;
+  align-self: center;
 }
 
 .linha {

@@ -85,6 +85,7 @@ export default {
 .btn {
   width: 80%;
   height: 55%;
+  border: none;
   border-radius: 30px;
   background-color: #2e4a7d;
   color: #fff;
@@ -96,8 +97,10 @@ export default {
 }
 
 .text {
+  font-size: 0.9em;
+
   padding-top: 1%;
-  padding-left: 18%;
+  padding-left: 12%;
   text-align: left;
 }
 
@@ -109,7 +112,7 @@ export default {
 }
 
 .pesquisar {
-  width: 60%;
+  width: 55%;
   padding-top: 0.5%;
   display: flex;
   flex-direction: column;
@@ -149,15 +152,17 @@ export default {
 }
 
 .personaMedico {
-  width: 22%;
+  width: 23.5%;
   display: flex;
   justify-content: space-between;
   padding: 1% 0 0 0;
 }
 
 .TextPersona {
+  margin-right: 2%;
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
 
 .imagem5 {
@@ -166,9 +171,8 @@ export default {
 }
 
 .olaMedido {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 900;
-  margin-top: 15%;
 }
 
 .medico {

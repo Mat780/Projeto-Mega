@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SideBar from "../components/sideBar/SideBar.vue";
+import SideBar from "../components/Adm/SideBar.vue";
 import listaPacientes from "../components/ListarPacientes/listaPacientes.vue";
 
 export default {

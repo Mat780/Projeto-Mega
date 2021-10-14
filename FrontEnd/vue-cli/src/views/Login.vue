@@ -4,7 +4,7 @@
             <div>
                 <div id='LoginTopoBotao'>
                     <button id='LoginBotao' @click="Voltar">
-                        <img id='LoginImgBotao' :src="DuckHealth_SVG">
+                        <img id='LoginImgBotao' :src="DuckHealth2">
                     </button>
                     <div>
 
@@ -32,9 +32,10 @@ export default {
     },
     data(){
         return{
-            DuckHealth_SVG: './img/DuckHealth_SVG.svg',
-            Bg1: './img/LoginBg1.svg',
-            Bg2: './img/LoginBg2.svg'
+            DuckHealth: '/img/DuckHealth.svg',
+            DuckHealth2: '/img/DuckHealth.png',
+            Bg1: '/img/LoginBg1.svg',
+            Bg2: '/img/LoginBg2.svg'
         }
     },
     methods: {
@@ -98,7 +99,7 @@ export default {
 
 #LoginBotao{
     position: relative;
-    width: 5vw;
+    width: 4.5vw;
     height: 8.5vh;
 
     left: 5%;

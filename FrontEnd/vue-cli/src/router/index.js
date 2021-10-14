@@ -5,6 +5,10 @@ import Adm from '../views/Adm.vue'
 import ListarPacientes from '@/views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
+import CadastrarPaciente from '../components/Adm/CadastrarPaciente.vue'
+import CadastrarMedico from '../components/Adm/CadastrarMedico.vue'
+import EditarPaciente from '../components/Adm/EditarPaciente.vue'
+import EditarMedico from '../components/Adm/EditarMedico.vue'
 
 const routes = [
   {
@@ -36,6 +40,26 @@ const routes = [
     path: '/Upload',
     name: 'Upload',
     component: Upload
+  },
+  {
+    path: '/Login/Adm/CadastrarPaciente',
+    name: 'CadastrarPaciente',
+    component: CadastrarPaciente
+  },
+  {
+    path: '/Login/Adm/EditarPaciente',
+    name: 'EditarPaciente',
+    component: EditarPaciente
+  },
+  {
+    path: '/Login/Adm/CadastrarMedico',
+    name: 'CadastrarMedico',
+    component: CadastrarMedico
+  },
+  {
+    path: '/Login/Adm/EditarMedico',
+    name: 'EditarMedico',
+    component: EditarMedico
   }
 
 ]

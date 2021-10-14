@@ -1,10 +1,13 @@
 <template>
   <div class="conteiner">
+    <!-- <modal v-if="showModal" @close="showModal = false" /> -->
     <div class="content content1">
       <div class=".identificacao identificacao">
-        <img :src="imagem6" class="imagems imagem8" />
-        <h2 class="titulo">Lista de Pacientes</h2>
-        <button class="btn btnPacientes">
+        <div style="display: flex; width: 100%;">
+          <img :src="imagem8" class="imagems imagem8" />
+          <h2 class="titulo">Lista de Pacientes</h2>
+        </div>
+        <button class="btn btnAdd" @click="AbrirCadastrarPaciente">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -15,7 +18,7 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
-            <button class="btn btn2">
+            <button class="btn btn2" @click="AbrirEditarPaciente">
               <img :src="editar" class="btn2Editar" />
             </button>
             <button class="btn btn3">
@@ -29,9 +32,11 @@
     <!-- content1 -->
     <div class="content content2">
       <div class="identificacao identificacao2">
-        <img :src="imagem5" class="imagems imagem5" />
-        <h2 class="titulo tituloM">Lista de Médicos</h2>
-        <button class="btn btnMedicos">
+        <div style="display: flex; width: 100%;">
+          <img :src="imagem5" class="imagems imagem5" />
+          <h2 class="titulo tituloM">Lista de Médicos</h2>
+        </div>
+        <button class="btn btnAdd" @click="AbrirCadastrarMedico">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -42,7 +47,7 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
-            <button class="btn btn2">
+            <button class="btn btn2" @click="AbrirEditarMedico">
               <img :src="editar" class="btn2Editar" />
             </button>
             <button class="btn btn3">
@@ -63,19 +68,35 @@ export default {
   name: "administracao",
   data() {
     return {
-      imagem5: "/img/imagem5.png",
-      imagem6: "/img/imagem6.png",
+      showModal: false,
+      imagem5: "/img/Medica.svg",
+      imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
     };
+  },
+  methods: {
+    AbrirCadastrarPaciente() {
+      //  this.showModal = true;
+      this.$router.push("/Login/Adm/CadastrarPaciente");
+    },
+    AbrirEditarPaciente() {
+      this.$router.push("/Login/Adm/EditarPaciente");
+    },
+    AbrirCadastrarMedico() {
+      this.$router.push("/Login/Adm/CadastrarMedico");
+    },
+    AbrirEditarMedico(){
+      this.$router.push("/Login/Adm/EditarMedico");
+    }
   },
 };
 </script>
 
 <style scoped>
 .conteiner {
-  width: 93%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: space-around;
@@ -100,20 +121,16 @@ export default {
   padding-top: 3%;
   padding-bottom: 2%;
 }
-.identificacao2 {
-  padding-bottom: 2.4%;
-}
 
 .imagems {
-  width: 14%;
+  width: 4.8vw;
   height: 100%;
 }
 
 .titulo {
-  font-size: 28px;
-  margin-top: 3%;
-  position: relative;
-  right: 18%;
+  font-size: 1.5em;
+  align-self: center;
+  margin-left: 2%;
 }
 
 .tituloM {
@@ -121,10 +138,9 @@ export default {
 }
 
 .btn {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  margin-top: 3.5%;
   border: none;
   background-color: #2e4a7d;
   display: flex;
@@ -132,6 +148,10 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: 1s;
+}
+
+.btnAdd {
+  align-self: center;
 }
 
 .btn:hover {
@@ -145,7 +165,7 @@ export default {
 
 .linha {
   width: 91%;
-  border: 1.0px solid #2e4a7d;
+  border: 1.2px solid #2e4a7d;
   background-color: #2e4a7d;
 }
 
@@ -158,7 +178,7 @@ export default {
 
 .listaFilhas {
   width: 98%;
-  height: 15%;
+  height: 20%;
   border-radius: 8px;
   background-image: linear-gradient(to top, #ffd66680, #ffd666);
   display: flex;
@@ -177,10 +197,10 @@ export default {
 }
 
 .btns {
-  width: 14%;
   display: flex;
-  justify-content: space-between;
-  padding: 4% 0 0 8%;
+  width: 27%;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .btn2Editar {
@@ -189,5 +209,13 @@ export default {
 
 .btn3Excluir {
   width: 50%;
+}
+.btn2:hover {
+  background-color: #e7a900ab;
+  border: 2px solid white;
+}
+.btn3:hover {
+  background-color: #e7a900ab;
+  border: 2px solid white;
 }
 </style>

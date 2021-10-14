@@ -48,13 +48,6 @@ export default {
 </script>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Nunito;
-    font-style: normal;
-}
-
 #Foot {
     width: 100%;
     height: 20%;

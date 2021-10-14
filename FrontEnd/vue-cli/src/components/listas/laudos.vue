@@ -36,7 +36,7 @@ export default {
 <style scoped>
 .conteinerLaudos {
   width: 48%;
-  height: 48%;
+  height: 50%;
   border-radius: 16px;
   font-size: 20px;
   padding-top: 1%;
@@ -69,8 +69,8 @@ export default {
 
 .imgLaudos {
   position: relative;
-  left: 18%;
-  bottom: 22%;
+  left: 8%;
+  bottom: 26%;
 }
 
 .content2Laudos {

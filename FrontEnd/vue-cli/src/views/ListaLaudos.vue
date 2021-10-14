@@ -1,18 +1,12 @@
 <template>
   <div class="conteiner">
-      <head>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="//fonts.googleapis.com/css?family=Nunito"
-      />
-    </head>
       <SideBar/>
-      <listaLaudos /></div>
+      <listaLaudos />
+  </div>
 </template>
 
 <script>
-import SideBar from "../components/sideBar/SideBar.vue";
+import SideBar from "../components/Adm/SideBar.vue";
 import listaLaudos from "../components/ListaLaudos/listaLaudos.vue";
 
 export default {

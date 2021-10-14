@@ -94,28 +94,23 @@ export default {
     text-align: center;
     color: rgba(46, 74, 125, 1);
 }
-
 .listas_row {
     display: flex;
     justify-content: space-around;
     padding-top: 2%;
 }
-
 .listas_colun {
     display: flex;
     justify-content: space-evenly;
     padding-top: 1.5%;
 
 }
-
 .cima {
     margin-top: 2%;
 }
-
 .embaixo {
     padding-bottom: 3%;
 }
-
 .image {
     width: 100px;
     height: 100px;

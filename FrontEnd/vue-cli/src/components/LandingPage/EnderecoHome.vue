@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="EndHomeSec">
+        <section class="EndHomeSec" id="EndHome">
             <div id="EndHomeList">
                 <h1>Endereço</h1>
                 <div class="EndHomeListDiv">

@@ -20,7 +20,7 @@ export default {
 <style scoped>
  
 .listaPaciente {
-  width: 23.98%;
+  width: 27.9%;
   height: 46%;
   border-radius: 20px;
   display: flex;

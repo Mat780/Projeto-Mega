@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div>
-                <button id="LoginEntrar">Entrar</button>
+                <button id="LoginEntrar" @click="TrocaPag">Entrar</button>
             </div>
             <div id="LoginCadeado">
                 <img id='LoginCadeadoImg' :src='Cadeado'>
@@ -55,6 +55,9 @@ export default {
                 this.TypeSenha = 'password';
                 this.Olho = './img/OlhoFechado.svg'
             }
+        },
+        TrocaPag(){
+            this.$router.push({ path: '/Login/Adm'});
         }
     },
 }
