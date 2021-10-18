@@ -55,9 +55,6 @@ export default {
     name: "parteSobreNos",
     data() {
         return {
-<<<<<<< HEAD
-            imagen7: "/img/imagen4.png",
-=======
             SetaEsquerda: '/img/SetaEsquerda.svg',
             SetaDireita: '/img/SetaDireita.svg',
             cont: 0,
@@ -72,7 +69,6 @@ export default {
             Carrossel3: '/img/Carrossel3.svg',
             Carrossel4: '/img/Carrossel4.svg',
             Carrossel5: '/img/Carrossel5.svg'
->>>>>>> 8c094f21e29d6adb89189c1d43c2645800d4a9e1
         };
     },
     methods: {
@@ -136,21 +132,12 @@ export default {
 #content {
     display: flex;
     color: rgba(46, 74, 125, 0.8);
-<<<<<<< HEAD
-    padding-top: 4%;
-    padding-bottom: 4%;
-    background-image: url("/img/Bola.png");
-    background-repeat: no-repeat;
-    background-position: top;
-    background-position-y: -250%;
-=======
     padding-top: 5%;
     padding-bottom: 5%;
     background-image: url("/img/Bola.png");
     background-repeat: no-repeat;
     background-position: top;
     background-position-y: -40vh;
->>>>>>> 8c094f21e29d6adb89189c1d43c2645800d4a9e1
 }
 .parte_Direita {
     display: flex;
