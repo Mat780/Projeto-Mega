@@ -36,6 +36,7 @@ export default {
             DuckHealth2: '/img/DuckHealth.png',
             Bg1: '/img/LoginBg1.svg',
             Bg2: '/img/LoginBg2.svg'
+            
         }
     },
     methods: {
@@ -64,14 +65,16 @@ export default {
 }
 
 #LoginBox{
-    width: 300px;
-    height: 300px;
+    
+    width: 22%;
+    height: 48%;
 
     align-self: center;
 
     border-radius: 10px;
     background: rgb(81,114,254);
     background: linear-gradient(180deg, rgba(81,114,254,1) 0%, rgba(1,191,203,1) 100%);
+    
 }
 
 #LoginDuck{
