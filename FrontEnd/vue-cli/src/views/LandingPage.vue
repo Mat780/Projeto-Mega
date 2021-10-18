@@ -1,5 +1,6 @@
 <template>
     <div id="LandingPage">
+        <!-- Ele puxa todos os componentes para a página -->
         <CabecalhoHome />
         <BannerHome/>
         <ParteSobreNos/>
@@ -13,6 +14,7 @@
 
 
 <script>
+// Importa todos os componentes que serão usados
 import BannerHome from "../components/LandingPage/BannerHome.vue";
 import CabecalhoHome from "../components/LandingPage/CabecalhoHome.vue";
 import EnderecoHome from "../components/LandingPage/EnderecoHome.vue";
@@ -20,13 +22,14 @@ import FootHome from "../components/LandingPage/FootHome.vue";
 import FormDuvidas from '../components/LandingPage/FormDuvidas.vue';
 import ParteExame from "../components/LandingPage/parteExame.vue";
 import ParteSobreNos from '../components/LandingPage/parteSobreNos.vue';
- 
-export default {
-    name: "LandingPage",
-    data() {
-        return {};
-    },
 
+// Exporta as informações do componente
+export default {
+
+    // Nome do componente
+    name: "LandingPage",
+
+    // Os componentes que serão usados na página
     components: {
         BannerHome,
         EnderecoHome,
@@ -36,6 +39,7 @@ export default {
         FormDuvidas,
         ParteSobreNos,
     },
+
 };
 </script>
 
@@ -57,7 +61,5 @@ export default {
 #LandingPage{
     background-color: #EBF2F5;
 }
-
-
 
 </style>
