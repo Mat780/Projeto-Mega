@@ -1,144 +1,140 @@
 <template>
-     <div>
-     <head>
+  <div>
+    <head>
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
       />
-     </head>
-          <div id="pagcompleta">
-               <div id="ladoesquerdo">
-                    <img :src="doctor" id="doctor" />
-               </div>
+    </head>
+    <div id="pagcompleta">
+      <div id="ladoesquerdo">
+        <img :src="doctor" id="doctor" />
+      </div>
 
-               <div id="ladodireito">
-                    <h1>Editar <span>Médico</span></h1>
+      <div id="ladodireito">
+        <h1>Editar <span>Médico</span></h1>
 
-                    <form>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Nome Completo"
-                              required
-                              v-model="name"
-                         />
-                         <i class="fas fa-user"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Especialidade"
-                              required
-                              v-model="especialidade"
-                         />
-                         <i class="fas fa-user-md"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="CPF"
-                              autocomplete="off"
-                              maxlength="14"
-                              required
-                              v-model="cpf"
-                         />
-                         <i class="fas fa-user"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Senha"
-                              required
-                              v-model="senha"
-                         />
-                         <i class="fas fa-key"></i>
-                         <input
-                              class="entradas"
-                              type="text"
-                              placeholder="Confirmar Senha"
-                              required
-                              v-model="confirmarsenha"
-                         />
-                         <i class="fas fa-key"></i>
-                         <input
-                              id="botao"
-                              type="button"
-                              value="Salvar"
-                              @click="EnviarDados"
-                              
-                         />
-                    </form>
-               </div>
-          </div>
-     </div>
+        <form>
+          <!-- form das partes de input -->
+          <input
+            class="entradas"
+            type="text"
+            placeholder="Nome Completo"
+            required
+            v-model="name"
+          />
+          <i class="fas fa-user"></i>
+          <input
+            class="entradas"
+            type="text"
+            placeholder="Especialidade"
+            required
+            v-model="especialidade"
+          />
+          <i class="fas fa-user-md"></i>
+          <input
+            class="entradas"
+            type="text"
+            placeholder="CPF"
+            autocomplete="off"
+            maxlength="14"
+            required
+            v-model="cpf"
+          />
+          <i class="fas fa-user"></i>
+          <input
+            class="entradas"
+            type="text"
+            placeholder="Senha"
+            required
+            v-model="senha"
+          />
+          <i class="fas fa-key"></i>
+          <input
+            class="entradas"
+            type="text"
+            placeholder="Confirmar Senha"
+            required
+            v-model="confirmarsenha"
+          />
+          <i class="fas fa-key"></i>
+          <!-- botão para editar o Médico -->
+          <input id="botao" type="button" value="Salvar" @click="EnviarDados" />
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-     name: "CadastrarMedico",
-     data() {
-          return {
-               doctor: "/img/doctor 1.png",
-               cadastrar: "/img/Cadastrar Médico.svg",
-               nome: "/img/name 1.png",
-               ouvircoracao: "/img/ouvircoracao.png",
-               name: "",
-               especialidade: "",
-               cpf: "",
-               senha: "",
-               confirmarsenha: "",
-               medicoaresponsavel:"",
-          };
-     },
-     methods: {
-          EnviarDados() {
-               const dados = {
-                    name: this.name,
-                    especialidade: this.especialidade,
-                    cpf: this.cpf,
-                    senha: this.senha,
-                    confirmarsenha: this.confirmarsenha,
-               };
-               console.log(dados);
-          },
-     },
-     methods:{
-          abrirModal(){
-               this.$refs['meu_modal'].show()
-          }
-     }
+  name: "CadastrarMedico",
+  data() {
+    return {
+      doctor: "/img/doctor 1.png",
+      cadastrar: "/img/Cadastrar Médico.svg",
+      nome: "/img/name 1.png",
+      ouvircoracao: "/img/ouvircoracao.png",
+      name: "",
+      especialidade: "",
+      cpf: "",
+      senha: "",
+      confirmarsenha: "",
+      medicoaresponsavel: "",
+    };
+  },
+  methods: {
+    EnviarDados() {
+      const dados = {
+        name: this.name,
+        especialidade: this.especialidade,
+        cpf: this.cpf,
+        senha: this.senha,
+        confirmarsenha: this.confirmarsenha,
+      };
+      console.log(dados);
+    },
+  },
+  methods: {
+    abrirModal() {
+      this.$refs["meu_modal"].show();
+    },
+  },
 };
 </script>
 
 <style scoped>
 * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #pagcompleta {
-     display: grid;
-     grid-template-columns: 50% 50%;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 #doctor {
-     width: 80%;
-     height: 99vh;
+  width: 80%;
+  height: 99vh;
 }
 
 h1 {
-     font-size: 70px;
-     margin-top: 2.5%;
-     width: 90%;
-     font-weight: 800;
-     color: #2e4a7d;
+  font-size: 70px;
+  margin-top: 2.5%;
+  width: 90%;
+  font-weight: 800;
+  color: #2e4a7d;
 }
 
 span {
-     color: red;
+  color: red;
 }
 form {
-     background-color: #ffffff;
-     display: flex;
-     flex-direction: column;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
 .entradas {
@@ -161,7 +157,7 @@ form {
   color: #2e4a7d;
 }
 
-.entradas::placeholder{
+.entradas::placeholder {
   font-size: 30px;
 }
 .fas {
@@ -175,18 +171,18 @@ form {
 }
 
 #botao {
-     width: 79%;
-     height: 10vh;
-     color: white;
-     font-size: 30px;
-     background: #2e4a7d;
-     border-radius: 20px;
-     cursor: pointer;
-     transition: 1s;
+  width: 79%;
+  height: 10vh;
+  color: white;
+  font-size: 30px;
+  background: #2e4a7d;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 1s;
 }
 
 #botao:hover {
-     background-color: #ffd666;
-     color: #2e4a7d;
+  background-color: #ffd666;
+  color: #2e4a7d;
 }
 </style>

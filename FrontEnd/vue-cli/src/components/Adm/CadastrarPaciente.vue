@@ -15,6 +15,7 @@
         <h1>Cadastrar <span>Paciente</span></h1>
         
         <form>
+          <!-- form das partes de input -->
           <input
             class="entradas"
             type="text"
@@ -53,7 +54,7 @@
             v-model="medicoaresponsavel"
           />
           <i class="fas fa-stethoscope"></i>
-          
+          <!-- botão para cadastrar o paciente -->
           <input id="botao" type="button" value="Cadastrar" />
         </form>
       </div>

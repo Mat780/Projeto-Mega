@@ -12,11 +12,14 @@
 
         <body id="nav" :class="{sticky:active}">
             <header id="nav-container" :class="toggleNavClass()">
+                
                 <div class="logo">
+                    <!-- logo do pato -->
                     <img :src="pato" alt="" />
                 </div>
 
                 <div class="click">
+                    <!-- "lista" onde pode ocorrer o click e mudar para essa parte -->
                     <a @click="scrollInicio" class="nomes">Inicio</a>
                     <a @click="scrollSobre" class="nomes">Sobre</a>
                     <a @click="scrollExames" class="nomes">Exames</a>

@@ -1,5 +1,14 @@
 <template>
-  <router-view />
+    <div>
+        <head>
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="//fonts.googleapis.com/css?family=Nunito"
+            />
+        </head>
+    </div>
+    <router-view/>
 </template>
 
 <script>
@@ -8,11 +17,11 @@ export default {
 };
 </script>
 <style>
-    /* button {
-        padding: 20px 30px;
-        border: none;
-        font-size: 16px;
-        color: #fff;
-        cursor: pointer;
-    } */
+*{
+    margin: 0;
+    padding: 0;
+    
+    font-family: Nunito;
+    font-style: normal;
+}
 </style>

@@ -16,6 +16,7 @@
         Editar
         <span id="paciente1">Paciente</span>
         </h1>
+        <!-- form das partes de input -->
         <form>
           <input
             class="entradas"
@@ -55,7 +56,7 @@
             v-model="medicoaresponsavel"
           />
           <i class="fas fa-stethoscope"></i>
-
+          <!-- botão para editar o paciente -->
           <input id="botao" type="button" value="Salvar" />
         </form>
       </div>

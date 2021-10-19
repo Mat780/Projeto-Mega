@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
 import Login from '../views/Login.vue'
-import Adicionar from '../views/Adicionar.vue'
+import Adm from '../views/Adm.vue'
 import ListarPacientes from '../views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
@@ -16,33 +16,23 @@ const routes = [
     name: 'LandingPage',
     component: LandingPage
   },
-  // {
-  // //   path: '/testando',
-  // //   name:'testando',
-  // //   component:model
-  // // },
   {
     path: '/Login',
     name: 'Login',
     component: Login
   },
   {
-    path: '/Editar',
-    name: 'Editar',
-    component: Editar
+    path: '/Login/Adm',
+    name: 'Adm',
+    component: Adm
   },
   {
-    path: '/Adicionar',
-    name: 'Adicionar',
-    component: Adicionar
-  },
-  {
-    path: '/ListarPacientes',
+    path: '/Login/ListarPacientes',
     name: 'ListarPacientes',
     component: ListarPacientes
   },
   {
-    path: '/ListaLaudos',
+    path: '/Login/ListaLaudos',
     name: 'ListaLaudos',
     component: ListaLaudos
   },

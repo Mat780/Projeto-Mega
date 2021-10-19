@@ -5,7 +5,7 @@
     </div>
 
     <div id="quadrado2">
-      
+      <!-- imagem que vai servir de click para ir p/ página de login -->
         <img :src="logout" id="logout" @click="ChangeLogin" />
 
     </div>
