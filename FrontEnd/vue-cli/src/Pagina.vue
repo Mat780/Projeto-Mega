@@ -6,6 +6,7 @@
                 type="text/css"
                 href="//fonts.googleapis.com/css?family=Nunito"
             />
+            <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
     </div>
     <router-view/>
