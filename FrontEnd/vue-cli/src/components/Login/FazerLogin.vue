@@ -26,11 +26,13 @@
 				<img class="imgs" :src="chave" />
 
                 <!-- Segundo Input: Senha -->
+				<label for="senhaLogin"></label>
 				<input
 					:type="typeSenha"
 					class="ControleLogin"
 					v-model="senha"
 					placeholder="Escreva aqui sua senha"
+					id="senhaLogin"
 				/>
 
                 <!-- Botão do olho de mostrar/ocultar senha -->
