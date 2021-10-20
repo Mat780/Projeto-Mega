@@ -106,6 +106,7 @@ export default {
 }
 
 .imgFiltrar {
+  filter: grayscale(245);
   width: 27%;
   align-self: center;
 }

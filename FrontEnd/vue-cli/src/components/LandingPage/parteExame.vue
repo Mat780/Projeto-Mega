@@ -64,7 +64,7 @@ export default {
 .exames {
     font-weight: 900;
     width: 100%;
-    height: 86.7vh;
+    height: 91vh;
     background-color: rgba(255, 214, 102, 1);
     border-radius: 0 222px 0 222px;
 }

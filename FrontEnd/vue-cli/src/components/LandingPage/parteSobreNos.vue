@@ -58,8 +58,8 @@ export default {
             SetaEsquerda: '/img/SetaEsquerda.svg',
             SetaDireita: '/img/SetaDireita.svg',
             cont: 0,
-            ImgAtt: '/img/imagen7.png',
-            imagen7: "/img/imagen7.png",
+            ImgAtt: '/img/imagen4.png',
+            imagen4: "/img/imagen4.png",
             Bcarro1: true,
             Bcarro2: false,
             Bcarro3: false,
@@ -74,7 +74,7 @@ export default {
     methods: {
         TrocaDeImgs(){
             if(this.cont == 0){
-                this.ImgAtt = this.imagen7;
+                this.ImgAtt = this.imagen4;
                 this.Bcarro1 = true;
 
                 this.Bcarro5 = false;
@@ -161,6 +161,9 @@ export default {
 }
 #titulo {
     margin-top: 5%;
+    font-weight: 800;
+    font-size: 2em;
+
 }
 #descricao {
     width: 92%;

@@ -66,8 +66,8 @@ export default {
 
 #LoginBox{
     
-    width: 22%;
-    height: 48%;
+    width: 25%;
+    height: 50%;
 
     align-self: center;
 
@@ -122,9 +122,5 @@ export default {
     height: 100%;
 }
 
-button:hover {
-    background-color: #ffd666;
-    color: rgb(255, 255, 255);
-}
 
 </style>
