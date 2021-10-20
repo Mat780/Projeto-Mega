@@ -3,8 +3,8 @@ const User = require("./User");
 
 class PasswordToken{
 
-    async create(email){
-        let user = await User.findByEmail(email);
+    async create(cpf){
+        var user = await User.findByCPF(cpf);
         
         if(user != undefined){
 
@@ -24,7 +24,7 @@ class PasswordToken{
             
 
         } else {
-            return {status: false,err: "O email não existe no banco de dados!"};
+            return {status: false,err: "O CPF não existe no banco de dados!"};
         }
 
     }

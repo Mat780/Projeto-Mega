@@ -1,16 +1,23 @@
 const User = require("../models/User");
 const PasswordToken = require("../models/PasswordToken");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+const secret = "fhuidshfhufgdejifpgfgfgnjfgruhifjrolr"
+
 
 class UserController{
 
     async index(req, res){
-        var users = await User.findAll();
+        let users = await User.findAll();
         res.json(users);
     }
 
+    async 
+
     async findUser(req, res){
-        var id = req.params.id;
-        var user = await User.findById(id);
+        let id = req.params.id;
+        let user = await User.findById(id, "usuario");
 
         if(user == undefined){
             res.status(404);
@@ -21,27 +28,51 @@ class UserController{
         }
     }
 
-    async create(req, res){
-        var {email , name, password} = req.body;
+    async createNewUser(req, res){
+        var {cpf , name, password, role, data} = req.body;
 
-        if(email == undefined){
+        if(cpf == undefined){
             res.status(400);
-            res.json({err: "Email inválido"});
+            res.json({err: "CPF inválido"});
             return;
         }
 
-        // Não coloquei as outras autenticações por causa de tempo;
-        // Ultima semana do PS precisamos correr
-
-        var emailExists = await User.findEmail(email);
+        var cpfExists = await User.findCPF(cpf);
         
-        if(emailExists){
+        if(cpfExists){
             res.status(406);
-            res.json({err: "O email já está cadastrado"});
+            res.json({err: "O CPF já está cadastrado"});
             return;
         }
 
-        await User.new(email, password, name);
+        if(name == undefined){
+            res.status(400);
+            res.json({err: "Nome não inserido"});
+            return;
+        }
+
+        if(password == undefined){
+            res.status(400);
+            res.json({err: "Senha não foi definida"})
+            return;
+        }
+
+        if(role == undefined){
+            role = 0;
+        }
+
+        if(data == undefined){
+            if(role == 0){
+                res.status(400);
+                res.json({err: "Medico responsável não foi definido"});
+            }else{
+                res.status(400);
+                res.json({err: "Especialidade não foi definida"});
+            }
+            return;
+        }
+
+        await User.new(cpf, password, name, role, data);
 
 
         res.status(200);
@@ -50,8 +81,8 @@ class UserController{
     }
 
     async edit(req, res){
-        var {id, name, email, role} = req.body;
-        var result = await User.update(id, email, name, role);
+        let {id, name, cpf, password} = req.body;
+        let result = await User.update(id, cpf, name, password);
 
         if(result != undefined){
             if(result.status){
@@ -69,9 +100,9 @@ class UserController{
     }
 
     async remove(req, res){
-        var id = req.params.id;
+        let id = req.params.id;
 
-        var result = await User.deleteUser(id);
+        let result = await User.deleteUser(id);
 
         if(result.status){
             res.status(200);
@@ -84,8 +115,8 @@ class UserController{
     }
 
     async recoverPassword(req, res){
-        let email = req.body.email;
-        let result = await PasswordToken.create(email);
+        var cpf = req.body.cpf;
+        let result = await PasswordToken.create(cpf);
 
         if(result.status){
             res.status(200);
@@ -105,7 +136,16 @@ class UserController{
         let isTokenValid = await PasswordToken.validate(token);
         if(isTokenValid.status){
 
-            await User.changePassword(password, isTokenValid.token.id, isTokenValid.token.token);
+            await User.changePassword(password, isTokenValid.token.user_id);
+
+            try{
+                await PasswordToken.setUsed(token);
+            }catch(err){
+                console.log(err);
+                res.status(406);
+                res.send("O Token ao ser colocado como usado, acabou dando algum tipo de erro");
+            }
+            
             res.status(200);
             res.send("Senha Alterada");
 
@@ -114,6 +154,59 @@ class UserController{
             res.send("Token Inválido");
         }
     }
+
+    async login(req, res){
+        let {cpf, password} = req.body;
+
+        let user = await User.findByCPF(cpf);
+
+        if(user != undefined){
+            let resultado = await bcrypt.compare(password, user.senha);
+
+            if(resultado){
+                let token = jwt.sign({cpf : user.cpf, role: user.role}, secret);
+
+                res.status(200);
+                res.json({token: token});
+
+            }else{
+                res.status(406);
+                res.send("Senha incorreta");
+            }
+        }else{
+            res.status(406);
+            res.json({status: false, err: "Usuario indefinido"});
+        }
+    }
+
+    async pullPacientes(req, res){
+
+        let pacientes = await User.pullPacientes();
+
+        if(pacientes.length > 0){
+            res.status(200);
+            res.json(pacientes);
+        }else{
+            res.status(404);
+            res.send("Não foi encontrado nenhum paciente");
+        }
+
+    }
+
+    async pullMedicos(req, res){
+
+        let medicos = await User.pullMedicos();
+
+        if(medicos.length > 0){
+            res.status(200);
+            res.json(medicos);
+        }else{
+            res.status(404);
+            res.send("Não foi encontrado nenhum paciente");
+        }
+
+    }
+
 }
 
 module.exports = new UserController();

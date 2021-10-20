@@ -1,14 +1,12 @@
-var knex = require("../database/connection");
-var bcrypt = require("bcrypt");
-const PasswordToken = require("./PasswordToken");
-
+const knex = require("../database/connection");
+const bcrypt = require("bcrypt");
 
 class User{
 
     async findAll(){
 
         try{
-            var result = await knex.select(["id", "name", "email", "role"]).table("users");
+            let result = await knex.select(["id", "nome", "cpf"]).table("usuario");
             return result;
         }catch(err){
             console.log(err);
@@ -17,10 +15,10 @@ class User{
 
     }
 
-    async findById(id){
+    async findById(id, tabela){
 
         try{
-            var result = await knex.select(["id", "name", "email", "role"]).where({id: id}).table("users");
+            let result = await knex.select(["id", "nome", "cpf"]).where({id: id}).table(tabela);
             
             if(result.length > 0){
                 return result[0];
@@ -35,11 +33,10 @@ class User{
 
     }
 
-    async findByEmail(email){
+    async findByCPF(cpf){
 
         try{
-            let result = await knex.select(["id", "name", "email", "role"]).where({email: email}).table("users");
-            
+            let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
             if(result.length > 0){
                 return result[0];
             }else{
@@ -54,13 +51,52 @@ class User{
     }
 
 
-    async new(email, password, name){
+    async new(cpf, password, name, role, data){
 
         try{
 
             var password = await bcrypt.hash(password, 10);
 
-            await knex.insert({email, password, name,role: 0}).table("users");
+            let result = await this.findCPF(cpf);
+                    if(!result){
+                        await knex.insert({cpf, senha:password, nome:name, role: role}).table("usuario").catch(err =>{
+                            console.log(err);
+                            return {status: false, err: "Erro ao cadastrar usuario"};
+                        });
+
+                        await knex.select('id').where('cpf', cpf).table("usuario").then(dataIn =>{
+
+                            if(role == 0){
+                                knex.insert({idUser: dataIn[0].id, medicoResp: data}).table("paciente").then(d =>{
+                                    console.log(d);
+                                }).catch(err =>{
+                                    console.log(err);
+                                    return {status: false, err: "Erro ao cadastrar paciente"};
+                                });
+                            } else if(role == 1){
+                                knex.insert({idUser: dataIn[0].id, especialidade: data}).table("medico").then(d =>{
+                                    console.log(d);
+                                }).catch(err =>{
+                                    console.log(err);
+                                    return {status: false, err: "Erro ao cadastrar médico"};
+                                });
+                            } else if(role == 2){
+                                knex.insert({idUser: dataIn[0].id, especialidade: data}).table("administrador").then(d =>{
+                                    console.log(d);
+                                }).catch(err =>{
+                                    console.log(err);
+                                    return {status: false, err: "Erro ao cadastrar administrador"};
+                                });
+                            }
+
+                        }).catch(err =>{
+                            console.log(err);
+                        })
+    
+
+                    }else{
+                        return {status: false, err: "O CPF já está cadastrado"}
+                    }
 
         }catch(err){
             console.log(err);
@@ -68,10 +104,10 @@ class User{
 
     }
 
-    async findEmail(email){
+    async findCPF(cpf){
 
         try{
-            var result = await knex.select("*").from("users").where({email: email});
+            let result = await knex.select("*").from("usuario").where({cpf: cpf});
 
             if(result.length > 0){
                 return true;
@@ -86,34 +122,39 @@ class User{
 
     }
 
-    async update(id, email, name, role) {
-        var user = await this.findById(id);
+    
+    // Lembrar de no frontEnd puxar o id antes de qq coisa
+    async update(id, cpf, name, password) {
+        var user = await this.findById(id, "usuario");
 
         if(user != undefined){
 
             var editUser = {};
 
-            if(email != undefined){
-                if(email != user.email){
-                    var result = await this.findEmail(email);
+            if(cpf != undefined){
+                if(cpf != user.cpf){
+                    let result = await this.findCPF(cpf);
                     if(!result){
-                        editUser.email = email;
+                        editUser.cpf = cpf;
                     }else{
-                        return {status: false, err: "O email já está cadastrado"}
+                        return {status: false, err: "O CPF já está cadastrado"}
                     }
                 }
             }
 
             if(name != undefined){
-                editUser.name = name;
+                if(name != user.name){
+                    editUser.nome = name;
+                }
             }
 
-            if(role != undefined){
-                editUser.role = role;
+            if(password != undefined){
+                var password = await bcrypt.hash(password, 10);
+                editUser.senha = password;
             }
 
             try{
-                await knex.update(editUser).where({id: id}).table("users");
+                await knex.update(editUser).where({id: id}).table("usuario");
                 return {status: true}
             }catch(err){
                 return {status: false, err: "O usuario não existe"};
@@ -126,11 +167,11 @@ class User{
     }
 
     async deleteUser(id){
-        var user = await this.findById(id);
+        var user = await this.findById(id, "usuario");
 
         if(user != undefined){
             try{
-                await knex.delete().where({id: id}).table("users");
+                await knex.delete().where({id: id}).table("usuario");
                 return {status: true};
             }catch(err){
                 return {status: false, err: "Ocorreu um erro durante o delete"}
@@ -140,12 +181,37 @@ class User{
         }
     }
 
-    async changePassword(newPassword, id, token){
+    async changePassword(newPassword, id){
         let hash = await bcrypt.hash(newPassword, 10);
 
-        await knex.update({password: hash}).where({id: id}).table("users");
+        await knex.update({senha: hash}).where({id: id}).table("usuario");
 
-        await PasswordToken.setUsed(token)
+    }
+
+    async pullPacientes(){
+
+        try{
+            let result = await knex.select(["paciente.medicoResp", "paciente.idUser", "usuario.cpf", "usuario.nome"])
+                                .table("paciente")
+                                .innerJoin("usuario", "usuario.id", "paciente.idUser");
+            return result;
+        }catch(err){
+            console.log(err);
+            return [];
+        }
+    }
+
+    async pullMedicos(){
+
+        try{
+            let result = await knex.select(["medico.especialidade", "medico.idUser", "usuario.cpf", "usuario.nome"])
+                                .table("medico")
+                                .innerJoin("usuario", "usuario.id", "medico.idUser");
+            return result;
+        }catch(err){
+            console.log(err);
+            return [];
+        }
     }
 
 }
