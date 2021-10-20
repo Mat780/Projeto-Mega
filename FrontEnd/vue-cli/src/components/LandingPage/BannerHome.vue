@@ -70,9 +70,10 @@ div {
 }
 
 #BannerHomeImgButton {
-    padding: 5px 10px 5px 10px;
     width: 30px;
     height: 30px;
+    align-self: center;
+    margin-left: 20%;
 }
 
 #BannerHomeButton {
@@ -81,10 +82,8 @@ div {
 }
 
 #BannerHomeButtonText {
-    text-align: center;
-    padding-top: 7px;
     padding-right: 5px;
-
+    align-self: center;
     color: #ffffff;
 }
 
@@ -119,19 +118,19 @@ p {
 }
 
 button {
-    padding: 5px;
+    width: 48%;
+    height: 12%;
     background: #2e4a7d;
     border-radius: 20px;
     border: none;
     font-size: 3ex;
-    text-align: center;
     color: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    transition: 1s;
+    transition: .3s ease all;
 }
 
 button:hover {
     background-color: #ffd666;
-    color: rgba(46, 74, 125, 1);
+    border: 1.5px solid #fff;
 }
 </style>

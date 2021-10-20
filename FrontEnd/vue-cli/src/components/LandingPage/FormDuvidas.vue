@@ -115,16 +115,13 @@ export default {
 
 <style scoped>
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
 	font-family: Nunito;
 }
 
 .conteiner {
 	display: flex;
 	width: 100%;
-	padding-bottom: 1.5vh;
+	padding-bottom: 3vh;
 }
 
 form {

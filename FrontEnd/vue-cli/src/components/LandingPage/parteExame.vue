@@ -11,14 +11,14 @@
             <h1 class="titulo_exame">Exames</h1>
             <div class="listas_row">
                 <div class="lista cima">
-                    <img :src="imagen2" class="image" />
+                    <img :src="imagen2" class="imagem" />
                     <p class="descricao_exame">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit
                         olaa ihda ihbsa.
                     </p>
                 </div>
                 <div class="lista cima">
-                    <img :src="imagen1" class="image" />
+                    <img :src="imagen1" class="imagem" />
                     <p class="descricao_exame">
                         Lorem, ipsum dolor sit amet consectetur adipisicing
                         eliti. Minus numquam dicta tenetur reprehenderit id
@@ -26,7 +26,7 @@
                     </p>
                 </div>
                 <div class="lista cima">
-                    <img :src="imagen3" class="image" />
+                    <img :src="imagen3" class="imagem" />
                     <p class="descricao_exame">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Itaque repellendus saepe error enim aliquam obcaecati
@@ -37,14 +37,14 @@
             <!-- div_cima-->
             <div class="listas_colun">
                 <div class="lista embaixo">
-                    <img :src="imagen3" class="image" />
+                    <img :src="imagen3" class="imagem" />
                     <p class="descricao_exame">
                         Lorem ipsum dolor sit, amet consectetur adipisicing
                         elit. Iure ipsum minima vero iste ut? Totam!
                     </p>
                 </div>
                 <div class="lista embaixo">
-                    <img :src="imagen2" class="image" />
+                    <img :src="imagen2" class="imagem" />
                     <p class="descricao_exame">
                         Lorem ipsum dolor sit, amet consectetur adipisicing
                         elit. Atque nostrum veritatis sapiente excepturi!
@@ -67,11 +67,7 @@ export default {
 };
 </script>
 <style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 .exames {
     font-weight: 900;
     width: 100%;
@@ -81,6 +77,8 @@ export default {
 }
 .titulo_exame {
     font-family: Nunito;
+    font-size: 35px;
+    font-weight: 700;
     color: rgba(46, 74, 125, 1);
     padding-top: 3%;
     padding-left: 3%;
@@ -97,7 +95,7 @@ export default {
 .listas_row {
     display: flex;
     justify-content: space-around;
-    padding-top: 2%;
+    padding-top: 1%;
 }
 .listas_colun {
     display: flex;
@@ -111,9 +109,8 @@ export default {
 .embaixo {
     padding-bottom: 3%;
 }
-.image {
-    width: 100px;
-    height: 100px;
+.imagem {
+    width: 70%;
     margin-bottom: 8%;
 }
 </style>

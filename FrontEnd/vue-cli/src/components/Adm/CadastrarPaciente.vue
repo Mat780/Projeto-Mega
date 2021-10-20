@@ -1,168 +1,209 @@
 <template>
   <div>
-    <head>
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-        />
-    </head>
-    <div id="pagcompleta">
-      <div id="ladoesquerdo">
-        <img :src="paciente" id="paciente" />
-      </div>
+    <administracao @paciente="showModalUser()" />
+    <div>
+      <div class="modal-background" @click="$emit('esconder')"></div>
+      <div class="modal-content">
+        <div class="conteinerModalCadastrarPaciente">
+          <div class="contentEsquerda">
+            <img :src="paciente" class="paciente" />
+          </div>
+          <div class="contentDireita">
+            <h1 class="tituloAzul">
+              Cadastrar <span class="tituloVermelho">Paciente</span>
+            </h1>
+            <form  @submit.prevent="addListaPaciente(listasPaciente)" class="formulario">
+              <div class="entradas">
+                <i class="fas fa-user"></i>
+                <input
+                  class="nome"
+                  v-model="listasPaciente.description"
+                  type="text"
+                  placeholder="Nome Completo"
+                  
+                />
+              </div>
+              <div class="entradas">
+                <i class="fas fa-stethoscope"></i>
+                <input
+                  class="medicoResponsavel"
+                  type="text"
+                  placeholder="Digite o medico responsavel"
+                  
+                />
+              </div>
+              <div class="entradas">
+                <i class="fas fa-address-card"></i>
+                <input
+                  v-maska="'###.###.###-##'"
+                  class="cpf"
+                  type="text"
+                  placeholder="CPF"
+                  
+                />
+              </div>
+              <div class="entradas">
+                <i class="fas fa-key"></i>
+                <input
+                  class="senha"
+                  v-model="senha"
+                  type="password"
+                  placeholder="Senha"
+                  
+                />
+              </div>
+              <div class="entradas">
+                <i class="fas fa-key"></i>
+                <input
+                  class="confimarSenha"
+                  v-model="confirmeSenha"
+                  type="password"
+                  placeholder="Confirmar Senha"
+                  
+                />
+              </div>
 
-      <div id="ladodireito">
-        <h1>Cadastrar <span>Paciente</span></h1>
-        
-        <form>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="Nome Completo"
-            required
-          />
-          <i class="fas fa-user"></i>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="CPF"
-            autocomplete="off"
-            maxlength="14"
-            required
-          />
-          <i class="fas fa-address-card"></i>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="Senha"
-            required
-          />
-          <i class="fas fa-key"></i>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="Confirmar Senha"
-            required
-          />
-          <i class="fas fa-key"></i>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="Médico(a) responsável"
-            required
-            v-model="medicoaresponsavel"
-          />
-          <i class="fas fa-stethoscope"></i>
-          
-          <input id="botao" type="button" value="Cadastrar" />
-        </form>
+              <button class="btn" @submit="confimarSenha">Cadastrar</button>
+            </form>
+          </div>
+        </div>
       </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        @click="$emit('esconder')"
+      ></button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CadastrarPaciente",
+  name: "cadastrarPaciente",
   data() {
     return {
       paciente: "/img/paciente.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
       ouvircoracao: "/img/ouvircoracao.png",
+      listaPacientes: [],
+      listasPaciente: {checked: false},
+      senha:"",
+      confirmeSenha: "",
+
     };
+  },
+  methods: {
+    addListaPaciente(listasPaciente) {
+			listasPaciente.id = Date.now();
+			this.listaPacientes.push(listasPaciente);
+			this.listasPaciente = { checked: false };
+		},
+   /*/ confirmarSenha() {
+      if(this.senha == this.confirmeSenha) {
+        console.log("deu certo")
+        return true
+      } else {
+        console.log("deu errado")
+        return false
+      }
+    },/*/
+   // cadastrar() {
+  //  let resSenha = confirmarSenha()
+  // },
   },
 };
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.modal-background {
+  opacity: 70%;
 }
 
-#pagcompleta {
-  display: grid;
-  grid-template-columns: 50% 50%;
+.modal-content {
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#paciente {
-  width: 80%;
-  height: 99.12vh;
-}
-
-h1 {
-  font-size: 55px;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  width: 90%;
-  font-weight: 800;
-  color: #2e4a7d;
-  margin-left: 0.9%;
-
-}
-
-span {
-  color: red;
-}
-
-form {
+.conteinerModalCadastrarPaciente {
   width: 100%;
-  background-color: #ffffff;
+  height: 60vh;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+}
+
+.paciente {
+  height: 100%;
+}
+
+.contentDireita {
+  width: 60%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-
-
-.entradas {
-  width: 80%;
-  height: 9vh;
-
-  display: flex;
-  background-color: #f5f5f5;
-  border: 2px solid #2e4a7d;
-  box-sizing: border-box;
-  border-radius: 8px;
-
-  text-align: left;
-  padding-left: 8%;
-
-  font-size: 25px;
-  font-weight: 800;
-
-  outline: none;
+.tituloAzul {
+  font-size: 35px;
+  font-weight: 700;
+  padding-top: 4%;
   color: #2e4a7d;
 }
 
-.entradas::placeholder{
-  font-size: 30px;
+.tituloVermelho {
+  color: rgb(245, 80, 135);
+}
+
+.formulario {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2%;
+}
+
+.entradas {
+  width: 100%;
+  height: 11%;
+  font-size: 18px;
+  margin-top: 3.5%;
+  display: flex;
+}
+
+.entradas > input {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  padding-left: 10%;
 }
 
 .fas {
   width: 5%;
-  margin-left: 3%;
-  position: relative;
-  bottom: 43px;
-  right: 8px;
-  font-size: 175%;
   color: #2e4a7d;
+  align-self: center;
+  position: relative;
+  left: 7%;
 }
 
-#botao {
-  width: 79%;
-  height: 10vh;
-  color: white;
-  font-size: 30px;
-  background: #2e4a7d;
-  border-radius: 20px;
-  margin-top: 2%;
+.btn {
+  width: 85%;
+  height: 11%;
   cursor: pointer;
-  transition: 1s;
+  transition: 0.3s;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 4% 0 0 4%;
+  color: #fff;
+  border: none;
+  background-color: #2e4a7d;
+  align-self: center;
 }
 
-#botao:hover {
+.btn:hover {
+  border: 1px solid #2e4a7d;
   background-color: #ffd666;
   color: #2e4a7d;
 }
