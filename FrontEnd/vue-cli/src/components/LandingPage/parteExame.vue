@@ -1,12 +1,5 @@
 <template>
     <div id="HExames">
-        <head>
-            <link
-                rel="stylesheet"
-                type="text/css"
-                href="//fonts.googleapis.com/css?family=Nunito"
-            />
-        </head>
         <div class="exames" id="HomeExames">
             <h1 class="titulo_exame">Exames</h1>
             <div class="listas_row">

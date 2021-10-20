@@ -73,7 +73,6 @@ div {
     width: 30px;
     height: 30px;
     align-self: center;
-    margin-left: 20%;
 }
 
 #BannerHomeButton {
@@ -82,7 +81,8 @@ div {
 }
 
 #BannerHomeButtonText {
-    padding-right: 5px;
+    width: 100%;
+    margin-left: 5%;
     align-self: center;
     color: #ffffff;
 }
@@ -118,12 +118,12 @@ p {
 }
 
 button {
-    width: 48%;
     height: 12%;
     background: #2e4a7d;
     border-radius: 20px;
     border: none;
     font-size: 3ex;
+    padding: 0 5% 0 3%;
     color: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: .3s ease all;
