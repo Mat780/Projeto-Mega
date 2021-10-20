@@ -1,12 +1,5 @@
 <template>
     <div id="HExames">
-        <head>
-            <link
-                rel="stylesheet"
-                type="text/css"
-                href="//fonts.googleapis.com/css?family=Nunito"
-            />
-        </head>
         <div class="exames" id="HomeExames">
             <h1 class="titulo_exame">Exames</h1>
             <div class="listas_row">
@@ -71,7 +64,7 @@ export default {
 .exames {
     font-weight: 900;
     width: 100%;
-    height: 86.7vh;
+    height: 91vh;
     background-color: rgba(255, 214, 102, 1);
     border-radius: 0 222px 0 222px;
 }

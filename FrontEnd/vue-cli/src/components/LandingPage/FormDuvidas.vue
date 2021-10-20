@@ -1,14 +1,5 @@
 <template>
 	<div>
-		<head>
-			<meta charset="UTF-8" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			<meta
-				name="viewport"
-				content="width=device-width, initial-scale=1.0"
-			/>
-			<title>Contato</title>
-		</head>
 		<div class="conteiner" id="Contato">
 			<form
 				ref="form"
@@ -121,13 +112,12 @@ export default {
 .conteiner {
 	display: flex;
 	width: 100%;
-	padding-bottom: 3vh;
+	padding-bottom: 2vh;
 }
 
 form {
 	width: 50%;
 	padding-left: 2%;
-	padding-bottom: 2%;
 }
 
 .nome_email {
@@ -162,7 +152,7 @@ form {
 
 .btn {
 	width: 45vw;
-	height: 5vh;
+	height: 7vh;
 	background-color: #2e4a7d;
 	color: #fff;
 	font-size: 20px;
@@ -188,7 +178,6 @@ form {
 }
 
 #contatos {
-	text-align: center;
 	font-size: 40px;
 	color: #2e4a7d;
 }

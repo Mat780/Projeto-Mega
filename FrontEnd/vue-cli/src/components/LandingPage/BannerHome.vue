@@ -70,10 +70,9 @@ div {
 }
 
 #BannerHomeImgButton {
-    width: 30px;
-    height: 30px;
+    height: 1.2em;
     align-self: center;
-    margin-left: 20%;
+    margin-left: 0.5em;
 }
 
 #BannerHomeButton {
@@ -82,7 +81,8 @@ div {
 }
 
 #BannerHomeButtonText {
-    padding-right: 5px;
+    padding-left: 0.8rem;
+    padding-right: 0.5rem;
     align-self: center;
     color: #ffffff;
 }
@@ -118,14 +118,14 @@ p {
 }
 
 button {
-    width: 48%;
     height: 12%;
     background: #2e4a7d;
-    border-radius: 20px;
+    border-radius: 1.2rem;
     border: none;
     font-size: 3ex;
     color: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid #2e4a7d;
     transition: .3s ease all;
 }
 

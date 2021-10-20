@@ -1,23 +1,26 @@
 <template>
-	<div id="FazerLogin">
-		<div id="duckImg"></div>
+	<div class="FazerLogin" :class="{ FazerLogin2 : tipoPatoEscritor, FazerLogin3 : tipoPatoSenha}" >
         <!-- Componentente para fazer login -->
-		<h2>Bem-vindo</h2>
-		<h4>Acesse seus <label style="color: #ffd666">laudos</label> agora!</h4>
+		<h2 style="font-weight: 600; font-size: 1.2em; margin-left: 3%">Bem-vindo</h2>
+		<h4 style="font-weight: 500; margin-left: 5%">Acesse seus <label style="color: #ffd666">laudos</label> agora!</h4>
 
         <!-- Formulário de informações do Login -->
 		<form>
             <!-- Primeiro Input: CPF -->
 			<div class="GrupoLogin">
-				<img class="imgs" :src="pessoa" />
+				<img class="imgs" :src="pessoa"/>
 				<input 
  					v-maska="'###.###.###-##'"
 					type="text"
 					class="ControleLogin"
 					v-model="cpf"
 					placeholder="Escreva aqui seu CPF"
+					@input="trocaPatoEscritor()"
+					@change="trocaPatoParado()"
 				/>
 			</div>
+
+			</form>
 
             <!-- Div com o input da senha e do botão para confirmar o login -->
 			<div class="GrupoLogin">
@@ -33,6 +36,8 @@
 					v-model="senha"
 					placeholder="Escreva aqui sua senha"
 					id="senhaLogin"
+					@input="trocaPatoSenha()"
+					@change="trocaPatoParado()"
 				/>
 
                 <!-- Botão do olho de mostrar/ocultar senha -->
@@ -41,7 +46,7 @@
 					@click="trocaOlho"
 				>
                     <!-- Imagem do olho que muda conforme está visivel ou não a senha -->
-					<img class="imgs" :src="olho" style="padding-top: 0.8vh" />
+					<img class="imgs" :src="olho" style="padding-top: 0.3vh" />
 				</button>
 			</div>
 
@@ -59,7 +64,7 @@
                 <!-- AINDA NÃO IMPLEMENTADO -->
 				<p>Esqueceu sua senha? <a>Clique aqui</a></p>
 			</div>
-		</form>
+		
 	</div>
 </template>
 
@@ -79,7 +84,9 @@ export default {
 			olho: "./img/OlhoFechado.svg",
 			typeSenha: "password",
 			senha: "",
-			duckIdle: '/img/patoIdle.png'
+			duckIdle: '/img/duckIdle.png',
+			tipoPatoEscritor: false,
+			tipoPatoSenha: false
 		};
 	},
 
@@ -126,6 +133,26 @@ export default {
 			return value.replace(/[&\/\\#,+()$~%.'":*?<>{}-]/g, "");
 		},
 
+		trocaPatoParado() {
+			this.tipoPatoEscritor = false;
+			this.tipoPatoSenha = false;
+		},
+
+		trocaPatoEscritor() {
+			this.tipoPatoEscritor = true;
+			this.tipoPatoSenha = false;
+		},
+
+		trocaPatoSenha() {
+			if (this.typeSenha == 'password'){
+				this.tipoPatoSenha = true;
+				this.tipoPatoEscritor = false;
+			}else{
+				this.tipoPatoEscritor = true;
+				this.tipoPatoSenha = false;
+			}
+		}
+
 	},
 };
 
@@ -137,23 +164,34 @@ export default {
 	color: #ffffff;
 }
 
-
-
-
 #gridDuck{
 	display: grid;
 	grid-template-columns: 1% 99%;
 }
 
-#FazerLogin {
+.FazerLogin{
+	background-image: url('/img/duckIdle.png');
+	background-repeat: no-repeat;
+	padding-top: 4vh;
+	text-align: center;
+}
+
+.FazerLogin2{
 	background-image: url('/img/duckWrite.gif');
 	background-repeat: no-repeat;
 	padding-top: 4vh;
 	text-align: center;
 }
 
+.FazerLogin3{
+	background-image: url('/img/duckEyeClosed.png');
+	background-repeat: no-repeat;
+	padding-top: 4vh;
+	text-align: center;
+}
+
 form {
-	padding-top: 3.5vh;
+	padding-top: 3vh;
 }
 
 .GrupoLogin {
@@ -175,7 +213,7 @@ form {
 	outline: none;
 	border: none;
 	height: 5.6vh;
-	width: 15vw;
+	width: 14.8vw;
 }
 
 .imgs {
@@ -193,15 +231,17 @@ form {
 	cursor: pointer;
 
 	font-size: 20px;
-	font-weight: 800;
+	font-weight: 700;
 	color: #2e4a7d;
 	background-color: #ffd666;
 	border-radius: 8px;
 	border: none;
+	transition: .3s ease all;
 }
 
 #LoginEntrar:hover{
 	color: #fff;
+	background-color: #2e4a7d;
 }
 
 #LoginCadeado {
@@ -223,5 +263,13 @@ a {
 	color: #ffd666;
 	text-decoration: underline #ffd666;
 	cursor: pointer;
+	transition: .3s ease all;
 }
+
+a:hover{
+	color: #2e4a7d;
+	font-weight: 500;
+	font-size: 0.94rem;
+}
+
 </style>
