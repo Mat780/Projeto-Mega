@@ -7,7 +7,7 @@
           <img :src="imagem8" class="imagems imagem8" />
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
-        <button class="btn btnAdd" @click="AbrirCadastrarPaciente">
+        <button class="btn btnAdd" @click="AparecerCadastrarPaciente">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -18,7 +18,7 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
-            <button class="btn btn2" @click="AbrirEditarPaciente">
+            <button class="btn btn2" @click="AparecerEditarPaciente">
               <img :src="editar" class="btn2Editar" />
             </button>
             <button class="btn btn3">
@@ -36,7 +36,7 @@
           <img :src="imagem5" class="imagems imagem5" />
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
-        <button class="btn btnAdd" @click="AbrirCadastrarMedico">
+        <button class="btn btnAdd" @click="AparecerCadastrarMedico">
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -47,7 +47,7 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
-            <button class="btn btn2" @click="AbrirEditarMedico">
+            <button class="btn btn2" @click="AparecerEditarMedico">
               <img :src="editar" class="btn2Editar" />
             </button>
             <button class="btn btn3">
@@ -59,37 +59,80 @@
       <!-- listas -->
     </div>
     <!-- content2 -->
+    <cadastrarPaciente
+      :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
+      @esconder="esconderCadastroPaciente"
+    />
+    <cadastrarMedico
+      :class="{ modal: true, 'is-active': modalCadastrarMedico }"
+      @esconder="esconderCadastrarMedico"
+    />
+    <editarMedico
+      :class="{ modal: true, 'is-active': modalEditarMedico }"
+      @esconder="esconderEditarMedico"
+    />
+    <editarPaciente
+      :class="{ modal: true, 'is-active': modalEditarPaciente }"
+      @esconder="esconderEditarPaciente"
+    />
   </div>
   <!-- conteiner -->
 </template>
 
 <script>
+import cadastrarPaciente from "./CadastrarPaciente.vue";
+import cadastrarMedico from "./CadastrarMedico.vue";
+import editarMedico from "./EditarMedico.vue";
+import editarPaciente from "./EditarPaciente.vue";
+
+
+
 export default {
   name: "administracao",
+  components: {
+    cadastrarPaciente,
+    cadastrarMedico,
+    editarMedico,
+    editarPaciente,
+  },
   data() {
     return {
-      showModal: false,
       imagem5: "/img/Medica.svg",
       imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
+      modalCadastrarPaciente: false,
+      modalEditarPaciente: false,
+      modalCadastrarMedico: false,
+      modalEditarMedico: false,
     };
   },
   methods: {
-    AbrirCadastrarPaciente() {
-      //  this.showModal = true;
-      this.$router.push("/Login/Adm/CadastrarPaciente");
+    esconderCadastroPaciente() {
+      this.modalCadastrarPaciente = false;
     },
-    AbrirEditarPaciente() {
-      this.$router.push("/Login/Adm/EditarPaciente");
+    esconderEditarPaciente() {
+      this.modalEditarPaciente = false;
     },
-    AbrirCadastrarMedico() {
-      this.$router.push("/Login/Adm/CadastrarMedico");
+    esconderCadastrarMedico() {
+      this.modalCadastrarMedico = false;
     },
-    AbrirEditarMedico(){
-      this.$router.push("/Login/Adm/EditarMedico");
-    }
+    esconderEditarMedico() {
+      this.modalEditarMedico = false;
+    },
+    AparecerCadastrarPaciente() {
+      this.modalCadastrarPaciente = true;
+    },
+    AparecerEditarPaciente() {
+      this.modalEditarPaciente = true;
+    },
+    AparecerCadastrarMedico() {
+      this.modalCadastrarMedico = true;
+    },
+    AparecerEditarMedico() {
+      this.modalEditarMedico = true;
+    },
   },
 };
 </script>
@@ -119,7 +162,6 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-top: 3%;
-  padding-bottom: 2%;
 }
 
 .imagems {
@@ -138,8 +180,8 @@ export default {
 }
 
 .btn {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   border: none;
   background-color: #2e4a7d;
@@ -171,7 +213,7 @@ export default {
 
 .listas {
   width: 91%;
-  height: 78%;
+  height: 72%;
   margin-top: 3%;
   overflow-y: scroll;
 }

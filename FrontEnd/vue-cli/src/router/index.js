@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import LandingPage from '../views/LandingPage.vue'
 import Login from '../views/Login.vue'
 import Adm from '../views/Adm.vue'
-import ListarPacientes from '../views/ListarPacientes.vue'
+import ListarPacientes from '@/views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
 import CadastrarPaciente from '../components/Adm/CadastrarPaciente.vue'
@@ -22,17 +22,17 @@ const routes = [
     component: Login
   },
   {
-    path: '/Login/Adm',
+    path: '/login/Adm',
     name: 'Adm',
     component: Adm
   },
   {
-    path: '/Login/ListarPacientes',
+    path: '/ListarPacientes',
     name: 'ListarPacientes',
     component: ListarPacientes
   },
   {
-    path: '/Login/ListaLaudos',
+    path: '/ListaLaudos',
     name: 'ListaLaudos',
     component: ListaLaudos
   },

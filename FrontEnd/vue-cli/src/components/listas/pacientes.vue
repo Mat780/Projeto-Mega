@@ -28,6 +28,7 @@ export default {
   align-items: center;
   background-image: url("/img/RectanglePaciente.svg");
   background-repeat: no-repeat;
+  background-size: 100%;
   background-color: #fff;
   cursor: pointer;
 }

@@ -78,7 +78,6 @@ export default {
 			cadeado: "./img/Cadeado.svg",
 			olho: "./img/OlhoFechado.svg",
 			typeSenha: "password",
-			cpf: "",
 			senha: "",
 			duckIdle: '/img/patoIdle.png'
 		};
@@ -199,6 +198,10 @@ form {
 	background-color: #ffd666;
 	border-radius: 8px;
 	border: none;
+}
+
+#LoginEntrar:hover{
+	color: #fff;
 }
 
 #LoginCadeado {

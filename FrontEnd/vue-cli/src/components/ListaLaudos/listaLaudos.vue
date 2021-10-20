@@ -24,7 +24,6 @@
 
 <script>
 import laudos from "../listas/laudos";
-import Laudos from "../listas/laudos.vue";
 
 export default {
   name: "listaLaudos",
@@ -81,7 +80,7 @@ export default {
 }
 
 .personaPaciente {
-  width: 20%;
+  width: 18%;
   height: 70%;
   display: flex;
   justify-content: space-between;
@@ -103,12 +102,13 @@ export default {
   width: 90%;
   border: 1px solid #2e4a7d;
   background-color: #2e4a7d;
+  position: relative;
+  bottom: 2%;
 }
 
 .contentEmbaixo {
   width: 90%;
   height: 75%;
-  margin-top: 4%;
   overflow-y: scroll;
 }
 

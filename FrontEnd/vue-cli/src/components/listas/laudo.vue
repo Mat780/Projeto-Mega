@@ -33,8 +33,9 @@ export default {
 </script>
 
 <style scoped>
+
 .laudo {
-	width: 99%;
+	width: 98%;
 	height: 20%;
 	background-image: linear-gradient(to top, #ffd66680, #ffd666);
 	border-radius: 8px;
@@ -44,7 +45,7 @@ export default {
 }
 
 .parteEsquerda {
-	padding-top: 1.8%;
+	padding-top: 2.5%;
 	padding-left: 5%;
 }
 
@@ -63,6 +64,8 @@ export default {
 	width: 100%;
 	font-size: 13px;
 	color: #999898;
+	position: relative;
+	bottom: 20%;
 }
 
 .DataDoLaudo {

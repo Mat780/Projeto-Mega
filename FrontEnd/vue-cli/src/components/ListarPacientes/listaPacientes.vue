@@ -94,6 +94,7 @@ export default {
   display: flex;
   cursor: pointer;
   margin-top: 2%;
+  padding-left: 5%;
 }
 
 .text {
@@ -106,9 +107,7 @@ export default {
 
 .imgFiltrar {
   width: 27%;
-  position: relative;
-  top: 20%;
-  left: 8%;
+  align-self: center;
 }
 
 .pesquisar {
@@ -116,6 +115,8 @@ export default {
   padding-top: 0.5%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  right: 5%;
 }
 
 .divPesquisar {
@@ -152,7 +153,7 @@ export default {
 }
 
 .personaMedico {
-  width: 23.5%;
+  width: 20%;
   display: flex;
   justify-content: space-between;
   padding: 1% 0 0 0;
@@ -184,12 +185,13 @@ export default {
   width: 90%;
   border: 1px solid #2e4a7d;
   background-color: #2e4a7d;
+  position: relative;
+  bottom: 2%;
 }
 
 .contentEmbaixo {
   width: 90%;
-  height: 82%;
-  margin-top: 2%;
+  height: 75%;
   overflow-y: scroll;
 }
 
