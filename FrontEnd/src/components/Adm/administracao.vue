@@ -4,24 +4,34 @@
     <div class="content content1">
       <div class=".identificacao identificacao">
         <div style="display: flex; width: 100%;">
+          <!-- Nome da imagem utilizada como "imagem8" -->
           <img :src="imagem8" class="imagems imagem8" />
+          <!-- Título -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
+        <!-- Ao clicar nesse botão irá executar a função "AparecerCadastrarPaciente()" -->
         <button class="btn btnAdd" @click="AparecerCadastrarPaciente">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
+      <!-- Linha que aparece na parte inferior de "Lista de Paciente" e "Lista de Médicos" -->
       <hr class="linha" />
+      <!-- Local onde irá aparecer as listas de pacientes -->
       <div class="listas">
         <!-- add v-for aqui -->
         <div class="listaFilhas">
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Ao clicar nesse botão irá executar a função "AparecerEditarPaciente()" -->
             <button class="btn btn2" @click="AparecerEditarPaciente">
+              <!-- Imagem que está sendo utilizada no código -->
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3" @click="AparecerExcluirPaciente">
+            <!-- botão que exclui Médico e Paciente -->
+            <button class="btn excluirMedico">
+              <!-- Imagem com o nome "excluir" -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -33,10 +43,14 @@
     <div class="content content2">
       <div class="identificacao identificacao2">
         <div style="display: flex; width: 100%;">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="imagem5" class="imagems imagem5" />
+          <!-- Título -->
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
+        <!-- Ao digitar tudo que foi pedido, deve clicar no botão que ele irá executar a função de cadastrar médico -->
         <button class="btn btnAdd" @click="AparecerCadastrarMedico">
+          <!-- Imagem para adicionar -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -47,18 +61,22 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Botão para editar médico -->
             <button class="btn btn2" @click="AparecerEditarMedico">
+              <!-- Imagem de "editar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3" @click="aparecerExcluirMedico">
+            <!-- Botão de excluir médico -->
+            <button class="btn excluirMedico">
+              <!-- Imagem com uma lixeira que indica que da pra excluir o médico -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
         </div>
       </div>
-      <!-- listas -->
     </div>
     <!-- content2 -->
+    <!-- Modal -->
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
       @esconder="esconderCadastroPaciente"
@@ -84,7 +102,6 @@
       @esconder="esconderExcluirMedico"
     />
   </div>
-  <!-- conteiner -->
 </template>
 
 <script>
@@ -92,8 +109,6 @@ import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
 import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
-import confirmarPaciente from "../modais/confirmarPaciente.vue";
-import confirmarMedico from "../modais/confirmarMedico.vue";
 
 export default {
   name: "administracao",
@@ -107,11 +122,13 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       imagem5: "/img/Medica.svg",
       imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
+      // Todos esse modais estão recebendo "false" para não aparecer ao abrir a página, ao clicar por exemplo no botão de "+"" "Adicionar Paciente" ele irá receber "true"
       modalCadastrarPaciente: false,
       modalEditarPaciente: false,
       modalCadastrarMedico: false,
@@ -121,27 +138,35 @@ export default {
     };
   },
   methods: {
+    // Função que esconde o "esconderCadastroPaciente()"
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
+    // Função que esconde o "esconderEditarPaciente()"
     esconderEditarPaciente() {
       this.modalEditarPaciente = false;
     },
+    // Função que esconde o "esconderCadastrarMedico()"
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
     },
+    // Função que esconde o "esconderEditarMedico()"
     esconderEditarMedico() {
       this.modalEditarMedico = false;
     },
+    // Função que aparece o "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
+    // Função que aparece o "AparecerEditarPaciente()"
     AparecerEditarPaciente() {
       this.modalEditarPaciente = true;
     },
+    // Função que aparecer o "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
+    // Função que aparece o "AparecerEditarMedico()"
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
     },
@@ -282,7 +307,7 @@ export default {
   background-color: #e7a900ab;
   border: 2px solid white;
 }
-.btn3:hover {
+.excluirMedico:hover {
   background-color: #e7a900ab;
   border: 2px solid white;
 }

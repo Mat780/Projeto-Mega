@@ -1,11 +1,11 @@
 <template>
-    <div>
-        Adicioner Pacientes
-    </div>
+  <div>
+    Adicioner Pacientes
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'AdicionarPacientes'
-}
+  name: "AdicionarPacientes",
+};
 </script>

@@ -12,15 +12,18 @@
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
+            <!-- Imagem do doctor -->
             <img :src="doctor" class="doctor" />
           </div>
           <div class="contentDireita">
+            <!-- Título -->
             <h1 class="tituloAzul">
               Editar <span class="tituloVermelho">Medico</span>
             </h1>
             <form class="formulario">
               <div class="entradas">
                 <i class="fas fa-user"></i>
+                <!-- Input que é para digitar o nome do(a) Médico(a) -->
                 <input
                   class="nome"
                   type="text"
@@ -30,6 +33,7 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-user-md"></i>
+                <!-- Input que é para digitar a Especialidade do(a) Médico(a) -->
                 <input
                   class="especialidade"
                   type="text"
@@ -39,6 +43,7 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-address-card"></i>
+                <!-- Input que é para digitar o CPF do(a) Médico(a) -->
                 <input
                   v-maska="'###.###.###-##'"
                   class="cpf"
@@ -49,6 +54,7 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
+                <!-- Input que é para digitar a senha do(a) Médico(a)-->
                 <input
                   class="senha"
                   type="password"
@@ -58,6 +64,7 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
+                <!-- Input que é para confirmar a senha do(a) Médico(a)-->
                 <input
                   class="confimarSenha"
                   type="password"
@@ -65,7 +72,7 @@
                   required
                 />
               </div>
-
+              <!-- Botão que serve pra Salvar -->
               <button class="btn">Salvar</button>
             </form>
           </div>
@@ -85,6 +92,7 @@ export default {
   name: "editarMedico",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       doctor: "/img/doctor.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
