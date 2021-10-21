@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<div class="FazerLogin" :class="{ FazerLoginPatoEscritor : tipoPatoEscritor, FazerLoginPatoCego : tipoPatoSenha}" >
         <!-- Componentente para fazer login -->
 		<h2>Bem-vindo</h2>
@@ -63,12 +64,80 @@
 				<p>Esqueceu sua senha? <a>Clique aqui</a></p>
 			</div>
 	</div>
+=======
+  <div
+    class="FazerLogin"
+    :class="{ FazerLogin2: tipoPatoEscritor, FazerLogin3: tipoPatoSenha }"
+  >
+    <!-- Componentente para fazer login -->
+    <h2>Bem-vindo</h2>
+    <h4>Acesse seus <label style="color: #ffd666">laudos</label> agora!</h4>
+
+    <!-- Formulário de informações do Login -->
+    <form>
+      <!-- Primeiro Input: CPF -->
+      <div class="GrupoLogin">
+        <img class="imgs" :src="pessoa" />
+        <input
+          v-maska="'###.###.###-##'"
+          type="text"
+          class="ControleLogin"
+          v-model="cpf"
+          placeholder="Escreva aqui seu CPF"
+          @input="trocaPatoEscritor()"
+        />
+      </div>
+    </form>
+
+    <!-- Div com o input da senha e do botão para confirmar o login -->
+    <div class="GrupoLogin">
+      <!-- Imagem de uma chave -->
+      <img class="imgs" :src="chave" />
+
+      <!-- Segundo Input: Senha -->
+      <label for="senhaLogin"></label>
+      <input
+        :type="typeSenha"
+        class="ControleLogin"
+        v-model="senha"
+        placeholder="Escreva aqui sua senha"
+        id="senhaLogin"
+        @input="trocaPatoSenha()"
+      />
+
+      <!-- Botão do olho de mostrar/ocultar senha -->
+      <button
+        style="width: 15%; border: none; background: none"
+        @click="trocaOlho"
+      >
+        <!-- Imagem do olho que muda conforme está visivel ou não a senha -->
+        <img class="imgs" :src="olho" style="padding-top: 0.3vh" />
+      </button>
+    </div>
+
+    <!-- Botão para confirmar o login -->
+    <div>
+      <button id="LoginEntrar" @click="login()">Entrar</button>
+    </div>
+
+    <!-- Divisória do Esqueci minha senha -->
+    <div id="LoginCadeado">
+      <!-- Imagem de um cadeado -->
+      <img class="imgs" id="LoginCadeadoImg" :src="cadeado" />
+
+      <!-- Texto com uma parte clickavel para recuperar senha -->
+      <!-- AINDA NÃO IMPLEMENTADO -->
+      <p>Esqueceu sua senha? <a>Clique aqui</a></p>
+    </div>
+  </div>
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 </template>
 
 <script>
 import axios from "axios";
 // Exporta os arquivos do componente
 export default {
+<<<<<<< HEAD
     // Nome do componente
 	name: "FazerLogin",
 
@@ -173,6 +242,102 @@ export default {
 		}
 
 	},
+=======
+  // Nome do componente
+  name: "FazerLogin",
+
+  // A data contêm as variaveis e informações do componente
+  data() {
+    return {
+      pessoa: "./img/Pessoa.svg",
+      chave: "./img/Chave.svg",
+      cadeado: "./img/Cadeado.svg",
+      olho: "./img/OlhoFechado.svg",
+      typeSenha: "password",
+      senha: "",
+      duckIdle: "/img/duckIdle.png",
+      tipoPatoEscritor: false,
+      tipoPatoSenha: false,
+    };
+  },
+
+  // Os methods contêm as funções do componente
+  methods: {
+    login() {
+      axios
+        .get("http://localhost:8080/user")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    // O trocaOlho faz 2 coisas:
+    // Ele troca a imagem do olho para aberto caso a senha esteja legivel
+    // Ou ele troca para o olho fechado caso a senha esteja ilegivel
+    // E por fim ele ainda troca o tipo da senha para legivel ou ilegivel
+    trocaOlho() {
+      // Ele compara o typeSenha para saber se ele está como senha ou não
+      if (this.typeSenha == "password") {
+        // Caso ele esteja como uma senha ele troca para texto
+        this.typeSenha = "text";
+
+        // E altera o olho para um olho aberto ao invés de fechado
+        this.olho = "./img/OlhoAberto.svg";
+      } else {
+        // Se ele não estiver como senha, troca-se o tipo dela para senha
+        this.typeSenha = "password";
+
+        // E assim o olho se fecha também, para completar o ciclo infinito
+        this.olho = "./img/OlhoFechado.svg";
+      }
+    },
+
+    // O trocaPag ele basicamente vai chamar o router para alterar a pagina
+    trocaPag() {
+      // IMPLEMENTAR UM VERIFICADOR DO BANCO DE DADOS PARA REDIRECIONAR PARA O URL CERTO
+
+      // Ele troca a URL
+      this.$router.push({ path: "/Login/Adm" });
+    },
+
+    // O cleanString(value) limpa a string do CPF para pegar somente os numeros do CPF
+    // E esse (value) é a variavel do CPF.
+    cleanString(value) {
+      return value.replace(/[&\/\\#,+()$~%.'":*?<>{}-]/g, "");
+    },
+
+    trocaPatoParado() {
+      this.tipoPatoEscritor = false;
+      this.tipoPatoSenha = false;
+    },
+
+    trocaPatoEscritor() {
+      this.tipoPatoEscritor = true;
+      this.tipoPatoSenha = false;
+      setTimeout(() => {
+        this.tipoPatoSenha = false;
+        this.tipoPatoEscritor = false;
+      }, 500);
+    },
+
+    trocaPatoSenha() {
+      if (this.typeSenha == "password") {
+        this.tipoPatoSenha = true;
+        this.tipoPatoEscritor = false;
+      } else {
+        this.tipoPatoEscritor = true;
+        this.tipoPatoSenha = false;
+        setTimeout(() => {
+          this.tipoPatoSenha = false;
+          this.tipoPatoEscritor = false;
+        }, 500);
+      }
+    },
+  },
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 };
 </script>
 
@@ -193,6 +358,7 @@ export default {
   text-align: center;
 }
 
+<<<<<<< HEAD
 .FazerLoginPatoEscritor{
 	background-image: url('/img/duckWrite.gif');
 	background-repeat: no-repeat;
@@ -205,6 +371,20 @@ export default {
 	background-repeat: no-repeat;
 	padding-top: 4vh;
 	text-align: center;
+=======
+.FazerLogin2 {
+  background-image: url("/img/duckWrite.gif");
+  background-repeat: no-repeat;
+  padding-top: 4vh;
+  text-align: center;
+}
+
+.FazerLogin3 {
+  background-image: url("/img/duckEyeClosed.png");
+  background-repeat: no-repeat;
+  padding-top: 4vh;
+  text-align: center;
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 }
 
 form {

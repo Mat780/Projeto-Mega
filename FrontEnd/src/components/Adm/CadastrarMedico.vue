@@ -1,8 +1,11 @@
 <template>
   <div>
+<<<<<<< HEAD
     <!-- Vai aparecer o modal -->
     <administracao @paciente="showModalUser()" />
     <div>
+=======
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
       <div class="modal-background" @click="$emit('esconder')"></div>
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
@@ -80,7 +83,6 @@
         @click="$emit('esconder')"
       ></button>
     </div>
-  </div>
 </template>
 
 <script>
@@ -95,7 +97,6 @@ export default {
       ouvircoracao: "/img/ouvircoracao.png",
     };
   },
-  methods: {},
 };
 </script>
 
@@ -161,6 +162,8 @@ export default {
   width: 100%;
   height: 100%;
   padding-left: 10%;
+  border-radius: 8px;
+  border: 1px solid #2e4a7d;
 }
 
 .fas {

@@ -9,8 +9,12 @@
         <button class="btn">
           <!-- Imagem de filtrar -->
           <img :src="filtrar" class="imgFiltrar" />
+<<<<<<< HEAD
           <!-- Parágrafo -->
           <p class="text">Meus Pacientes</p>
+=======
+          <p class="textPacientes">Meus Pacientes</p>
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
         </button>
       </div>
       <!-- Div de realizar pesquisa -->
@@ -23,7 +27,10 @@
             <!-- Imagem de pesquisa -->
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
+<<<<<<< HEAD
           <!-- Parte que recebe a pesquisa -->
+=======
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
           <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
@@ -45,26 +52,45 @@
     <div class="contentEmbaixo">
       <!-- Parte em baixo da linha -->
       <div class="contentEmbaixo2">
-        <pacientes />
+        <pacientes @click="ChangeUpload" />
       </div>
     </div>
+    <!--modal para ver de erro-->
+    <erro
+      :class="{ modal: true, 'is-active': modalErro }"
+      @esconder="esconderErro"
+    />
   </div>
 </template>
 
 <script>
 import pacientes from "../listas/pacientes";
+<<<<<<< HEAD
+=======
+import erro from "../modais/erro.vue";
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 
 export default {
   name: "listaPacientes",
   components: {
     pacientes,
+    erro,
   },
   data() {
     return {
       filtrar: "../img/filtrar.png",
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
+      modalErro: false,
     };
+  },
+  methods: {
+    esconderErro() {
+      this.modalErro = false;
+    },
+    ChangeUpload() {
+      this.$router.push({ path: "/Login/ListarPacientes/Upload" });
+    },
   },
 };
 </script>
@@ -110,12 +136,11 @@ export default {
   padding-left: 5%;
 }
 
-.text {
+.textPacientes {
   font-size: 0.9em;
-
-  padding-top: 1%;
   padding-left: 12%;
   text-align: left;
+  align-self: center;
 }
 
 .imgFiltrar {

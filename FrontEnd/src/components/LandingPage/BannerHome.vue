@@ -123,6 +123,7 @@ p {
 }
 
 button {
+<<<<<<< HEAD
   height: 12%;
   background: #2e4a7d;
   border-radius: 1.2rem;
@@ -132,6 +133,18 @@ button {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1.5px solid #2e4a7d;
   transition: 0.3s ease all;
+=======
+    height: 12%;
+    background: #2e4a7d;
+    border-radius: 1.2rem;
+    border: none;
+    font-size: 3ex;
+    padding: 0 5% 0 3%;
+    color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid #2e4a7d;
+    transition: .3s ease all;
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 }
 
 button:hover {

@@ -29,9 +29,13 @@
               <!-- Imagem que está sendo utilizada no código -->
               <img :src="editar" class="btn2Editar" />
             </button>
+<<<<<<< HEAD
             <!-- botão que exclui Médico e Paciente -->
             <button class="btn excluirMedico">
               <!-- Imagem com o nome "excluir" -->
+=======
+            <button class="btn btn3" @click="AparecerExcluirPaciente">
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -66,9 +70,13 @@
               <!-- Imagem de "editar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
+<<<<<<< HEAD
             <!-- Botão de excluir médico -->
             <button class="btn excluirMedico">
               <!-- Imagem com uma lixeira que indica que da pra excluir o médico -->
+=======
+            <button class="btn btn3" @click="aparecerExcluirMedico">
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -93,6 +101,14 @@
       :class="{ modal: true, 'is-active': modalEditarPaciente }"
       @esconder="esconderEditarPaciente"
     />
+    <confirmarPaciente
+      :class="{ modal: true, 'is-active': modalExcluirPaciente }"
+      @esconder="esconderExcluirPaciente"
+    />
+    <confirmarMedico
+      :class="{ modal: true, 'is-active': modalExcluirMedico }"
+      @esconder="esconderExcluirMedico"
+    />
   </div>
 </template>
 
@@ -101,6 +117,11 @@ import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
 import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
+<<<<<<< HEAD
+=======
+import confirmarPaciente from "../modais/confirmarPaciente.vue";
+import confirmarMedico from "../modais/confirmarMedico.vue";
+>>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 
 export default {
   name: "administracao",
@@ -109,6 +130,8 @@ export default {
     cadastrarMedico,
     editarMedico,
     editarPaciente,
+    confirmarPaciente,
+    confirmarMedico,
   },
   data() {
     return {
@@ -123,6 +146,8 @@ export default {
       modalEditarPaciente: false,
       modalCadastrarMedico: false,
       modalEditarMedico: false,
+      modalExcluirPaciente: false,
+      modalExcluirMedico: false,
     };
   },
   methods: {
@@ -157,6 +182,18 @@ export default {
     // Função que aparece o "AparecerEditarMedico()"
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
+    },
+    AparecerExcluirPaciente() {
+      this.modalExcluirPaciente = true;
+    },
+    esconderExcluirPaciente() {
+      this.modalExcluirPaciente = false;
+    },
+    aparecerExcluirMedico() {
+      this.modalExcluirMedico = true;
+    },
+    esconderExcluirMedico() {
+      this.modalExcluirMedico = false;
     },
   },
 };

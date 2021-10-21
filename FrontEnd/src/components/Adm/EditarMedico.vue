@@ -165,6 +165,8 @@ export default {
   width: 100%;
   height: 100%;
   padding-left: 10%;
+  border-radius: 8px;
+  border: 1px solid #2e4a7d;
 }
 
 .fas {
