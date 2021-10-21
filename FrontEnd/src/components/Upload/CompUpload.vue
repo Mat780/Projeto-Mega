@@ -101,8 +101,9 @@ export default {
       this.laudo = { checked: false };
     },
     removeLista(laudo) {
-      const index = this.laudos.findIndex((item) => item.id === laudo.id);
-      if (index > -1) {
+      if (laudo) {
+        console.log(laudo);
+        const index = this.laudos.findIndex((item) => item.id === laudo.id);
         this.laudos.splice(index, 1);
       }
     },

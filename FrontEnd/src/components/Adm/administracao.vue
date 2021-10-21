@@ -21,7 +21,7 @@
             <button class="btn btn2" @click="AparecerEditarPaciente">
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3">
+            <button class="btn btn3" @click="AparecerExcluirPaciente">
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -50,7 +50,7 @@
             <button class="btn btn2" @click="AparecerEditarMedico">
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3">
+            <button class="btn btn3" @click="aparecerExcluirMedico">
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -75,6 +75,14 @@
       :class="{ modal: true, 'is-active': modalEditarPaciente }"
       @esconder="esconderEditarPaciente"
     />
+    <confirmarPaciente
+      :class="{ modal: true, 'is-active': modalExcluirPaciente }"
+      @esconder="esconderExcluirPaciente"
+    />
+    <confirmarMedico
+      :class="{ modal: true, 'is-active': modalExcluirMedico }"
+      @esconder="esconderExcluirMedico"
+    />
   </div>
   <!-- conteiner -->
 </template>
@@ -84,7 +92,8 @@ import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
 import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
-
+import confirmarPaciente from "../modais/confirmarPaciente.vue";
+import confirmarMedico from "../modais/confirmarMedico.vue";
 
 export default {
   name: "administracao",
@@ -93,6 +102,8 @@ export default {
     cadastrarMedico,
     editarMedico,
     editarPaciente,
+    confirmarPaciente,
+    confirmarMedico,
   },
   data() {
     return {
@@ -105,6 +116,8 @@ export default {
       modalEditarPaciente: false,
       modalCadastrarMedico: false,
       modalEditarMedico: false,
+      modalExcluirPaciente: false,
+      modalExcluirMedico: false,
     };
   },
   methods: {
@@ -131,6 +144,18 @@ export default {
     },
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
+    },
+    AparecerExcluirPaciente() {
+      this.modalExcluirPaciente = true;
+    },
+    esconderExcluirPaciente() {
+      this.modalExcluirPaciente = false;
+    },
+    aparecerExcluirMedico() {
+      this.modalExcluirMedico = true;
+    },
+    esconderExcluirMedico() {
+      this.modalExcluirMedico = false;
     },
   },
 };
@@ -244,7 +269,6 @@ export default {
   width: 27%;
   justify-content: space-evenly;
   align-items: center;
-  
 }
 
 .btn2Editar {

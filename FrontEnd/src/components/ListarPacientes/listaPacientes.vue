@@ -5,7 +5,7 @@
         <span class="MeusFiltros">Filtrar por:</span>
         <button class="btn">
           <img :src="filtrar" class="imgFiltrar" />
-          <p class="text">Meus Pacientes</p>
+          <p class="textPacientes">Meus Pacientes</p>
         </button>
       </div>
       <div class="pesquisar">
@@ -14,11 +14,7 @@
           <button class="btnPesquisar">
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
-          <input
-            type="text"
-            class="inputPesquisar"
-            placeholder="Pesquisar"
-          />
+          <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
       <div class="personaMedico">
@@ -32,26 +28,42 @@
     <hr class="linha" />
     <div class="contentEmbaixo">
       <div class="contentEmbaixo2">
-        <pacientes />
+        <pacientes @click="ChangeUpload" />
       </div>
     </div>
+    <!--modal para ver de erro-->
+    <erro
+      :class="{ modal: true, 'is-active': modalErro }"
+      @esconder="esconderErro"
+    />
   </div>
 </template>
 
 <script>
-import pacientes from "../listas/pacientes"
+import pacientes from "../listas/pacientes";
+import erro from "../modais/erro.vue";
 
 export default {
   name: "listaPacientes",
   components: {
     pacientes,
+    erro,
   },
   data() {
     return {
       filtrar: "../img/filtrar.png",
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
+      modalErro: false,
     };
+  },
+  methods: {
+    esconderErro() {
+      this.modalErro = false;
+    },
+    ChangeUpload() {
+      this.$router.push({ path: "/Login/ListarPacientes/Upload" });
+    },
   },
 };
 </script>
@@ -97,12 +109,11 @@ export default {
   padding-left: 5%;
 }
 
-.text {
+.textPacientes {
   font-size: 0.9em;
-
-  padding-top: 1%;
   padding-left: 12%;
   text-align: left;
+  align-self: center;
 }
 
 .imgFiltrar {
@@ -201,9 +212,8 @@ export default {
   overflow-y: scroll;
 }
 
-.contentEmbaixo2{
+.contentEmbaixo2 {
   width: 99%;
   height: 100%;
 }
-
 </style>
