@@ -1,5 +1,5 @@
 <template>
-	<div class="FazerLogin" :class="{ FazerLogin2 : tipoPatoEscritor, FazerLogin3 : tipoPatoSenha}" >
+	<div class="FazerLogin" :class="{ FazerLoginPatoEscritor : tipoPatoEscritor, FazerLoginPatoCego : tipoPatoSenha}" >
         <!-- Componentente para fazer login -->
 		<h2>Bem-vindo</h2>
 		<h4>Acesse seus <label style="color: #ffd666">laudos</label> agora!</h4>
@@ -32,7 +32,7 @@
 				<input
 					:type="typeSenha"
 					class="ControleLogin"
-					v-model="senha"
+					v-model="password"
 					placeholder="Escreva aqui sua senha"
 					id="senhaLogin"
 					@input="trocaPatoSenha()"
@@ -80,7 +80,8 @@ export default {
 			cadeado: "./img/Cadeado.svg",
 			olho: "./img/OlhoFechado.svg",
 			typeSenha: "password",
-			senha: "",
+			password: "",
+			cpf: "",
 			duckIdle: '/img/duckIdle.png',
 			tipoPatoEscritor: false,
 			tipoPatoSenha: false
@@ -91,10 +92,18 @@ export default {
 	methods: {
 
 		login(){
-			axios.get("http://localhost:8080/user").then(res => {
+			this.cpf = this.cpf.replace(/[.-]/g, "");
+			console.log(this.cpf);
+			axios.post("http://localhost:8080/user", {
+				name: "Teste1",
+				password: this.password,
+				cpf: this.cpf,
+				data: "Kamys"
+			}).then(res => {
 				console.log(res);
 			}).catch(err => {
-				console.log(err);
+				let msgErro = err.response.data.err;
+				console.log(msgErro);
 			});
 		},
 
@@ -133,11 +142,6 @@ export default {
 			this.$router.push({ path: "/Login/Adm" });
 		},
 
-        // O cleanString(value) limpa a string do CPF para pegar somente os numeros do CPF
-        // E esse (value) é a variavel do CPF.
-		cleanString(value) {
-			return value.replace(/[&\/\\#,+()$~%.'":*?<>{}-]/g, "");
-		},
 	
 		trocaPatoParado() {
 			this.tipoPatoEscritor = false;
@@ -150,22 +154,22 @@ export default {
 			setTimeout(() =>{
 				this.tipoPatoSenha = false;
 				this.tipoPatoEscritor = false;
-			} , 1000);
+			} , 500);
 		},
 
 		trocaPatoSenha() {
 			if (this.typeSenha == 'password'){
 				this.tipoPatoSenha = true;
 				this.tipoPatoEscritor = false;
-				
+			
 			}else{
 				this.tipoPatoEscritor = true;
 				this.tipoPatoSenha = false;
+				setTimeout(() =>{
+					this.tipoPatoSenha = false;
+					this.tipoPatoEscritor = false;
+				} , 500);
 			}
-			setTimeout(() =>{
-				this.tipoPatoSenha = false;
-				this.tipoPatoEscritor = false;
-			} , 1000);
 		}
 
 	},
@@ -191,14 +195,14 @@ export default {
 	text-align: center;
 }
 
-.FazerLogin2{
+.FazerLoginPatoEscritor{
 	background-image: url('/img/duckWrite.gif');
 	background-repeat: no-repeat;
 	padding-top: 4vh;
 	text-align: center;
 }
 
-.FazerLogin3{
+.FazerLoginPatoCego{
 	background-image: url('/img/duckEyeClosed.png');
 	background-repeat: no-repeat;
 	padding-top: 4vh;

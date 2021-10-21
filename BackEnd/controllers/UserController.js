@@ -29,7 +29,6 @@ class UserController{
 
     async createNewUser(req, res){
         var {cpf , name, password, role, data} = req.body;
-
         if(name == undefined){
             res.status(400);
             res.json({err: "Nome não inserido"});
