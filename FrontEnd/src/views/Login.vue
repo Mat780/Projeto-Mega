@@ -114,6 +114,7 @@ export default {
     border: none;
     color: #2E4A7D;
     transition: 1s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 #LoginImgBotao{
