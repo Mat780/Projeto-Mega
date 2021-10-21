@@ -1,16 +1,7 @@
 <template>
-  <div>
-    <head>
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="//fonts.googleapis.com/css?family=Nunito"
-      />
-    </head>
-    <div class="conteiner">
-      <SideBar />
-      <listaPacientes />
-    </div>
+  <div class="conteiner">
+    <SideBar />
+    <listaPacientes />
   </div>
 </template>
 
@@ -28,11 +19,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .conteiner {
   width: 100vw;

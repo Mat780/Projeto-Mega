@@ -16,7 +16,6 @@
 					v-model="cpf"
 					placeholder="Escreva aqui seu CPF"
 					@input="trocaPatoEscritor()"
-					@change="trocaPatoParado()"
 				/>
 			</div>
 
@@ -37,7 +36,6 @@
 					placeholder="Escreva aqui sua senha"
 					id="senhaLogin"
 					@input="trocaPatoSenha()"
-					@change="trocaPatoParado()"
 				/>
 
                 <!-- Botão do olho de mostrar/ocultar senha -->
@@ -64,7 +62,6 @@
                 <!-- AINDA NÃO IMPLEMENTADO -->
 				<p>Esqueceu sua senha? <a>Clique aqui</a></p>
 			</div>
-		
 	</div>
 </template>
 
@@ -141,7 +138,7 @@ export default {
 		cleanString(value) {
 			return value.replace(/[&\/\\#,+()$~%.'":*?<>{}-]/g, "");
 		},
-
+	
 		trocaPatoParado() {
 			this.tipoPatoEscritor = false;
 			this.tipoPatoSenha = false;
@@ -150,16 +147,25 @@ export default {
 		trocaPatoEscritor() {
 			this.tipoPatoEscritor = true;
 			this.tipoPatoSenha = false;
+			setTimeout(() =>{
+				this.tipoPatoSenha = false;
+				this.tipoPatoEscritor = false;
+			} , 1000);
 		},
 
 		trocaPatoSenha() {
 			if (this.typeSenha == 'password'){
 				this.tipoPatoSenha = true;
 				this.tipoPatoEscritor = false;
+				
 			}else{
 				this.tipoPatoEscritor = true;
 				this.tipoPatoSenha = false;
 			}
+			setTimeout(() =>{
+				this.tipoPatoSenha = false;
+				this.tipoPatoEscritor = false;
+			} , 1000);
 		}
 
 	},
