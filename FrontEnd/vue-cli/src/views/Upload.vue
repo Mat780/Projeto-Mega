@@ -13,12 +13,11 @@
 <script>
 // Importa os componentes SideBar e CompUpload
 import SideBar from "../components/Adm/SideBar.vue";
-import CompUpload from "../components/Upload/CompUpload.vue"
+import CompUpload from "../components/Upload/CompUpload.vue";
 
 // Exporta as informações do componente
 export default {
-
-  // Nome do componente 
+  // Nome do componente
   name: "Upload",
 
   // Componentes importados
@@ -26,9 +25,7 @@ export default {
     SideBar,
     CompUpload,
   },
-
 };
-
 </script>
 
 <style scoped>
@@ -38,7 +35,7 @@ export default {
   box-sizing: border-box;
 }
 
-.content{
+.content {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -46,4 +43,3 @@ export default {
   background-color: rgba(235, 242, 245, 1);
 }
 </style>
-

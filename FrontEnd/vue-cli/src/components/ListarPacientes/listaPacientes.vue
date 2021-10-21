@@ -1,36 +1,48 @@
 <template>
+  <!-- Parte completa -->
   <div class="contenier">
+    <!-- Parte de cima -->
     <div class="contentCima">
       <div class="MeusPacientes">
+        <!-- Mensagem crua -->
         <span class="MeusFiltros">Filtrar por:</span>
         <button class="btn">
           <img :src="filtrar" class="imgFiltrar" />
+          <!-- Parágrafo -->
           <p class="text">Meus Pacientes</p>
         </button>
       </div>
+      <!-- Div de realizar pesquisa -->
       <div class="pesquisar">
+        <!-- Mensagem crua -->
         <span class="MeusFiltros">Buscar por:</span>
         <div class="divPesquisar">
+          <!-- Botão de pesquisar -->
           <button class="btnPesquisar">
+            <!-- Imagem de pesquisa -->
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
-          <input
-            type="text"
-            class="inputPesquisar"
-            placeholder="Pesquisar"
-          />
+          <!-- Parte que recebe a pesquisa -->
+          <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
+      <!-- Local onde se encontra a imagem da doutora e seu nome -->
       <div class="personaMedico">
+        <!-- text com o nome do médico -->
         <div class="TextPersona">
+          <!-- Mensagem crua -->
           <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
+          <!-- Mensagem crua -->
           <span class="medico">Médico</span>
         </div>
+        <!-- Imagem utilizada com o nome "imagem5" -->
         <img :src="imagem5" class="imagem5" />
       </div>
     </div>
+    <!-- Linha divisória -->
     <hr class="linha" />
     <div class="contentEmbaixo">
+      <!-- Parte em baixo da linha -->
       <div class="contentEmbaixo2">
         <pacientes />
       </div>
@@ -39,7 +51,7 @@
 </template>
 
 <script>
-import pacientes from "../listas/pacientes"
+import pacientes from "../listas/pacientes";
 
 export default {
   name: "listaPacientes",
@@ -193,9 +205,8 @@ export default {
   overflow-y: scroll;
 }
 
-.contentEmbaixo2{
+.contentEmbaixo2 {
   width: 99%;
   height: 100%;
 }
-
 </style>

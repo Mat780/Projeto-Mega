@@ -6,16 +6,19 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
       />
     </head>
+    <!-- Página completa -->
     <div id="pagcompleta">
+      <!-- Lado esquerdo da Página -->
       <div id="ladoesquerdo">
+        <!-- Imagem com o nome "doctor" -->
         <img :src="doctor" id="doctor" />
       </div>
-
+      <!-- Lado direito da Página -->
       <div id="ladodireito">
+        <!-- Título -->
         <h1>Editar <span>Médico</span></h1>
-
         <form>
-          <!-- form das partes de input -->
+          <!-- form das partes de input (Nome Completo) -->
           <input
             class="entradas"
             type="text"
@@ -24,6 +27,7 @@
             v-model="name"
           />
           <i class="fas fa-user"></i>
+          <!-- form das partes de input (Especialidade) -->
           <input
             class="entradas"
             type="text"
@@ -32,6 +36,7 @@
             v-model="especialidade"
           />
           <i class="fas fa-user-md"></i>
+          <!-- form das partes de input (CPF) -->
           <input
             class="entradas"
             type="text"
@@ -42,6 +47,7 @@
             v-model="cpf"
           />
           <i class="fas fa-user"></i>
+          <!-- form das partes de input (Senha) -->
           <input
             class="entradas"
             type="text"
@@ -50,6 +56,7 @@
             v-model="senha"
           />
           <i class="fas fa-key"></i>
+          <!-- form das partes de input (Confirmar Senha) -->
           <input
             class="entradas"
             type="text"
@@ -58,7 +65,7 @@
             v-model="confirmarsenha"
           />
           <i class="fas fa-key"></i>
-          <!-- botão para editar o Médico -->
+          <!-- botão para salvar as alterações do Médico -->
           <input id="botao" type="button" value="Salvar" @click="EnviarDados" />
         </form>
       </div>
@@ -71,6 +78,7 @@ export default {
   name: "CadastrarMedico",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       doctor: "/img/doctor 1.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -83,23 +91,7 @@ export default {
       medicoaresponsavel: "",
     };
   },
-  methods: {
-    EnviarDados() {
-      const dados = {
-        name: this.name,
-        especialidade: this.especialidade,
-        cpf: this.cpf,
-        senha: this.senha,
-        confirmarsenha: this.confirmarsenha,
-      };
-      console.log(dados);
-    },
-  },
-  methods: {
-    abrirModal() {
-      this.$refs["meu_modal"].show();
-    },
-  },
+  methods: {},
 };
 </script>
 

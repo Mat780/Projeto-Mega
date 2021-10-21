@@ -1,7 +1,7 @@
-<template>    
-          <div class="listaPaciente">
-            <img :src="imagem8_2" class="imagem8_2" />
-          </div>   
+<template>
+  <div class="listaPaciente">
+    <img :src="imagem8_2" class="imagem8_2" />
+  </div>
 </template>
 
 <script>
@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style scoped>
- 
 .listaPaciente {
   width: 27.9%;
   height: 46%;

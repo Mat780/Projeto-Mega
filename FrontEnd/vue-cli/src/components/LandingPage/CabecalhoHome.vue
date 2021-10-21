@@ -15,7 +15,7 @@
         </div>
 
         <div class="click">
-          <!-- "lista" onde pode ocorrer o click e mudar para essa parte -->
+          <!-- "lista" onde pode ocorrer o click e mudar para "Inicio", "Sobre","Exames", "Contato" -->
           <a @click="scrollInicio" class="nomes">Inicio</a>
           <a @click="scrollSobre" class="nomes">Sobre</a>
           <a @click="scrollExames" class="nomes">Exames</a>
@@ -36,6 +36,7 @@ export default {
     };
   },
   methods: {
+    //Ao dar scroll na tela, ele acompanha, deixando fixo 
     toggleNavClass() {
       if (this.active == false) {
         return "nav";
@@ -43,14 +44,14 @@ export default {
         return "fix-nav";
       }
     },
-    
-    // função que irá fazer a página ir para área "inicio"
+
+    // função que irá fazer a página ir para área "Inicio" sem sair da laddingPage
     scrollInicio() {
       const element = document.getElementById("BannerHomeDiv");
       element.scrollIntoView({ behavior: "smooth" });
     },
 
-    // função que irá fazer a página ir para área "contato"
+    // função que irá fazer a página ir para área "Sobre" sem sair da laddingPage
     scrollSobre() {
       const element = document.getElementById("content");
       element.scrollIntoView({
@@ -59,7 +60,7 @@ export default {
       });
     },
 
-    // função que irá fazer a página ir para área "contato"
+    // função que irá fazer a página ir para área "Exames" sem sair da laddingPage
     scrollExames() {
       const element = document.getElementById("HomeExames");
       element.scrollIntoView({
@@ -68,13 +69,14 @@ export default {
       });
     },
 
-    // função que irá fazer a página ir para área "contato"
+    // função que irá fazer a página ir para área "Contato" sem sair da laddingPage
     scrollContato() {
       const element = document.getElementById("Contato");
       element.scrollIntoView({ behavior: "smooth", block: "end" });
     },
 
     mounted() {
+      // Pega o elemento inteiro da navbar pelo id, se o scroll da tela for maior que o offset da navbar, ele irá ativar a variável true, caso contrário, ira desativa.
       let navBar = document.getElementById("nav");
       if (window.scrollY > navBar.offsetTop) {
         this.active = true;

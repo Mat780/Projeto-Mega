@@ -7,10 +7,11 @@
       <title>Contato</title>
     </head>
     <div class="conteiner" id="Contato">
+      <!-- Formulário onde está presente o "nome" "email" e a parte onde é possível digitar texto -->
       <form ref="form" @submit.prevent="sendEmail" class="contentDuvida">
         <div class="nome_email">
           <div class="nome">
-            <!-- parte de input (nome,email e o texto que deseja enviar) -->
+            <!-- parte de input (nome)-->
             <input
               type="text"
               name="UserName"
@@ -21,6 +22,7 @@
             />
           </div>
           <div class="email">
+            <!-- parte de input (email)-->
             <input
               type="text"
               name="UserEmail"
@@ -32,6 +34,7 @@
           </div>
         </div>
         <div class="ajuda">
+          <!-- parte de input (textArea)-->
           <textarea
             type="text"
             name="Msg"
@@ -41,15 +44,15 @@
             required
           />
         </div>
-        <!-- botão para enviar -->
+        <!-- Botão de enviar -->
         <input class="btn" type="submit" value="Enviar" />
       </form>
-
+      <!-- Parte esqueda onde se encontra "contatos" -->
       <div class="direita">
+        <!-- Título "contatos" -->
         <h2 id="contatos">Contatos</h2>
         <div class="ultimadiv">
           <ul style="list-style: none">
-             
             <!-- lista onde direciona para determinados links -->
             <li><img :src="telefone" /> 67(00000-0000)</li>
             <li>
@@ -61,6 +64,7 @@
               >
             </li>
             <li>
+              <!-- Imagem que -->
               <img :src="facebook" /><a
                 href="https://www.facebook.com/megaufms"
                 target="_blank"
@@ -90,6 +94,7 @@ export default {
   name: "FormDuvidas",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       telefone: "/img/Fone.png",
       insta: "/img/Instagram.png",
       facebook: "/img/Facebook.png",
@@ -98,6 +103,7 @@ export default {
   },
   methods: {
     sendEmail(event) {
+      // mostra para onde ele irá enviazr os emails
       emailjs
         .sendForm(
           "service_MegaJrPS",
@@ -106,12 +112,14 @@ export default {
           "user_3U0V4u52tmL6BC5OTJvsT"
         )
         .then(
+          // mostra se o email foi enviado com sucesso
           (result) => {
             alert(
               "Seu email foi enviado com sucesso, obrigado pela preferencia, a clinica Duck Health agradece",
               result.text
             );
           },
+          // mostra se o email não foi enviado com sucesso
           (error) => {
             console.log("FAILED...", error.text);
           }

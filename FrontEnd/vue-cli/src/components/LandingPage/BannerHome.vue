@@ -2,22 +2,27 @@
   <div id="BannerHomeDiv">
     <section class="BannerHomeSection">
       <div id="BannerHomeTextDiv">
+        <!-- Título -->
         <h1>Duck Health</h1>
-
+        <!-- Conteúdo do parágrafo  -->
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia
           euismod imperdiet. Pellentesque vel ultricies ante. lacinia euismod
           imperdiet. ultricies ante.
         </p>
 
+        <!-- botão de ir para área de login -->
         <button id="BannerHomeButton" @click="ChangeLogin">
           <section class="BannerHomeSection">
+            <!-- imagem dentro do botão -->
             <img :src="buttonImg" id="BannerHomeImgButton" />
+            <!-- conteúdo escrito dentro do botão -->
             <div id="BannerHomeButtonText">Acessar Laudos</div>
           </section>
         </button>
       </div>
       <div id="BannerHomeImgDiv">
+        <!-- insere a imagem pelo "nome" dela -->
         <img :src="banner" id="BannerHomeImgBg" />
       </div>
     </section>
@@ -29,12 +34,14 @@ export default {
   name: "BannerHome",
   data() {
     return {
+      // nome das imagens
       banner: "/img/bg-bannerAlt.png",
       buttonImg: "/img/LaudoImg.png",
     };
   },
 
   methods: {
+    //função "ChangeLogin Ao clickar", muda para a página de login
     ChangeLogin() {
       this.$router.push({ path: "@/Login" });
     },

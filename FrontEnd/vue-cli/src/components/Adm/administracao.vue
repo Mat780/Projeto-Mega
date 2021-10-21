@@ -4,24 +4,34 @@
     <div class="content content1">
       <div class=".identificacao identificacao">
         <div style="display: flex; width: 100%;">
+          <!-- Nome da imagem utilizada como "imagem8" -->
           <img :src="imagem8" class="imagems imagem8" />
+          <!-- Título -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
+        <!-- botão que executa o "AbrirCadastrarPaciente" -->
         <button class="btn btnAdd" @click="AbrirCadastrarPaciente">
+          <!-- Imagem com o nome "adicionar" -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
+      <!-- Linha que aparece na parte inferior de "Lista de Paciente" e "Lista de Médicos" -->
       <hr class="linha" />
+      <!-- Local onde irá aparecer as listas de pacientes -->
       <div class="listas">
         <!-- add v-for aqui -->
         <div class="listaFilhas">
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- botão que executa o "AbrirEditarPaciente" -->
             <button class="btn btn2" @click="AbrirEditarPaciente">
+              <!-- Imagem com o nome "adicionar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3">
+            <!-- botão que exclui Médico e Paciente -->
+            <button class="btn excluirMedico">
+              <!-- Imagem com o nome "excluir" -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -50,17 +60,14 @@
             <button class="btn btn2" @click="AbrirEditarMedico">
               <img :src="editar" class="btn2Editar" />
             </button>
-            <button class="btn btn3">
+            <button class="btn excluirMedico">
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
         </div>
       </div>
-      <!-- listas -->
     </div>
-    <!-- content2 -->
   </div>
-  <!-- conteiner -->
 </template>
 
 <script>
@@ -69,6 +76,7 @@ export default {
   data() {
     return {
       showModal: false,
+      // Nome das imagens que estão sendo utilizadas
       imagem5: "/img/Medica.svg",
       imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
@@ -87,9 +95,9 @@ export default {
     AbrirCadastrarMedico() {
       this.$router.push("/Login/Adm/CadastrarMedico");
     },
-    AbrirEditarMedico(){
+    AbrirEditarMedico() {
       this.$router.push("/Login/Adm/EditarMedico");
-    }
+    },
   },
 };
 </script>
@@ -214,7 +222,7 @@ export default {
   background-color: #e7a900ab;
   border: 2px solid white;
 }
-.btn3:hover {
+.excluirMedico:hover {
   background-color: #e7a900ab;
   border: 2px solid white;
 }

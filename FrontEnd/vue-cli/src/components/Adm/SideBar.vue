@@ -1,13 +1,13 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
+      <!-- Nome da imagem do patinho -->
       <img :src="pato" id="pato" />
     </div>
 
     <div id="quadrado2">
       <!-- imagem que vai servir de click para ir p/ página de login -->
-        <img :src="logout" id="logout" @click="ChangeLogin" />
-
+      <img :src="logout" id="logout" @click="ChangeLogin" />
     </div>
   </div>
 </template>
@@ -17,11 +17,13 @@ export default {
   name: "SideBar",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       pato: "/img/DuckHealth.svg",
       logout: "/img/logout.png",
     };
   },
   methods: {
+    // Função que ao sere ativada ela irá sair da página "Adm" e ir para "Login"
     ChangeLogin() {
       this.$router.push({ path: "/Login" });
     },
@@ -48,15 +50,13 @@ export default {
   display: flex;
   margin-top: 20%;
 }
-#quadrado2{
-     width: 50%;
-     height: 7%;
-     background-color: #12AFCB;
-     border-radius: 16px;
-     margin-bottom: 20%;
+#quadrado2 {
+  width: 50%;
+  height: 7%;
+  background-color: #12afcb;
+  border-radius: 16px;
+  margin-bottom: 20%;
 }
-
-
 
 #logout {
   padding-left: 25%;

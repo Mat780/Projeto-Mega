@@ -6,18 +6,22 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
       />
     </head>
+    <!-- Página completa -->
     <div id="pagcompleta">
+      <!-- Lado esquerdo da Página -->
       <div id="ladoesquerdo">
+        <!-- Imagem com o nome "paciente" -->
         <img :src="paciente" id="paciente" />
       </div>
-
+      <!-- Lado direito da Página -->
       <div id="ladodireito">
-      <h1>
-        Editar
-        <span id="paciente1">Paciente</span>
+        <!-- Título -->
+        <h1>
+          Editar
+          <span id="paciente1">Paciente</span>
         </h1>
-        <!-- form das partes de input -->
         <form>
+        <!-- form das partes de input (Nome Completo) -->
           <input
             class="entradas"
             type="text"
@@ -25,6 +29,7 @@
             required
           />
           <i class="fas fa-user"></i>
+          <!-- form das partes de input (CPF) -->
           <input
             class="entradas"
             type="text"
@@ -34,13 +39,10 @@
             required
           />
           <i class="fas fa-address-card"></i>
-          <input
-            class="entradas"
-            type="text"
-            placeholder="Senha"
-            required
-          />
+          <!-- form das partes de input (Senha) -->
+          <input class="entradas" type="text" placeholder="Senha" required />
           <i class="fas fa-key"></i>
+          <!-- form das partes de input (Confirmar Senha) -->
           <input
             class="entradas"
             type="text"
@@ -48,6 +50,7 @@
             required
           />
           <i class="fas fa-key"></i>
+          <!-- form das partes de input (Médico(a) Responsável) -->
           <input
             class="entradas"
             type="text"
@@ -56,7 +59,7 @@
             v-model="medicoaresponsavel"
           />
           <i class="fas fa-stethoscope"></i>
-          <!-- botão para editar o paciente -->
+          <!-- botão para Salvar o paciente -->
           <input id="botao" type="button" value="Salvar" />
         </form>
       </div>
@@ -69,6 +72,7 @@ export default {
   name: "CadastrarMedico",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       paciente: "/img/paciente.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -135,7 +139,7 @@ form {
   color: #2e4a7d;
 }
 
-.entradas::placeholder{
+.entradas::placeholder {
   font-size: 30px;
 }
 
