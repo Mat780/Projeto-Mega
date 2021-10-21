@@ -1,5 +1,6 @@
 <template>
   <div class="listaPaciente">
+    <!-- Imagem que está sendo utilizada no código -->
     <img :src="imagem8_2" class="imagem8_2" />
   </div>
 </template>
@@ -10,6 +11,7 @@ export default {
     pacientes: { type: Object, required: true },
   },
   data() {
+    // Imagem que está sendo utilizada no código
     return {
       imagem8_2: "../img/imagem8_2.svg",
     };

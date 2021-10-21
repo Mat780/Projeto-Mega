@@ -7,6 +7,7 @@
         <!-- Mensagem crua -->
         <span class="MeusFiltros">Filtrar por:</span>
         <button class="btn">
+          <!-- Imagem de filtrar -->
           <img :src="filtrar" class="imgFiltrar" />
           <!-- Parágrafo -->
           <p class="text">Meus Pacientes</p>

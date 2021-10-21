@@ -9,7 +9,9 @@
           <!-- Título -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
+        <!-- Ao clicar nesse botão irá executar a função "AparecerCadastrarPaciente()" -->
         <button class="btn btnAdd" @click="AparecerCadastrarPaciente">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -22,7 +24,9 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Ao clicar nesse botão irá executar a função "AparecerEditarPaciente()" -->
             <button class="btn btn2" @click="AparecerEditarPaciente">
+              <!-- Imagem que está sendo utilizada no código -->
               <img :src="editar" class="btn2Editar" />
             </button>
             <!-- botão que exclui Médico e Paciente -->
@@ -39,10 +43,14 @@
     <div class="content content2">
       <div class="identificacao identificacao2">
         <div style="display: flex; width: 100%;">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="imagem5" class="imagems imagem5" />
+          <!-- Título -->
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
+        <!-- Ao digitar tudo que foi pedido, deve clicar no botão que ele irá executar a função de cadastrar médico -->
         <button class="btn btnAdd" @click="AparecerCadastrarMedico">
+          <!-- Imagem para adicionar -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
@@ -53,10 +61,14 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Botão para editar médico -->
             <button class="btn btn2" @click="AparecerEditarMedico">
+              <!-- Imagem de "editar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
+            <!-- Botão de excluir médico -->
             <button class="btn excluirMedico">
+              <!-- Imagem com uma lixeira que indica que da pra excluir o médico -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -64,6 +76,7 @@
       </div>
     </div>
     <!-- content2 -->
+    <!-- Modal -->
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
       @esconder="esconderCadastroPaciente"
@@ -89,7 +102,6 @@ import cadastrarMedico from "./CadastrarMedico.vue";
 import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
 
-
 export default {
   name: "administracao",
   components: {
@@ -100,11 +112,13 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       imagem5: "/img/Medica.svg",
       imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
+      // Todos esse modais estão recebendo "false" para não aparecer ao abrir a página, ao clicar por exemplo no botão de "+"" "Adicionar Paciente" ele irá receber "true"
       modalCadastrarPaciente: false,
       modalEditarPaciente: false,
       modalCadastrarMedico: false,
@@ -112,27 +126,35 @@ export default {
     };
   },
   methods: {
+    // Função que esconde o "esconderCadastroPaciente()"
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
+    // Função que esconde o "esconderEditarPaciente()"
     esconderEditarPaciente() {
       this.modalEditarPaciente = false;
     },
+    // Função que esconde o "esconderCadastrarMedico()"
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
     },
+    // Função que esconde o "esconderEditarMedico()"
     esconderEditarMedico() {
       this.modalEditarMedico = false;
     },
+    // Função que aparece o "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
+    // Função que aparece o "AparecerEditarPaciente()"
     AparecerEditarPaciente() {
       this.modalEditarPaciente = true;
     },
+    // Função que aparecer o "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
+    // Função que aparece o "AparecerEditarMedico()"
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
     },
@@ -248,7 +270,6 @@ export default {
   width: 27%;
   justify-content: space-evenly;
   align-items: center;
-  
 }
 
 .btn2Editar {

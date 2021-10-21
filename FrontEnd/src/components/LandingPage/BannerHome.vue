@@ -10,7 +10,6 @@
           euismod imperdiet. Pellentesque vel ultricies ante. lacinia euismod
           imperdiet. ultricies ante.
         </p>
-
         <!-- botão de ir para área de login -->
         <button id="BannerHomeButton" @click="ChangeLogin">
           <section class="BannerHomeSection">
@@ -77,9 +76,9 @@ div {
 }
 
 #BannerHomeImgButton {
-    height: 1.2em;
-    align-self: center;
-    margin-left: 0.5em;
+  height: 1.2em;
+  align-self: center;
+  margin-left: 0.5em;
 }
 
 #BannerHomeButton {
@@ -88,7 +87,6 @@ div {
 }
 
 #BannerHomeButtonText {
-
   text-align: center;
   padding-top: 7px;
   padding-right: 5px;
@@ -125,21 +123,20 @@ p {
 }
 
 button {
-    height: 12%;
-    background: #2e4a7d;
-    border-radius: 1.2rem;
-    border: none;
-    font-size: 3ex;
-    color: #ffffff;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border: 1.5px solid #2e4a7d;
-    transition: .3s ease all;
+  height: 12%;
+  background: #2e4a7d;
+  border-radius: 1.2rem;
+  border: none;
+  font-size: 3ex;
+  color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1.5px solid #2e4a7d;
+  transition: 0.3s ease all;
 }
 
-button:hover{
-    color: #2e4a7d;
-    background-color: #ffd666;
-    border: 1.5px solid #fff;
+button:hover {
+  color: #2e4a7d;
+  background-color: #ffd666;
+  border: 1.5px solid #fff;
 }
-
 </style>

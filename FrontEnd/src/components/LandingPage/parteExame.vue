@@ -1,17 +1,22 @@
 <template>
   <div id="HExames">
     <div class="exames" id="HomeExames">
+      <!-- Título -->
       <h1 class="titulo_exame">Exames</h1>
       <div class="listas_row">
         <div class="lista cima">
+          <!-- Imagem que está sendo utilizada -->
           <img :src="imagen2" class="imagem" />
+          <!-- Descrição do Exame -->
           <p class="descricao_exame">
             Lorem ipsum dolor sit amet consectetur adipisicing elit olaa ihda
             ihbsa.
           </p>
         </div>
         <div class="lista cima">
+          <!-- Imagem que está sendo utilizada -->
           <img :src="imagen1" class="imagem" />
+          <!-- Descrição do Exame -->
           <p class="descricao_exame">
             Lorem, ipsum dolor sit amet consectetur adipisicing eliti. Minus
             numquam dicta tenetur reprehenderit id eveniet nesciunt temporibus?
@@ -19,7 +24,9 @@
           </p>
         </div>
         <div class="lista cima">
+          <!-- Imagem que está sendo utilizada -->
           <img :src="imagen3" class="imagem" />
+          <!-- Descrição do Exame -->
           <p class="descricao_exame">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
             repellendus saepe error enim aliquam obcaecati praesentium!
@@ -29,14 +36,18 @@
       <!-- div_cima-->
       <div class="listas_colun">
         <div class="lista embaixo">
+          <!-- Imagem que está sendo utilizada -->
           <img :src="imagen3" class="imagem" />
+          <!-- Descrição do Exame -->
           <p class="descricao_exame">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ipsum
             minima vero iste ut? Totam!
           </p>
         </div>
         <div class="lista embaixo">
+          <!-- Imagem que está sendo utilizada -->
           <img :src="imagen2" class="imagem" />
+          <!-- Descrição do Exame -->
           <p class="descricao_exame">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque
             nostrum veritatis sapiente excepturi!

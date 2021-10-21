@@ -16,7 +16,7 @@ export default {
   name: "FootHome",
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas
+      // Nome das imagens que estão sendo utilizadas no Código
       pato: "/img/DuckHealth.svg",
     };
   },

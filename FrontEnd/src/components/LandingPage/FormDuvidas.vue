@@ -1,80 +1,92 @@
 <template>
-	<div>
-		<div class="conteiner" id="Contato">
-			<form
-				ref="form"
-				@submit.prevent="sendEmail"
-				class="contentDuvida"
-			>
-				<div class="nome_email">
-					<div class="nome">
-						<input
-							type="text"
-							name="UserName"
-							class="inputRow name"
-							placeholder="Nome"
-							:v-model="Name"
-							required
-						/>
-					</div>
-					<div class="email">
-						<input
-							type="text"
-							name="UserEmail"
-							class="inputRow email"
-							placeholder="Email"
-							:v-model="Email"
-							required
-						/>
-					</div>
-				</div>
-				<div class="ajuda">
-					<textarea
-						type="text"
-						name="Msg"
-						class="inputAjuda"
-						placeholder="Como podemos ajudar? Escreva sua dúvida"
-						:v-model="Msg"
-						required
-					/>
-				</div>
-				<input class="btn" type="submit" value="Enviar">
-			</form>
+  <div>
+    <!-- Parte inteira que está pegando a parte da direita e esquerda -->
+    <div class="conteiner" id="Contato">
+      <form ref="form" @submit.prevent="sendEmail" class="contentDuvida">
+        <div class="nome_email">
+          <div class="nome">
+            <!-- Aqui você vai digitar o seu nome obrigatoriamente (por causa do required) -->
+            <input
+              type="text"
+              name="UserName"
+              class="inputRow name"
+              placeholder="Nome"
+              :v-model="Name"
+              required
+            />
+          </div>
+          <div class="email">
+            <!-- Aqui você vai digitar o seu email obrigatoriamente (por causa do required) -->
+            <input
+              type="text"
+              name="UserEmail"
+              class="inputRow email"
+              placeholder="Email"
+              :v-model="Email"
+              required
+            />
+          </div>
+        </div>
+        <div class="ajuda">
+          <!-- Aqui você vai digitar a sua dúvida obrigatoriamente (por causa do required) -->
+          <textarea
+            type="text"
+            name="Msg"
+            class="inputAjuda"
+            placeholder="Como podemos ajudar? Escreva sua dúvida"
+            :v-model="Msg"
+            required
+          />
+        </div>
+        <!-- Aqui é o botão de enviar suas dúvidas -->
+        <input class="btn" type="submit" value="Enviar" />
+      </form>
 
-			<div class="direita">
-				<h2 id="contatos">Contatos</h2>
-				<div class="ultimadiv">
-					<ul style="list-style: none">
-						<li><img :src="telefone" /> 67(00000-0000)</li>
-						<li>
-							<img :src="insta" /><a
-								href="https://www.instagram.com/megaufms/?hl=pt-br"
-								target="_blank"
-							>
-								@Duck_Heath</a
-							>
-						</li>
-						<li>
-							<img :src="facebook" /><a
-								href="https://www.facebook.com/megaufms"
-								target="_blank"
-							>
-								Duck Heath</a
-							>
-						</li>
-						<li>
-							<img :src="linkedin" /><a
-								href="https://www.linkedin.com/company/megajr/"
-								target="_blank"
-							>
-								Duck Heath</a
-							>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="direita">
+        <!--  Título em h2 "Contatos-" -->
+        <h2 id="contatos">Contatos</h2>
+        <div class="ultimadiv">
+          <!-- Lista não ordenada -->
+          <ul style="list-style: none">
+            <li>
+              <!-- Imagem do telefone -->
+              <img :src="telefone" /> 67(00000-0000)
+            </li>
+            <li>
+              <!-- Imagem do instagram -->
+              <img :src="insta" />
+              <!-- aqui a pessoa vai ser direcionada para o link do instagram da mega-->
+              <a
+                href="https://www.instagram.com/megaufms/?hl=pt-br"
+                target="_blank"
+              >
+                @Duck_Heath
+              </a>
+            </li>
+            <li>
+              <!-- Imagem do Facebook -->
+              <img :src="facebook" />
+              <!-- aqui a pessoa vai ser direcionada para o link do Facebook da mega-->
+              <a href="https://www.facebook.com/megaufms" target="_blank">
+                Duck Heath</a
+              >
+            </li>
+            <li>
+              <!-- Imagem do LinkedIn -->
+              <img :src="linkedin" />
+              <!-- aqui a pessoa vai ser direcionada para o link do LinkedIn da mega-->
+              <a
+                href="https://www.linkedin.com/company/megajr/"
+                target="_blank"
+              >
+                Duck Heath</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -122,18 +134,18 @@ export default {
 
 <style scoped>
 * {
-	font-family: Nunito;
+  font-family: Nunito;
 }
 
 .conteiner {
-	display: flex;
-	width: 100%;
-	padding-bottom: 2vh;
+  display: flex;
+  width: 100%;
+  padding-bottom: 2vh;
 }
 
 form {
-	width: 50%;
-	padding-left: 2%;
+  width: 50%;
+  padding-left: 2%;
 }
 
 .nome_email {
@@ -167,16 +179,16 @@ form {
 }
 
 .btn {
-	width: 45vw;
-	height: 7vh;
-	background-color: #2e4a7d;
-	color: #fff;
-	font-size: 20px;
-	margin-top: 2%;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 1s;
+  width: 45vw;
+  height: 7vh;
+  background-color: #2e4a7d;
+  color: #fff;
+  font-size: 20px;
+  margin-top: 2%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .btn:hover {
@@ -194,8 +206,8 @@ form {
 }
 
 #contatos {
-	font-size: 40px;
-	color: #2e4a7d;
+  font-size: 40px;
+  color: #2e4a7d;
 }
 
 .ultimadiv {

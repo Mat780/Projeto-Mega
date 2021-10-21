@@ -1,15 +1,24 @@
 <template>
   <nav>
     <body id="nav" :class="{ sticky: active }">
+      <!-- Recebe a função toggleNavClass() -->
       <header id="nav-container" :class="toggleNavClass()">
+        <!-- Div logo onde está o pato -->
         <div class="logo">
+          <!-- Imagem com nome de "Pato" (imagem do patinho) -->
           <img :src="pato" alt="" />
         </div>
 
+        <!-- "Lista" que da pra clicar e vai para a área que vc clicou
+          Ex: Clicou em "Exames" você vai ser direcionado para exames sem sair da LaddingPage-->
         <div class="click">
+          <!-- Vai para "Inicio" -->
           <a @click="scrollInicio" class="nomes">Inicio</a>
+          <!-- Vai para "Sobre" -->
           <a @click="scrollSobre" class="nomes">Sobre</a>
+          <!-- Vai para "Exames" -->
           <a @click="scrollExames" class="nomes">Exames</a>
+          <!-- Vai para "Contato" -->
           <a @click="scrollContato" class="nomes">Contato</a>
         </div>
       </header>
@@ -22,12 +31,13 @@ export default {
   name: "Cabecalho",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       pato: "/img/DuckHealth.svg",
       active: false,
     };
   },
   methods: {
-    //Ao dar scroll na tela, ele acompanha, deixando fixo
+    //Ao dar scroll na tela, ele acompanha, deixando o cabeçalho fixo
     toggleNavClass() {
       if (this.active == false) {
         return "nav";
@@ -35,13 +45,11 @@ export default {
         return "fix-nav";
       }
     },
-
     // função que irá fazer a página ir para área "Inicio" sem sair da laddingPage
     scrollInicio() {
       const element = document.getElementById("BannerHomeDiv");
       element.scrollIntoView({ behavior: "smooth" });
     },
-
     // função que irá fazer a página ir para área "Sobre" sem sair da laddingPage
     scrollSobre() {
       const element = document.getElementById("content");
@@ -50,7 +58,6 @@ export default {
         block: "end",
       });
     },
-
     // função que irá fazer a página ir para área "Exames" sem sair da laddingPage
     scrollExames() {
       const element = document.getElementById("HomeExames");
@@ -59,7 +66,6 @@ export default {
         block: "end",
       });
     },
-
     // função que irá fazer a página ir para área "Contato" sem sair da laddingPage
     scrollContato() {
       const element = document.getElementById("Contato");
@@ -80,7 +86,6 @@ export default {
 </script>
 
 <style scoped>
-
 body {
   font-family: Nunito;
   font-size: 28px;
@@ -97,16 +102,16 @@ header {
 }
 
 .logo {
-    position: relative;
-    right: 56%;
-    box-sizing: border-box;
-    width: 6%;
-    height: 80%;
-    background-color: #2e4a7d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
+  position: relative;
+  right: 56%;
+  box-sizing: border-box;
+  width: 6%;
+  height: 80%;
+  background-color: #2e4a7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
 }
 
 .click {

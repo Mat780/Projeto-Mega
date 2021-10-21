@@ -3,11 +3,10 @@
     <div class="modal-wrapper">
       <div class="modal-container">
         <h1>Estou aqui</h1>
-          <!-- <CadastrarPaciente/> -->
-            <button class="modal-default-button" @click="$emit('close')">
-              OK
-            </button>
-
+        <!-- <CadastrarPaciente/> -->
+        <button class="modal-default-button" @click="$emit('close')">
+          OK
+        </button>
       </div>
     </div>
   </div>
@@ -16,10 +15,9 @@
 <script>
 // import CadastrarPaciente from '../components/Adm/CadastrarPaciente.vue'
 export default {
-    //  components:{
-    //       CadastrarPaciente
-    //  }
-     
+  //  components:{
+  //       CadastrarPaciente
+  //  }
 };
 </script>
 

@@ -41,9 +41,9 @@
       </div>
       <!-- Tag onde se localiza no maps a facom -->
       <div id="DivMapsImg">
-          <!-- tag que deixa a localização do maps clicável -->
+        <!-- tag que deixa a localização do maps clicável -->
         <a :href="facom" target="_blank">
-            <!-- imagem do maps  -->
+          <!-- imagem do maps  -->
           <img :src="maps" id="MapsImg" />
         </a>
       </div>
@@ -71,7 +71,6 @@ export default {
 </script>
 
 <style scoped>
-
 section {
   margin: 0;
   background-color: #ebf2f5;

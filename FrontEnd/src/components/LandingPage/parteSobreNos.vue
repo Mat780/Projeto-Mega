@@ -62,79 +62,81 @@
 
 <script>
 export default {
-    name: "parteSobreNos",
-    data() {
-        return {
-            SetaEsquerda: '/img/SetaEsquerda.svg',
-            SetaDireita: '/img/SetaDireita.svg',
-            cont: 0,
-            ImgAtt: '/img/imagen4.png',
-            imagen4: "/img/imagen4.png",
-            Bcarro1: true,
-            Bcarro2: false,
-            Bcarro3: false,
-            Bcarro4: false,
-            Bcarro5: false,
-            Carrossel2: '/img/Carrossel2.svg',
-            Carrossel3: '/img/Carrossel3.svg',
-            Carrossel4: '/img/Carrossel4.svg',
-            Carrossel5: '/img/Carrossel5.svg'
-        };
+  name: "parteSobreNos",
+  data() {
+    return {
+      // Imagens que estão sendo utilizadas no código
+      SetaEsquerda: "/img/SetaEsquerda.svg",
+      SetaDireita: "/img/SetaDireita.svg",
+      Carrossel2: "/img/Carrossel2.svg",
+      Carrossel3: "/img/Carrossel3.svg",
+      Carrossel4: "/img/Carrossel4.svg",
+      Carrossel5: "/img/Carrossel5.svg",
+      ImgAtt: "/img/imagen4.png",
+      imagen4: "/img/imagen4.png",
+      // Contador recebendo valor "0"
+      cont: 0,
+      Bcarro1: true,
+      Bcarro2: false,
+      Bcarro3: false,
+      Bcarro4: false,
+      Bcarro5: false,
+    };
+  },
+  methods: {
+    // Função que troca as imagens 
+    TrocaDeImgs() {
+      if (this.cont == 0) {
+        this.ImgAtt = this.imagen4;
+        this.Bcarro1 = true;
+
+        this.Bcarro5 = false;
+        this.Bcarro2 = false;
+      } else if (this.cont == 1) {
+        this.ImgAtt = this.Carrossel2;
+        this.Bcarro2 = true;
+
+        this.Bcarro1 = false;
+        this.Bcarro3 = false;
+      } else if (this.cont == 2) {
+        this.ImgAtt = this.Carrossel3;
+        this.Bcarro3 = true;
+
+        this.Bcarro2 = false;
+        this.Bcarro4 = false;
+      } else if (this.cont == 3) {
+        this.ImgAtt = this.Carrossel4;
+        this.Bcarro4 = true;
+
+        this.Bcarro3 = false;
+        this.Bcarro5 = false;
+      } else if (this.cont == 4) {
+        this.ImgAtt = this.Carrossel5;
+        this.Bcarro5 = true;
+
+        this.Bcarro1 = false;
+        this.Bcarro4 = false;
+      }
     },
-    methods: {
-        TrocaDeImgs(){
-            if(this.cont == 0){
-                this.ImgAtt = this.imagen4;
-                this.Bcarro1 = true;
-
-                this.Bcarro5 = false;
-                this.Bcarro2 = false;  
-
-            } else if (this.cont == 1){
-                this.ImgAtt = this.Carrossel2;
-                this.Bcarro2 = true;
-
-                this.Bcarro1 = false;
-                this.Bcarro3 = false;
-
-            } else if (this.cont == 2){
-                this.ImgAtt = this.Carrossel3;
-                this.Bcarro3 = true;
-
-                this.Bcarro2 = false;
-                this.Bcarro4 = false;
-
-            } else if (this.cont == 3){
-                this.ImgAtt = this.Carrossel4;
-                this.Bcarro4 = true;
-
-                this.Bcarro3 = false;
-                this.Bcarro5 = false;
-            } else if (this.cont == 4){
-                this.ImgAtt = this.Carrossel5;
-                this.Bcarro5 = true;
-
-                this.Bcarro1 = false;
-                this.Bcarro4 = false;
-            }
-        },
-        TrocarEsquerda(){
-            if(this.cont == 0){
-                this.cont = 4;
-            } else {
-                this.cont--;
-            }
-            this.TrocaDeImgs();
-        },
-        TrocarDireita(){
-            if(this.cont == 4){
-                this.cont = 0;
-            } else {
-                this.cont++;
-            }
-            this.TrocaDeImgs();
-        }
-    },  
+    // Função que ao clicar na seta da esquerda, vai trocar para imagem da esquerda.
+    TrocarEsquerda() {
+      if (this.cont == 0) {
+        this.cont = 4;
+      } else {
+        this.cont--;
+      }
+      this.TrocaDeImgs();
+    },
+    // Função que ao clicar na seta da direita, vai trocar para imagem da direita.
+    TrocarDireita() {
+      if (this.cont == 4) {
+        this.cont = 0;
+      } else {
+        this.cont++;
+      }
+      this.TrocaDeImgs();
+    },
+  },
 };
 </script>
 
@@ -170,10 +172,9 @@ export default {
   align-items: center;
 }
 #titulo {
-    margin-top: 5%;
-    font-weight: 800;
-    font-size: 2em;
-
+  margin-top: 5%;
+  font-weight: 800;
+  font-size: 2em;
 }
 #descricao {
   width: 92%;
