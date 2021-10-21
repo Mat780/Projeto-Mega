@@ -2,18 +2,25 @@
   <div class="conteiner">
     <div class="contentEmcima">
       <div class="inputPesquisa">
+        <!-- Botão que realiza as pesquisas dentro dos laudos -->
         <button class="btnPesquisar">
+          <!-- Nome da imagem que está sendo utilizada (pesquisar) -->
           <img :src="pesquisar" class="imgPesquisar" />
         </button>
+        <!-- Área que pode ser utilizada para pesquisar algum laudo -->
         <input type="text" class="Pesquisar" placeholder="Pesquisar" />
       </div>
       <div class="personaPaciente">
+        <!-- Nome do usuário (MENSAGEM CRUA) -->
         <span class="olPaciente"> Olá, Elliot Alderson</span>
+        <!-- Nome da imagem que está sendo utilizada (imagem6) -->
         <img :src="imagem6" class="imagem6" />
       </div>
     </div>
+    <!-- linha que está na parte superior  de "Laudo do Eletrocardiograma" e "Laudo do Eletrocardiograma-->
     <hr class="linha" />
     <div class="contentEmbaixo">
+      <!-- Local onde irá aparecer os laudos -->
       <div class="contentEmbaixo2">
         <laudos />
         <laudos />
@@ -23,6 +30,7 @@
 </template>
 
 <script>
+// Está importando "laudos"
 import laudos from "../listas/laudos";
 
 export default {
@@ -32,6 +40,7 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       pesquisar: "/img/pesquisar.png",
       imagem6: "/img/imagem6.png",
     };
