@@ -35,17 +35,21 @@ class User{
 
     async findByCPF(cpf){
 
-        try{
-            let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
-            if(result.length > 0){
-                return result[0];
-            }else{
+        if(cpf.length == 11){
+            try{
+                let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
+                if(result.length > 0){
+                    return result[0];
+                }else{
+                    return undefined;
+                }
+    
+            }catch(err){
+                console.log(err);
                 return undefined;
             }
-
-        }catch(err){
-            console.log(err);
-            return undefined;
+        }else{
+            return {status: false, err: "Este numero não é um CPF"}
         }
 
     }

@@ -160,7 +160,7 @@ class UserController{
 
         let user = await User.findByCPF(cpf);
 
-        if(user != undefined){
+        if(user.status){
             let resultado = await bcrypt.compare(password, user.senha);
 
             if(resultado){
@@ -175,7 +175,7 @@ class UserController{
             }
         }else{
             res.status(406);
-            res.json({status: false, err: "Usuario indefinido"});
+            res.json({status: false, err: user.err});
         }
     }
 
