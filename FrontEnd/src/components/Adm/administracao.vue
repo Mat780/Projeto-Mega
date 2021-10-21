@@ -29,13 +29,7 @@
               <!-- Imagem que está sendo utilizada no código -->
               <img :src="editar" class="btn2Editar" />
             </button>
-<<<<<<< HEAD
-            <!-- botão que exclui Médico e Paciente -->
-            <button class="btn excluirMedico">
-              <!-- Imagem com o nome "excluir" -->
-=======
             <button class="btn btn3" @click="AparecerExcluirPaciente">
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -70,13 +64,7 @@
               <!-- Imagem de "editar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
-<<<<<<< HEAD
-            <!-- Botão de excluir médico -->
-            <button class="btn excluirMedico">
-              <!-- Imagem com uma lixeira que indica que da pra excluir o médico -->
-=======
             <button class="btn btn3" @click="aparecerExcluirMedico">
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -117,11 +105,8 @@ import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
 import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
-<<<<<<< HEAD
-=======
 import confirmarPaciente from "../modais/confirmarPaciente.vue";
 import confirmarMedico from "../modais/confirmarMedico.vue";
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 
 export default {
   name: "administracao",

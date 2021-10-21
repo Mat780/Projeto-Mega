@@ -1,10 +1,6 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
-<<<<<<< HEAD
-      <!-- Imagem do patinho -->
-      <img :src="pato" style="height: 4em" />
-=======
       <img :src="pato" class="pato" />
     </div>
     <div>
@@ -14,7 +10,6 @@
       <div class="btn addPaciente" @click="$emit('aparecer')">
         <i class="fas fa-user-plus"></i>
       </div>
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
     </div>
 
     <div id="quadrado2">

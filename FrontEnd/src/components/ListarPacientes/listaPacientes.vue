@@ -9,12 +9,7 @@
         <button class="btn">
           <!-- Imagem de filtrar -->
           <img :src="filtrar" class="imgFiltrar" />
-<<<<<<< HEAD
-          <!-- Parágrafo -->
-          <p class="text">Meus Pacientes</p>
-=======
           <p class="textPacientes">Meus Pacientes</p>
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
         </button>
       </div>
       <!-- Div de realizar pesquisa -->
@@ -27,10 +22,6 @@
             <!-- Imagem de pesquisa -->
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
-<<<<<<< HEAD
-          <!-- Parte que recebe a pesquisa -->
-=======
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
           <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
@@ -65,10 +56,7 @@
 
 <script>
 import pacientes from "../listas/pacientes";
-<<<<<<< HEAD
-=======
 import erro from "../modais/erro.vue";
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 
 export default {
   name: "listaPacientes",

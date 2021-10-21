@@ -1,30 +1,6 @@
 <template>
   <div class="laudo">
     <div class="parteEsquerda">
-<<<<<<< HEAD
-      <!-- Títulos -->
-      <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
-      <!-- Títulos(0 nome do médico que fez o laudo) -->
-      <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
-    </div>
-    <!-- Parte direita da "class=laudo" -->
-    <div class="parteDireita">
-      <div class="parteBtns">
-        <!-- Botão que faz o download -->
-        <button class="btn">
-          <!-- Imagem de download -->
-          <img :src="download" class="img download" />
-        </button>
-        <!-- Botão ao clicar ele remove o laudo -->
-        <button @click="$emit('remove', laudo)" class="btn">
-          <!-- Imagem de excluir -->
-          <img :src="excluir" class="img excluir" />
-        </button>
-      </div>
-      <!-- Título -->
-      <h6 class="DataDoLaudo">{{ laudo.description2 }}</h6>
-    </div>
-=======
       <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
       <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
     </div>
@@ -44,7 +20,6 @@
       @esconder="esconderExcluirLaudo"
       @remove="remove"
     />
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
   </div>
 </template>
 
@@ -55,15 +30,6 @@ export default {
   props: {
     laudo: { type: Object, required: true },
   },
-<<<<<<< HEAD
-  data() {
-    return {
-      // Imagens que estão sendo utilizadas no código
-      excluir: "/img/excluir.png",
-      download: "/img/download.png",
-    };
-  },
-=======
   components: {
     confirmarLaudo,
   },
@@ -85,7 +51,6 @@ export default {
       this.$emit("remove", laudo);
     },
   },
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
 };
 </script>
 

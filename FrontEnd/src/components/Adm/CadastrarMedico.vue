@@ -1,11 +1,5 @@
 <template>
   <div>
-<<<<<<< HEAD
-    <!-- Vai aparecer o modal -->
-    <administracao @paciente="showModalUser()" />
-    <div>
-=======
->>>>>>> 9515b1feb02de7e2ab5718999939a20f023fa1df
       <div class="modal-background" @click="$emit('esconder')"></div>
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
