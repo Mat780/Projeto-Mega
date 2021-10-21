@@ -52,7 +52,7 @@
 
             <!-- Botão para confirmar o login -->
 			<div>
-				<button id="LoginEntrar" @click="trocaPag">Entrar</button>
+				<button id="LoginEntrar" @click="login()">Entrar</button>
 			</div>
 
             <!-- Divisória do Esqueci minha senha -->
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import axios from "axios";
 // Exporta os arquivos do componente
 export default {
     // Nome do componente
@@ -91,6 +92,15 @@ export default {
 
     // Os methods contêm as funções do componente
 	methods: {
+
+		login(){
+			axios.get("http://localhost:8080/user").then(res => {
+				console.log(res);
+			}).catch(err => {
+				console.log(err);
+			});
+		},
+
         // O trocaOlho faz 2 coisas:
         // Ele troca a imagem do olho para aberto caso a senha esteja legivel
         // Ou ele troca para o olho fechado caso a senha esteja ilegivel

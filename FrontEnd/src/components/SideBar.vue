@@ -53,6 +53,7 @@ export default {
   background-color: #12afcb;
   border-radius: 16px;
   margin-bottom: 20%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
 }
 
 img{

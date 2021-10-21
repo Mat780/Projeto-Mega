@@ -107,10 +107,11 @@ export default {
   border-radius: 5px;
   background-color: #2e4a7d;
 
-  cursor: pointer;
-  border: none;
-  color: #2e4a7d;
-  transition: 1s;
+    cursor: pointer;
+    border: none;
+    color: #2E4A7D;
+    transition: 1s;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 #LoginImgBotao {

@@ -193,10 +193,12 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: 0.8s ease all;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .btnAdd {
   align-self: center;
+  box-shadow: none;
 }
 
 .btn:hover {
@@ -246,6 +248,7 @@ export default {
   width: 27%;
   justify-content: space-evenly;
   align-items: center;
+  
 }
 
 .btn2Editar {

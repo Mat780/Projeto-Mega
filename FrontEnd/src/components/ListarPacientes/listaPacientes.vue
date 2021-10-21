@@ -123,6 +123,11 @@ export default {
   align-self: center;
 }
 
+.imgFiltrarActive {
+  width: 27%;
+  align-self: center;
+}
+
 .pesquisar {
   width: 55%;
   padding-top: 0.5%;
