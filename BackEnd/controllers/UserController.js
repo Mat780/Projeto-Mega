@@ -2,6 +2,7 @@ const User = require("../models/User");
 const PasswordToken = require("../models/PasswordToken");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const validator = require("validator")
 
 const secret = "fhuidshfhufgdejifpgfgfgnjfgruhifjrolr"
 
@@ -13,15 +14,13 @@ class UserController{
         res.json(users);
     }
 
-    async 
-
     async findUser(req, res){
         let id = req.params.id;
         let user = await User.findById(id, "usuario");
 
         if(user == undefined){
             res.status(404);
-            res.json({});
+            res.json({err: "Usuario não encontrado"});
         }else{
             res.status(200);
             res.json(user);
@@ -30,20 +29,6 @@ class UserController{
 
     async createNewUser(req, res){
         var {cpf , name, password, role, data} = req.body;
-
-        if(cpf == undefined){
-            res.status(400);
-            res.json({err: "CPF inválido"});
-            return;
-        }
-
-        var cpfExists = await User.findCPF(cpf);
-        
-        if(cpfExists){
-            res.status(406);
-            res.json({err: "O CPF já está cadastrado"});
-            return;
-        }
 
         if(name == undefined){
             res.status(400);
@@ -72,8 +57,23 @@ class UserController{
             return;
         }
 
-        await User.new(cpf, password, name, role, data);
+        let cpfExists = await User.findCPF(cpf);
 
+        if(cpfExists){
+            res.status(406);
+            res.json({err: "O CPF já está cadastrado"});
+            return;
+        }
+
+        let isCpfValid = await User.testaCPF(cpf);
+
+        if(!isCpfValid){
+            res.status(400);
+            res.json({err: "CPF inválido"});
+            return;
+        }
+        
+        await User.new(cpf, password, name, role, data);
 
         res.status(200);
         res.json("Tudo Ok");
@@ -160,7 +160,7 @@ class UserController{
 
         let user = await User.findByCPF(cpf);
 
-        if(user != undefined){
+        if(user.status){
             let resultado = await bcrypt.compare(password, user.senha);
 
             if(resultado){
@@ -175,7 +175,7 @@ class UserController{
             }
         }else{
             res.status(406);
-            res.json({status: false, err: "Usuario indefinido"});
+            res.json({status: false, err: user.err});
         }
     }
 

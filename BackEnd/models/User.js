@@ -35,21 +35,47 @@ class User{
 
     async findByCPF(cpf){
 
-        try{
-            let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
-            if(result.length > 0){
-                return result[0];
-            }else{
+        if(cpf.length == 11){
+            try{
+                let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
+                if(result.length > 0){
+                    return result[0];
+                }else{
+                    return undefined;
+                }
+    
+            }catch(err){
+                console.log(err);
                 return undefined;
             }
-
-        }catch(err){
-            console.log(err);
-            return undefined;
+        }else{
+            return {status: false, err: "Este numero não é um CPF"}
         }
 
     }
 
+    async testaCPF(strCPF) {
+        let Soma;
+        let Resto;
+        let i;
+        Soma = 0;
+        if (strCPF == "00000000000") return false;
+
+        for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+
+        Soma = 0;
+        for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+
+        if ((Resto == 10) || (Resto == 11))  Resto = 0;
+        if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+        return true;
+    
+    }
 
     async new(cpf, password, name, role, data){
 
