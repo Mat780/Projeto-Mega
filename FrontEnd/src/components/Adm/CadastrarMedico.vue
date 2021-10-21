@@ -1,24 +1,18 @@
 <template>
   <div>
-    <!-- Vai aparecer o modal -->
-    <administracao @paciente="showModalUser()" />
-    <div>
       <div class="modal-background" @click="$emit('esconder')"></div>
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
-            <!-- Imagem do doctor -->
             <img :src="doctor" class="doctor" />
           </div>
           <div class="contentDireita">
-            <!-- Título -->
             <h1 class="tituloAzul">
               Cadastrar <span class="tituloVermelho">Medico</span>
             </h1>
             <form class="formulario">
               <div class="entradas">
                 <i class="fas fa-user"></i>
-                <!-- Input que é para digitar o nome do(a) Médico(a) -->
                 <input
                   class="nome"
                   type="text"
@@ -28,7 +22,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-user-md"></i>
-                <!-- Input que é para digitar a Especialidade do(a) Médico(a) -->
                 <input
                   class="especialidade"
                   type="text"
@@ -38,7 +31,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-address-card"></i>
-                <!-- Input que é para digitar o CPF do(a) Médico(a) -->
                 <input
                   v-maska="'###.###.###-##'"
                   class="cpf"
@@ -49,7 +41,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para digitar a senha do(a) Médico(a)-->
                 <input
                   class="senha"
                   type="password"
@@ -59,7 +50,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para confirmar a senha do(a) Médico(a)-->
                 <input
                   class="confimarSenha"
                   type="password"
@@ -67,13 +57,12 @@
                   required
                 />
               </div>
-              <!-- Botão que serve pra cadastrar -->
+
               <button class="btn">Cadastrar</button>
             </form>
           </div>
         </div>
       </div>
-
       <button
         class="modal-close is-large"
         aria-label="close"
@@ -87,7 +76,6 @@ export default {
   name: "cadastrarMedico",
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas
       doctor: "/img/doctor.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -111,7 +99,7 @@ export default {
 
 .conteinerModalCadastrarPaciente {
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   background: #fff;
   border-radius: 8px;
   display: flex;

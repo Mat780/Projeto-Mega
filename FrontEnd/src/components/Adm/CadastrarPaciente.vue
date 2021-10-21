@@ -6,18 +6,15 @@
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
-            <!-- Imagem de paciente -->
             <img :src="paciente" class="paciente" />
           </div>
           <div class="contentDireita">
-            <!-- Título -->
             <h1 class="tituloAzul">
               Cadastrar <span class="tituloVermelho">Paciente</span>
             </h1>
             <form  @submit.prevent="addListaPaciente(listasPaciente)" class="formulario">
               <div class="entradas">
                 <i class="fas fa-user"></i>
-                <!-- Input que é para digitar o nome do(a) Usuário(a) -->
                 <input
                   class="nome"
                   v-model="listasPaciente.description"
@@ -28,7 +25,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-stethoscope"></i>
-                <!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
                 <input
                   class="medicoResponsavel"
                   type="text"
@@ -37,7 +33,6 @@
                 />
               </div>
               <div class="entradas">
-                <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
                 <i class="fas fa-address-card"></i>
                 <input
                   v-maska="'###.###.###-##'"
@@ -49,7 +44,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para digitar a senha do(a) Usuário(a)  -->
                 <input
                   class="senha"
                   v-model="senha"
@@ -60,7 +54,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
                 <input
                   class="confimarSenha"
                   v-model="confirmeSenha"
@@ -69,7 +62,7 @@
                   
                 />
               </div>
-              <!-- Botão para cadastrar o Paciente -->
+
               <button class="btn" @submit="confimarSenha">Cadastrar</button>
             </form>
           </div>
@@ -89,12 +82,10 @@ export default {
   name: "cadastrarPaciente",
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas 
       paciente: "/img/paciente.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
       ouvircoracao: "/img/ouvircoracao.png",
-      // Lista dos pacientes
       listaPacientes: [],
       listasPaciente: {checked: false},
       senha:"",
@@ -103,7 +94,6 @@ export default {
     };
   },
   methods: {
-    // Função que adiciona os pacientes e recebe como parâmetro "listasPaciente"
     addListaPaciente(listasPaciente) {
 			listasPaciente.id = Date.now();
 			this.listaPacientes.push(listasPaciente);
@@ -139,7 +129,7 @@ export default {
 
 .conteinerModalCadastrarPaciente {
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   background: #fff;
   border-radius: 8px;
   display: flex;

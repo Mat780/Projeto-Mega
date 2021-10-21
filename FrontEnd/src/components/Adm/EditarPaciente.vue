@@ -6,18 +6,15 @@
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
-            <!-- Imagem de paciente -->
             <img :src="paciente" class="paciente" />
           </div>
           <div class="contentDireita">
-            <!-- Título -->
             <h1 class="tituloAzul">
               Editar <span class="tituloVermelho">Paciente</span>
             </h1>
             <form class="formulario">
               <div class="entradas">
                 <i class="fas fa-user"></i>
-                <!-- Input que é para digitar o nome do(a) Usuário(a) -->
                 <input
                   class="nome"
                   type="text"
@@ -27,7 +24,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-stethoscope"></i>
-                <!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
                 <input
                   class="medicoResponsavel"
                   type="text"
@@ -37,7 +33,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-address-card"></i>
-                <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
                 <input
                   v-maska="'###.###.###-##'"
                   class="cpf"
@@ -48,7 +43,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para digitar a senha do(a) Usuário(a)-->
                 <input
                   class="senha"
                   type="password"
@@ -58,7 +52,6 @@
               </div>
               <div class="entradas">
                 <i class="fas fa-key"></i>
-                <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
                 <input
                   class="confimarSenha"
                   type="password"
@@ -66,7 +59,7 @@
                   required
                 />
               </div>
-              <!-- Botão para salvar as alteações do Paciente -->
+
               <button class="btn">Salvar</button>
             </form>
           </div>
@@ -86,7 +79,6 @@ export default {
   name: "editarPaciente",
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas 
       paciente: "/img/paciente.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -111,7 +103,7 @@ export default {
 
 .conteinerModalCadastrarPaciente {
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   background: #fff;
   border-radius: 8px;
   display: flex;

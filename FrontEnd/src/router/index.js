@@ -41,27 +41,6 @@ const routes = [
     name: 'Upload',
     component: Upload
   },
-  {
-    path: '/Login/Adm/CadastrarPaciente',
-    name: 'CadastrarPaciente',
-    component: CadastrarPaciente
-  },
-  {
-    path: '/Login/Adm/EditarPaciente',
-    name: 'EditarPaciente',
-    component: EditarPaciente
-  },
-  {
-    path: '/Login/Adm/CadastrarMedico',
-    name: 'CadastrarMedico',
-    component: CadastrarMedico
-  },
-  {
-    path: '/Login/Adm/EditarMedico',
-    name: 'EditarMedico',
-    component: EditarMedico
-  }
-
 ]
 
 const router = createRouter({

@@ -23,6 +23,7 @@ export default {
   name: "Pagina",
 };
 </script>
+
 <style>
 * {
   padding: 0;
