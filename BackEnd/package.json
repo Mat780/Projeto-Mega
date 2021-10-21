@@ -1,11 +1,20 @@
 {
+<<<<<<< HEAD
+  "name": "BacKEnd",
+=======
   "name": "user-api",
+>>>>>>> 5b2c470bcd687d6e2505f99f09c7b0be6bf088fd
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+<<<<<<< HEAD
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+=======
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -20,4 +29,5 @@
     "nodemon": "^2.0.14",
     "validator": "^13.6.0"
   }
+>>>>>>> 5b2c470bcd687d6e2505f99f09c7b0be6bf088fd
 }

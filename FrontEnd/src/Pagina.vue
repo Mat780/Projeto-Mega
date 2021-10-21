@@ -18,10 +18,9 @@
 
 <script>
 export default {
-    name: "Pagina"
-}
+  name: "Pagina",
+};
 </script>
-
 <style>
 
 *{

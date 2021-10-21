@@ -1,10 +1,12 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
+      <!-- Imagem do patinho -->
       <img :src="pato" style="height: 4em" />
     </div>
 
     <div id="quadrado2">
+      <!-- Imagem da portinha que ao clicar vai para função "ChangeLogin()" -->
       <img :src="logout" id="logout" @click="ChangeLogin" />
     </div>
   </div>
@@ -15,11 +17,13 @@ export default {
   name: "SideBar",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       pato: "/img/DuckHealth.png",
       logout: "/img/logout.png",
     };
   },
   methods: {
+    // Função que ao sere ativada ela irá sair da página "Adm" e ir para "Login"
     ChangeLogin() {
       this.$router.push({ path: "/Login" });
     },

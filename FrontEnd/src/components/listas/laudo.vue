@@ -1,34 +1,43 @@
 <template>
-	<div class="laudo">
-		<div class="parteEsquerda">
-			<h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
-			<h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
-		</div>
-		<div class="parteDireita">
-			<div class="parteBtns">
-				<button class="btn">
-					<img :src="download" class="img download" />
-				</button>
-				<button @click="$emit('remove', laudo)" class="btn">
-					<img :src="excluir" class="img excluir" />
-				</button>
-			</div>
-			<h6 class="DataDoLaudo">{{ laudo.description2 }}</h6>
-		</div>
-	</div>
+  <div class="laudo">
+    <div class="parteEsquerda">
+      <!-- Títulos -->
+      <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
+      <!-- Títulos(0 nome do médico que fez o laudo) -->
+      <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
+    </div>
+    <!-- Parte direita da "class=laudo" -->
+    <div class="parteDireita">
+      <div class="parteBtns">
+        <!-- Botão que faz o download -->
+        <button class="btn">
+          <!-- Imagem de download -->
+          <img :src="download" class="img download" />
+        </button>
+        <!-- Botão ao clicar ele remove o laudo -->
+        <button @click="$emit('remove', laudo)" class="btn">
+          <!-- Imagem de excluir -->
+          <img :src="excluir" class="img excluir" />
+        </button>
+      </div>
+      <!-- Título -->
+      <h6 class="DataDoLaudo">{{ laudo.description2 }}</h6>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-	props: {
-		laudo: { type: Object, required: true },
-	},
-	data() {
-		return {
-			excluir: "/img/excluir.png",
-			download: "/img/download.png",
-		};
-	},
+  props: {
+    laudo: { type: Object, required: true },
+  },
+  data() {
+    return {
+      // Imagens que estão sendo utilizadas no código
+      excluir: "/img/excluir.png",
+      download: "/img/download.png",
+    };
+  },
 };
 </script>
 
@@ -55,8 +64,8 @@ export default {
 }
 
 .nomeDoLaudo {
-	color: #2e4a7d;
-	font-size: 25px;
+  color: #2e4a7d;
+  font-size: 25px;
 }
 
 .nomeDoMedico {
@@ -77,33 +86,32 @@ export default {
 }
 
 .parteBtns {
-	width: 85%;
-	display: flex;
-	justify-content: space-evenly;
-	margin-top: 1.5vh;
-	
+  width: 85%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1.5vh;
 }
 
 .btn {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	margin-top: 3.5%;
-	border: none;
-	background-color: #2e4a7d;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	transition: 1s;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 3.5%;
+  border: none;
+  background-color: #2e4a7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 1s;
 }
 
 .btn:hover {
-	border: 1px solid #fff;
-	background-color: #ffd666;
+  border: 1px solid #fff;
+  background-color: #ffd666;
 }
 
 .img {
-	width: 50%;
+  width: 50%;
 }
 </style>
