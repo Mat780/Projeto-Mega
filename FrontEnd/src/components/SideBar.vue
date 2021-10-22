@@ -6,12 +6,16 @@
     </div>
     <div>
       <div class="btn adm" @click="voltarAdm" v-if="adm">
-        <!-- Importanto icon -->
+        <!-- Importando icon -->
         <i class="fas fa-address-card"></i>
       </div>
       <div class="btn addPaciente" @click="$emit('aparecer')" v-if="addPaciente">
-        <!-- Importanto icon -->
+        <!-- Importando icon -->
         <i class="fas fa-user-plus"></i>
+      </div>
+      <div class="btn pacienteEstorado" @click="irListarPaciente()">
+        <!-- importando icon -->
+        <i class="fas fa-user-injured"></i>
       </div>
     </div>
 
@@ -46,6 +50,9 @@ export default {
     // Função que executa "voltarAdm()"
     voltarAdm() {
       this.$router.push({ path: "/Login/Adm" });
+    },
+    irListarPaciente(){
+      this.$router.push({ path: "/Login/ListarPacientes" });
     },
   },
 };
