@@ -18,26 +18,13 @@
       <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
-        <!-- PACIENTES -->
-
-        <div class="listaFilhas">
-          <div class="detalheAzulFilha"></div>
-          <div class="textos"></div>
-          <div class="btns">
-            <!-- Botão que executa a função "AparecerEditarPaciente()" -->
-            <button class="btn btn2" @click="AparecerEditarPaciente">
-              <!-- Imagem de editar -->
-              <img :src="editar" class="btn2Editar" />
-            </button>
-            <!-- Ao clicar nesse botão irá executar a função "AparecerExcluirPaciente()" -->
-            <button class="btn btn3" @click="AparecerExcluirPaciente">
-              <!-- Imagem que está sendo utilizada no código -->
-              <img :src="excluir" class="btn3Excluir" />
-            </button>
-          </div>
-        </div>
-
-
+        <!-- Pacientes -->
+        <listaPaciente
+          v-for="lP in listaDePacientes.slice().reverse()"
+          :key="lP.id"
+          @remove="removeListaPaciente"
+          :listaPaciente="lp"
+        />
       </div>
       <!-- listas -->
     </div>
@@ -59,50 +46,26 @@
       <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
-        <!-- add v-for aqui -->
-        <div class="listaFilhas">
-          <div class="detalheAzulFilha"></div>
-          <div class="textos"></div>
-          <div class="btns">
-            <!-- Ao clicar nesse botão irá executar a função "AparecerEditarMedico()" -->
-            <button class="btn btn2" @click="AparecerEditarMedico">
-              <!-- Imagem de editar -->
-              <img :src="editar" class="btn2Editar" />
-            </button>
-            <!-- Ao clicar nesse botão irá executar a função "aparecerExcluirMedico()" -->
-            <button class="btn btn3" @click="aparecerExcluirMedico">
-              <!-- Imagem de "excluir" -->
-              <img :src="excluir" class="btn3Excluir" />
-            </button>
-          </div>
-        </div>
+        <!-- Médico -->
+        <listaMedico
+          v-for="lM in listaDeMedicos.slice().reverse()"
+          :key="lM.id"
+          @remover="removeListaMedico"
+          :listaMedico="lm"
+        />
       </div>
       <!-- listas -->
     </div>
     <!-- content2 -->
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
+      @addListaPaciente="addPaciente(listaDePaciente)"
       @esconder="esconderCadastroPaciente"
     />
     <cadastrarMedico
       :class="{ modal: true, 'is-active': modalCadastrarMedico }"
+      @addListaMedico="addMedico(listaDeMedico)"
       @esconder="esconderCadastrarMedico"
-    />
-    <editarMedico
-      :class="{ modal: true, 'is-active': modalEditarMedico }"
-      @esconder="esconderEditarMedico"
-    />
-    <editarPaciente
-      :class="{ modal: true, 'is-active': modalEditarPaciente }"
-      @esconder="esconderEditarPaciente"
-    />
-    <confirmarPaciente
-      :class="{ modal: true, 'is-active': modalExcluirPaciente }"
-      @esconder="esconderExcluirPaciente"
-    />
-    <confirmarMedico
-      :class="{ modal: true, 'is-active': modalExcluirMedico }"
-      @esconder="esconderExcluirMedico"
     />
   </div>
   <!-- conteiner -->
@@ -111,21 +74,17 @@
 <script>
 import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
-import editarMedico from "./EditarMedico.vue";
-import editarPaciente from "./EditarPaciente.vue";
-import confirmarPaciente from "../modais/confirmarPaciente.vue";
-import confirmarMedico from "../modais/confirmarMedico.vue";
-import axios from "axios";
+import listaPaciente from "../listas/listaPaciente.vue";
+import listaMedico from "../listas/listaMedico.vue";
+import axios from "axios"
 
 export default {
   name: "administracao",
   components: {
     cadastrarPaciente,
     cadastrarMedico,
-    editarMedico,
-    editarPaciente,
-    confirmarPaciente,
-    confirmarMedico,
+    listaPaciente,
+    listaMedico,
   },
   data() {
     return {
@@ -137,11 +96,11 @@ export default {
       editar: "img/LaudoImg.png",
       // Modal que recebe false pra não executar diretamente tal função
       modalCadastrarPaciente: false,
-      modalEditarPaciente: false,
       modalCadastrarMedico: false,
-      modalEditarMedico: false,
-      modalExcluirPaciente: false,
-      modalExcluirMedico: false,
+      listaDePacientes: [],
+      listaDePaciente: { checked: false },
+      listaDeMedicos: [],
+      listaDeMedico: { checked: false },
     };
   },
   methods: {
@@ -149,49 +108,49 @@ export default {
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
-    // Função que executa "esconderEditarPaciente()"
-    esconderEditarPaciente() {
-      this.modalEditarPaciente = false;
-    },
     // Função que executa "esconderCadastrarMedico()"
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
-    },
-    // Função que executa "esconderEditarMedico()"
-    esconderEditarMedico() {
-      this.modalEditarMedico = false;
     },
     // Função que executa "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
-    // Função que executa "AparecerEditarPaciente()"
-    AparecerEditarPaciente() {
-      this.modalEditarPaciente = true;
-    },
     // Função que executa "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
-    // Função que executa "AparecerEditarMedico()"
-    AparecerEditarMedico() {
-      this.modalEditarMedico = true;
+    // Adiciona as lista de Pacientes
+    addPaciente(listaDePaciente) {
+      listaDePaciente.id = Date.now();
+      this.listaDePacientes.push(listaDePaciente);
+      this.listaDePaciente = { checked: false };
     },
-    // Função que aparece o "AparecerExcluirPaciente()"
-    AparecerExcluirPaciente() {
-      this.modalExcluirPaciente = true;
+    // remove as lista de Pacientes
+    removeListaPaciente(listaDePaciente) {
+      if (listaDePaciente) {
+        console.log(listaDePaciente);
+        const index = this.listaDePacientes.findIndex(
+          (item) => item.id === listaDePaciente.id
+        );
+        this.listaDePacientes.splice(index, 1);
+      }
     },
-    // Função que esconde o "esconderExcluirPaciente()"
-    esconderExcluirPaciente() {
-      this.modalExcluirPaciente = false;
+    // Adiciona as lista de Medicos
+    addMedico(listaDeMedico) {
+      listaDeMedico.id = Date.now();
+      this.listaDeMedicos.push(listaDeMedico);
+      this.listaDeMedico = { checked: false };
     },
-    // Função que aoarece o "aparecerExcluirMedico()"
-    aparecerExcluirMedico() {
-      this.modalExcluirMedico = true;
-    },
-    // Função que esconde o "esconderExcluirMedico()"
-    esconderExcluirMedico() {
-      this.modalExcluirMedico = false;
+    // remove as lista de Medicos
+    removeListaMedico(listaDeMedico) {
+      if (listaDeMedico) {
+        console.log(listaDeMedico);
+        const index = this.listaDeMedicos.findIndex(
+          (item) => item.id === listaDeMedico.id
+        );
+        this.listaDeMedicos.splice(index, 1);
+      }
     },
     pullPacientes(){
       axios.get("http://localhost:8080/pacientes").then(data => {
@@ -247,6 +206,7 @@ export default {
   font-size: 1.5em;
   align-self: center;
   margin-left: 2%;
+  color: #2e4a7d;
 }
 
 .tituloM {
