@@ -3,8 +3,10 @@
     <div class="contentCima">
       <div class="pesquisar">
         <button class="btnPesquisar">
+          <!-- Imagem de pesquisa -->
           <img :src="pesquisar" class="imgPesquisar" />
         </button>
+        <!-- Local para pesquisar -->
         <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
       </div>
       <div class="personaMedico">
@@ -12,6 +14,7 @@
           <span class="olaMedido">Olá, Dr. {{name}}</span>
           <span class="medico">Médico</span>
         </div>
+        <!-- imagem que está sendo utilizada no código -->
         <img :src="imagem5" class="imagem5" />
       </div>
     </div>
@@ -19,9 +22,12 @@
     <div class="contentEmbaixo">
       <div class="lista Llaudos">
         <div class="listaEmcima EmcimaLista">
+          <!-- imagem que está sendo utilizada no código -->
           <img :src="imagem6" class="imagem6" />
+          <!-- Mensagem crua -->
           <span class="contentEmbaixoText">Laudos de Elliot Alderson</span>
         </div>
+        <!-- Linha divisória -->
         <hr class="contentEmbaixoLinha" />
         <div class="Laudos">
           <laudo
@@ -34,8 +40,10 @@
       </div>
       <div class="lista upload">
         <div class="listaEmcima EmcimaUpload">
+          <!-- Mensagem crua -->
           <span class="contentEmbaixoText">Carregar Novo Laudo</span>
         </div>
+        <!-- Linha divisória -->
         <hr class="contentEmbaixoLinha" />
         <form @submit.prevent="addLaudo(laudo)" class="formulario">
           <DropZone @drop.prevent="drop" @change="selectedFile" />
@@ -43,7 +51,9 @@
             >Arquivo: {{ DropzoneFile.name }}</span
           >
           <div class="inputzinho inputNomeLaudo">
+            <!-- Mensagem crua -->
             <span>Nome do Laudo:</span>
+            <!-- Digitar o nome do laudo -->
             <input
               type="text"
               v-model="laudo.description"
@@ -54,7 +64,9 @@
           </div>
           <div class="inputBtn">
             <div class="inputzinho inputData">
+              <!-- Mensagem crua -->
               <span>Data:</span>
+              <!-- Colocar a data -->
               <input
                 type="date"
                 v-model="laudo.description2"
@@ -62,6 +74,7 @@
                 required
               />
             </div>
+            <!-- Botão de enviar os laudos -->
             <button class="btn btnEnviar">Enviar Laudo</button>
           </div>
         </form>
@@ -80,10 +93,12 @@ export default {
 
   data() {
     return {
+      // Nome das imagens
       imagem5: "/img/imagem5.png",
       imagem6: "/img/imagem6.png",
       imagem7: "/img/imagem7.png",
       pesquisar: "../img/pesquisar.png",
+      // Lista utilizada
       laudos: [],
       laudo: { checked: false },
     };
@@ -95,11 +110,13 @@ export default {
   },
 
   methods: {
+    // Adiciona laudos
     addLaudo(laudo) {
       laudo.id = Date.now();
       this.laudos.push(laudo);
       this.laudo = { checked: false };
     },
+    // remove o laudo
     removeLista(laudo) {
       if (laudo) {
         console.log(laudo);

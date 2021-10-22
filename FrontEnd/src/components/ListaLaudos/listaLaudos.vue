@@ -2,9 +2,12 @@
   <div class="conteiner">
     <div class="contentEmcima">
       <div class="inputPesquisa">
+        <!-- Botão de pesquisar -->
         <button class="btnPesquisar">
+          <!-- Imagem de pesquisar -->
           <img :src="pesquisar" class="imgPesquisar" />
         </button>
+        <!-- Pesquisar o laudo que deseja -->
         <input type="text" class="Pesquisar" placeholder="Pesquisar" />
       </div>
       <div class="personaPaciente">
@@ -12,6 +15,7 @@
         <img :src="imagem6" class="imagem6" />
       </div>
     </div>
+    <!-- Linha divisória -->
     <hr class="linha" />
     <div class="contentEmbaixo">
       <div class="contentEmbaixo2">
@@ -32,6 +36,7 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       pesquisar: "/img/pesquisar.png",
       imagem6: "/img/imagem6.png",
       name: ""
