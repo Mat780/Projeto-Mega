@@ -33,6 +33,7 @@ class Laudo{
 
         }catch(err){
             console.log(err);
+            //Nessa linha não tem "return undefined"
             return undefined;
         }
 

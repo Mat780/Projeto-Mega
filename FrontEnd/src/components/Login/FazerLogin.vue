@@ -94,16 +94,24 @@ export default {
 		login(){
 			this.cpf = this.cpf.replace(/[.-]/g, "");
 			console.log(this.cpf);
-			axios.post("http://localhost:8080/user", {
-				name: "Teste1",
-				password: this.password,
+			axios.post("http://localhost:8080/login", {
 				cpf: this.cpf,
-				data: "Kamys"
+				password: this.password,
 			}).then(res => {
 				console.log(res);
+				localStorage.setItem("token", res.data.token);
+				console.log(res.data.role);
+				if(res.data.role == 0){
+					this.$router.push({ path: "/Login/ListaLaudos"})
+				}else if(res.data.role == 1){
+					this.$router.push({ path: "/Login/ListarPacientes"})
+				}else if(res.data.role == 2){
+					this.$router.push({ path: "/Login/Adm"})
+				}
+				
+
 			}).catch(err => {
-				let msgErro = err.response.data.err;
-				console.log(msgErro);
+				console.log(err);
 			});
 		},
 
@@ -170,9 +178,9 @@ export default {
 					this.tipoPatoEscritor = false;
 				} , 500);
 			}
-		}
-
+		},
 	},
+
 };
 </script>
 

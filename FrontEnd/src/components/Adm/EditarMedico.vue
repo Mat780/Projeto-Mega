@@ -28,6 +28,7 @@
                   class="nome"
                   type="text"
                   placeholder="Nome Completo"
+                  v-model="name"
                   required
                 />
               </div>
@@ -38,6 +39,7 @@
                   class="especialidade"
                   type="text"
                   placeholder="Especialidade"
+                  v-model="data"
                   required
                 />
               </div>
@@ -49,6 +51,7 @@
                   class="cpf"
                   type="text"
                   placeholder="CPF"
+                  v-model="cpf"
                   required
                 />
               </div>
@@ -59,6 +62,7 @@
                   class="senha"
                   type="password"
                   placeholder="Senha"
+                  v-model="password"
                   required
                 />
               </div>
@@ -69,11 +73,12 @@
                   class="confimarSenha"
                   type="password"
                   placeholder="Confirmar Senha"
+                  v-model="confirmPassword"
                   required
                 />
               </div>
               <!-- Botão que serve pra Salvar -->
-              <button class="btn">Salvar</button>
+              <button class="btn" @click="editar()">Salvar</button>
             </form>
           </div>
         </div>
@@ -88,6 +93,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "editarMedico",
   data() {
@@ -97,9 +104,46 @@ export default {
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
       ouvircoracao: "/img/ouvircoracao.png",
+      name: "",
+      cpf: "",
+      password: "",
+      confirmPassword: "",
+      data: ""
     };
   },
-  methods: {},
+  methods: {
+    editar() {
+
+        if(this.password == this.confirmPassword){
+          this.cpf = this.cpf.replace(/[.-]/g, "");
+          axios.put("http://localhost:8080/user", {
+              id: this.id,
+              name: this.name,
+              password: this.password,
+              cpf: this.cpf,
+              data: this.data
+          })
+            .then((res) => {
+              console.log(res);
+          })
+            .catch((err) => {
+              console.log(err);
+          });
+          
+          this.name = ""
+          this.password = ""
+          this.confirmPassword = ""
+          this.cpf = ""
+          this.data = ""
+          this.$emit('esconder');
+          
+        }else{
+          this.$emit('esconder');
+          console.log("A senha digitada está diferente do campo confirmar senha");
+          return {err: "A senha digitada está diferente do campo confirmar senha"}
+        }
+		},
+  },
 };
 </script>
 

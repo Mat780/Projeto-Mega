@@ -15,6 +15,7 @@ class User{
 
     }
 
+
     async findById(id, tabela){
 
         try{
@@ -23,11 +24,13 @@ class User{
             if(result.length > 0){
                 return result[0];
             }else{
+                // FALTA MUDAR AQUI: RAUL
                 return undefined;
             }
 
         }catch(err){
             console.log(err);
+            //FALTA MUDAR AQUI: RAUL
             return undefined;
         }
 
@@ -39,14 +42,16 @@ class User{
             try{
                 let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
                 if(result.length > 0){
-                    return result[0];
+                    result = result[0];
+                    console.log(result);
+                    return {status: true, result};
                 }else{
-                    return undefined;
+                    return {status: false, err: "Erro usuario não existe"};
                 }
     
             }catch(err){
                 console.log(err);
-                return undefined;
+                return {status: false, err: "Erro ao achar o usuario"};
             }
         }else{
             return {status: false, err: "Este numero não é um CPF"}
@@ -61,18 +66,18 @@ class User{
         Soma = 0;
         
         if (
-            !cpf ||
-            cpf.length != 11 ||
-            cpf == "00000000000" ||
-            cpf == "11111111111" ||
-            cpf == "22222222222" ||
-            cpf == "33333333333" ||
-            cpf == "44444444444" ||
-            cpf == "55555555555" ||
-            cpf == "66666666666" ||
-            cpf == "77777777777" ||
-            cpf == "88888888888" ||
-            cpf == "99999999999" 
+            !strCPF ||
+            strCPF.length != 11 ||
+            //strCPF == "00000000000" ||
+            strCPF == "11111111111" ||
+            strCPF == "22222222222" ||
+            strCPF == "33333333333" ||
+            strCPF == "44444444444" ||
+            strCPF == "55555555555" ||
+            strCPF == "66666666666" ||
+            strCPF == "77777777777" ||
+            strCPF == "88888888888" ||
+            strCPF == "99999999999" 
         ){
             return false
         }
@@ -108,7 +113,7 @@ class User{
                         });
 
                         await knex.select('id').where('cpf', cpf).table("usuario").then(dataIn =>{
-
+                            console.log(role);
                             if(role == 0){
                                 knex.insert({idUser: dataIn[0].id, medicoResp: data}).table("paciente").then(d =>{
                                     console.log(d);
@@ -151,7 +156,7 @@ class User{
 
         try{
             let result = await knex.select("*").from("usuario").where({cpf: cpf});
-
+            console.log(result);
             if(result.length > 0){
                 return true;
             }else{
@@ -167,39 +172,59 @@ class User{
 
     
     // Lembrar de no frontEnd puxar o id antes de qq coisa
-    async update(id, cpf, name, password) {
-        var user = await this.findById(id, "usuario");
+    async update(id ,cpf, name, password, data) {
+        //let user = await this.findById(id);
+        let user = await this.findByCPF(cpf).catch(err => {
+            return {status: false, err: err};
+        });
 
         if(user != undefined){
-
             var editUser = {};
 
-            if(cpf != undefined){
-                if(cpf != user.cpf){
-                    let result = await this.findCPF(cpf);
-                    if(!result){
-                        editUser.cpf = cpf;
-                    }else{
-                        return {status: false, err: "O CPF já está cadastrado"}
-                    }
+            //ASSIM QUE PEGAR O ID HABILITAR
+            /*
+            if(cpf != undefined && cpf !=user.cpf){
+                let isNewCpf = await this.findCPF(cpf);
+                if(!isNewCpf){
+                    user.cpf = cpf;
                 }
             }
+            */
 
-            if(name != undefined){
-                if(name != user.name){
-                    editUser.nome = name;
-                }
+            if(name != undefined && name != user.name){
+                editUser.nome = name;
             }
 
             if(password != undefined){
                 var password = await bcrypt.hash(password, 10);
                 editUser.senha = password;
             }
-
+            
             try{
-                await knex.update(editUser).where({id: id}).table("usuario");
+                await knex.update(editUser).where({id: user.id}).table("usuario").catch(err => {
+                    console.log(err);
+                    return {status: false, err: "Erro ao atualizar tabela usuario"};
+                });
+                
+                let role = await knex.select("role").table("usuario").where({id: user.id}).catch(err => {
+                    console.log(err);
+                    return {status: false, err: "Erro ao pegar a role de usuario"}
+                })
+
+                role = role[0].role;
+
+                if(role == 1 || role == 2) {
+                    await knex.update({especialidade: data}).where({idUser: user.id}).table("medico").then(d =>{
+                        console.log(d);
+                    }).catch( err => {
+                        console.log(err);
+                        return {status: false, err: "Erro ao atualizar tabela medico"};
+                    });
+                }
+                
                 return {status: true}
             }catch(err){
+                console.log(err);
                 return {status: false, err: "O usuario não existe"};
             }
 
@@ -255,6 +280,24 @@ class User{
             console.log(err);
             return [];
         }
+    }
+
+    async medicoConfirm(data){
+        try{
+            var result = await knex.select(["medico.idMedico"])
+                .where({nome: data})
+                .table("usuario")
+                .innerJoin("medico", "medico.idUser", "usuario.id")
+            
+        }catch(err){
+            console.log(err);
+            return {status: false, err: "Erro ao achar o medico informado"};
+        }
+
+        let idMed = (result[0].idMedico);
+
+        return {status: true, idMed}
+        
     }
 
 }
