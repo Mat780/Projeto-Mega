@@ -1,16 +1,22 @@
 <template>
   <div class="conteinerLaudos">
     <div class="contentLaudos">
+      <!-- mensagem crua -->
       <span class="tituloLaudos">Laudo do Eletrocardiograma</span>
+      <!-- Linha divisória -->
       <hr class="linhaLaudos" />
+      <!-- Imagem dos laudos -->
       <img :src="imgLaudos" class="imgLaudos" />
     </div>
     <div class="content2Laudos">
       <div class="parteEsquerdaLaudos">
+        <!-- Imagem do calendário -->
         <img :src="calendario" class="calendario" />
         <div class="divLinha"></div>
       </div>
+      <!-- Botão para baixar laudo -->
       <button class="btnBaixarLaudo">
+        <!-- Imagem de download -->
         <img :src="download" />
         Baixar Laudo
       </button>
@@ -25,6 +31,7 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       download: "/img/download.png",
       imgLaudos: "/img/imgLaudos.png",
       calendario: "/img/caledario.png",

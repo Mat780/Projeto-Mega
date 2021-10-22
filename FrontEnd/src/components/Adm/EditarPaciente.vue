@@ -1,20 +1,27 @@
 <template>
   <div>
+    <!-- Mostra o modal ao usuário -->
     <administracao @paciente="showModalUser()" />
     <div>
       <div class="modal-background" @click="$emit('esconder')"></div>
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
+            <!-- Imagem de paciente -->
             <img :src="paciente" class="paciente" />
           </div>
           <div class="contentDireita">
+            <!-- Título -->
             <h1 class="tituloAzul">
-              Editar <span class="tituloVermelho">Paciente</span>
+              Editar
+              <!-- Mensagem crua -->
+              <span class="tituloVermelho">Paciente</span>
             </h1>
             <form class="formulario">
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-user"></i>
+                <!-- Input que é para digitar o nome do(a) Usuário(a) -->
                 <input
                   class="nome"
                   type="text"
@@ -24,7 +31,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-address-card"></i>
+                <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
                 <input
                   v-maska="'###.###.###-##'"
                   class="cpf"
@@ -35,7 +44,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-key"></i>
+                <!-- Input que é para digitar a senha do(a) Usuário(a)  -->
                 <input
                   class="senha"
                   type="password"
@@ -45,7 +56,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-key"></i>
+                <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
                 <input
                   class="confimarSenha"
                   type="password"
@@ -60,7 +73,7 @@
           </div>
         </div>
       </div>
-      <!-- Botão -->
+      <!-- Botão para cadastrar o Paciente -->
       <button
         class="modal-close is-large"
         aria-label="close"
@@ -71,12 +84,13 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 
 export default {
   name: "editarPaciente",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       paciente: "/img/paciente.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -84,43 +98,45 @@ export default {
 
       // Variaveis do update
       id: 1,
-			password: "",
-			confirmPassword: "",
-			cpf: "",
-			name: "",
-			data: "",
-
+      password: "",
+      confirmPassword: "",
+      cpf: "",
+      name: "",
+      data: "",
     };
   },
   methods: {
-    	editar() {
-
-        if(this.password == this.confirmPassword){
-          this.cpf = this.cpf.replace(/[.-]/g, "");
-          axios.put("http://localhost:8080/user", {
-              id: this.id,
-              name: this.name,
-              password: this.password,
-              cpf: this.cpf
+    // Função que executa "editar()"
+    editar() {
+      if (this.password == this.confirmPassword) {
+        this.cpf = this.cpf.replace(/[.-]/g, "");
+        axios
+          .put("http://localhost:8080/user", {
+            id: this.id,
+            name: this.name,
+            password: this.password,
+            cpf: this.cpf,
           })
-            .then((res) => {
-              console.log(res);
+          .then((res) => {
+            console.log(res);
           })
-            .catch((err) => {
-              console.log(err);
+          .catch((err) => {
+            console.log(err);
           });
-          
-          this.name = ""
-          this.password = ""
-          this.cpf = ""
-          
-          this.$emit('esconder');
-        }else{
-          this.$emit('esconder');
-          console.log("A senha digitada está diferente do campo confirmar senha");
-          return {err: "A senha digitada está diferente do campo confirmar senha"}
-        }
-		},
+
+        this.name = "";
+        this.password = "";
+        this.cpf = "";
+
+        this.$emit("esconder");
+      } else {
+        this.$emit("esconder");
+        console.log("A senha digitada está diferente do campo confirmar senha");
+        return {
+          err: "A senha digitada está diferente do campo confirmar senha",
+        };
+      }
+    },
   },
 };
 </script>

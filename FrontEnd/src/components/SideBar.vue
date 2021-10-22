@@ -16,6 +16,7 @@
     </div>
 
     <div class="btn">
+      <!-- Imagem do logout -->
       <img :src="logout" class="img" @click="ChangeLogin" />
     </div>
   </div>
