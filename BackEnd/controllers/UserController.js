@@ -184,7 +184,7 @@ class UserController{
                 let token = jwt.sign({cpf : user.cpf, role: user.role}, secret);
                 res.status(200);
                 res.json({token: token, role: user.role});
-                
+
             }else{
                 res.status(406);
                 res.send("Senha incorreta");
@@ -221,6 +221,11 @@ class UserController{
             res.send("Não foi encontrado nenhum paciente");
         }
 
+    }
+
+    async validate(req, res){
+        res.status(200);
+        res.send("Passou na rota");
     }
 
 }

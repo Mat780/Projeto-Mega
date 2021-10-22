@@ -5,10 +5,8 @@ import Adm from '../views/Adm.vue'
 import ListarPacientes from '@/views/ListarPacientes.vue'
 import ListaLaudos from '../views/ListaLaudos.vue'
 import Upload from '../views/Upload.vue'
-import CadastrarPaciente from '../components/Adm/CadastrarPaciente.vue'
-import CadastrarMedico from '../components/Adm/CadastrarMedico.vue'
-import EditarPaciente from '../components/Adm/EditarPaciente.vue'
-import EditarMedico from '../components/Adm/EditarMedico.vue'
+
+import axios from 'axios';
 
 const routes = [
   {
@@ -22,45 +20,106 @@ const routes = [
     component: Login
   },
   {
-    path: '/Login/Adm',
-    name: 'Adm',
-    component: Adm
+    path: '/Login/ListaLaudos',
+    name: 'ListaLaudos',
+    component: ListaLaudos,
+    beforeEnter: (to, from, next) =>{
+      if(localStorage.getItem('token') != undefined){
+
+        var req = {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+
+        axios.post("http://localhost:8080/login/paciente",{},req).then(res =>{
+          console.log(res);
+          next();
+        }).catch(err =>{
+          console.log(err);
+          next('/');
+        })
+      }else{
+        next('/');
+      }
+    }
   },
   {
     path: '/Login/ListarPacientes',
     name: 'ListarPacientes',
-    component: ListarPacientes
-  },
-  {
-    path: '/Login/ListaLaudos',
-    name: 'ListaLaudos',
-    component: ListaLaudos
+    component: ListarPacientes,
+    beforeEnter: (to, from, next) =>{
+      if(localStorage.getItem('token') != undefined){
+
+        var req = {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+
+        axios.post("http://localhost:8080/login/medico",{},req).then(res =>{
+          console.log(res);
+          next();
+        }).catch(err =>{
+          console.log(err);
+          next('/');
+        })
+      }else{
+        next('/');
+      }
+    }
   },
   {
     path: '/Login/ListarPacientes/Upload',
     name: 'Upload',
-    component: Upload
+    component: Upload,
+    beforeEnter: (to, from, next) =>{
+      if(localStorage.getItem('token') != undefined){
+
+        var req = {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+
+        axios.post("http://localhost:8080/login/medico",{},req).then(res =>{
+          console.log(res);
+          next();
+        }).catch(err =>{
+          console.log(err);
+          next('/');
+        })
+      }else{
+        next('/');
+      }
+    }
   },
   {
-    path: '/Login/Adm/CadastrarPaciente',
-    name: 'CadastrarPaciente',
-    component: CadastrarPaciente
-  },
-  {
-    path: '/Login/Adm/EditarPaciente',
-    name: 'EditarPaciente',
-    component: EditarPaciente
-  },
-  {
-    path: '/Login/Adm/CadastrarMedico',
-    name: 'CadastrarMedico',
-    component: CadastrarMedico
-  },
-  {
-    path: '/Login/Adm/EditarMedico',
-    name: 'EditarMedico',
-    component: EditarMedico
+    path: '/Login/Adm',
+    name: 'Adm',
+    component: Adm,
+    beforeEnter: (to, from, next) =>{
+      if(localStorage.getItem('token') != undefined){
+
+        var req = {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+
+        axios.post("http://localhost:8080/login/adm",{},req).then(res =>{
+          console.log(res);
+          next();
+        }).catch(err =>{
+          console.log(err);
+          next('/');
+        })
+      }else{
+        next('/');
+      }
+    }
   }
+  
 
 ]
 

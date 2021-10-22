@@ -25,6 +25,7 @@ export default {
   methods: {
     // Função que ao sere ativada ela irá sair da página "Adm" e ir para "Login"
     ChangeLogin() {
+      localStorage.removeItem('token');
       this.$router.push({ path: "/Login" });
     },
   },

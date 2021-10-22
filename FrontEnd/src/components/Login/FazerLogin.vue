@@ -93,14 +93,11 @@ export default {
 
 		login(){
 			this.cpf = this.cpf.replace(/[.-]/g, "");
-			console.log(this.cpf);
 			axios.post("http://localhost:8080/login", {
 				cpf: this.cpf,
 				password: this.password,
 			}).then(res => {
-				console.log(res);
 				localStorage.setItem("token", res.data.token);
-				console.log(res.data.role);
 				if(res.data.role == 0){
 					this.$router.push({ path: "/Login/ListaLaudos"})
 				}else if(res.data.role == 1){
@@ -108,7 +105,6 @@ export default {
 				}else if(res.data.role == 2){
 					this.$router.push({ path: "/Login/Adm"})
 				}
-				
 
 			}).catch(err => {
 				console.log(err);

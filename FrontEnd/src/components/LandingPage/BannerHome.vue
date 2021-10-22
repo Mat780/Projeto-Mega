@@ -79,6 +79,7 @@ div {
   height: 1.2em;
   align-self: center;
   margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 #BannerHomeButton {
@@ -88,8 +89,8 @@ div {
 
 #BannerHomeButtonText {
   text-align: center;
-  padding-top: 7px;
-  padding-right: 5px;
+  padding-top: 0.1em;
+  padding-right: 0.5em;
 
   color: #ffffff;
 }
