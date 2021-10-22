@@ -27,9 +27,11 @@ export default {
     };
   },
   methods: {
+    // Função que executa "esconderCadastroPaciente()"
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
+    // Função que executa "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },

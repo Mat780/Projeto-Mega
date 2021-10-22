@@ -135,12 +135,12 @@ export default {
     cleanString(value) {
       return value.replace(/[&\/\\#,+()$~%.'":*?<>{}-]/g, "");
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoParado() {
       this.tipoPatoEscritor = false;
       this.tipoPatoSenha = false;
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoEscritor() {
       this.tipoPatoEscritor = true;
       this.tipoPatoSenha = false;
@@ -149,7 +149,7 @@ export default {
         this.tipoPatoEscritor = false;
       }, 500);
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoSenha() {
       if (this.typeSenha == "password") {
         this.tipoPatoSenha = true;

@@ -4,19 +4,24 @@
     <div class="modal-content">
       <div class="conteiner">
         <div class="error">
+          <!-- Importanto icon -->
           <i class="fas fa-exclamation-triangle"></i>
+          <!-- Mensagem crua -->
           <span class="texterror">
             Error
           </span>
         </div>
+        <!-- Mensagem crua -->
         <div class="tipoErro">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Laojafiohaisuhlnslhoadhfd
         </div>
+        <!-- Botão sim -->
         <div class="btns">
           <button class="btn btnSim" @click="$emit('esconder')">Voltar</button>
         </div>
       </div>
     </div>
+    <!-- Botão -->
     <button
       class="modal-close is-large"
       aria-label="close"

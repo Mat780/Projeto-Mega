@@ -29,7 +29,9 @@
               <!-- Imagem que está sendo utilizada no código -->
               <img :src="editar" class="btn2Editar" />
             </button>
+            <!-- Ao clicar nesse botão irá executar a função "AparecerExcluirPaciente()" -->
             <button class="btn btn3" @click="AparecerExcluirPaciente">
+              <!-- Imagem que está sendo utilizada no código -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -52,6 +54,7 @@
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
+      <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
         <!-- add v-for aqui -->
@@ -64,7 +67,9 @@
               <!-- Imagem de "editar" -->
               <img :src="editar" class="btn2Editar" />
             </button>
+            <!-- Ao clicar nesse botão irá executar a função "aparecerExcluirMedico()" -->
             <button class="btn btn3" @click="aparecerExcluirMedico">
+              <!-- Imagem de "excluir" -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -168,15 +173,19 @@ export default {
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
     },
+    // Função que aparece o "AparecerExcluirPaciente()"
     AparecerExcluirPaciente() {
       this.modalExcluirPaciente = true;
     },
+    // Função que esconde o "esconderExcluirPaciente()"
     esconderExcluirPaciente() {
       this.modalExcluirPaciente = false;
     },
+    // Função que aoarece o "aparecerExcluirMedico()"
     aparecerExcluirMedico() {
       this.modalExcluirMedico = true;
     },
+    // Função que esconde o "esconderExcluirMedico()"
     esconderExcluirMedico() {
       this.modalExcluirMedico = false;
     },

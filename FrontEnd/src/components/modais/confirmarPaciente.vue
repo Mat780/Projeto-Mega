@@ -3,14 +3,19 @@
     <div class="modal-background" @click="$emit('esconder')"></div>
     <div class="modal-content">
       <div class="conteiner">
+        <!-- Perguntar se quer msm excluir -->
         <div class="pergunta">
+          <!-- Importanto icon -->
           <i class="fas fa-exclamation-triangle"></i>
+          <!-- Mensagem crua -->
           <span class="textPergunta"
             >Quer realmente excluir esse Paciente?</span
           >
         </div>
         <div class="btns">
+          <!-- Botão sim -->
           <button class="btn btnSim" @click="$emit('esconder')">Sim</button>
+          <!-- Botão não -->
           <button class="btn btnNao" @click="$emit('esconder')">Não</button>
         </div>
       </div>
@@ -72,7 +77,7 @@ export default {
   color: #fff;
   margin-left: 3%;
   font-size: 1em;
-  transition:  .3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 

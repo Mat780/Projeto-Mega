@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
+      <!-- Botão -->
       <button
         class="modal-close is-large"
         aria-label="close"
