@@ -1,219 +1,254 @@
 <template>
-  <div>
-    <administracao @paciente="showModalUser()" />
-    <div>
-      <div class="modal-background" @click="$emit('esconder')"></div>
-      <div class="modal-content">
-        <div class="conteinerModalCadastrarPaciente">
-          <div class="contentEsquerda">
-            <!-- Imagem de paciente -->
-            <img :src="paciente" class="paciente" />
-          </div>
-          <div class="contentDireita">
-            <!-- Título -->
-            <h1 class="tituloAzul">
-              Cadastrar <span class="tituloVermelho">Paciente</span>
-            </h1>
-            <form  @submit.prevent="addListaPaciente(listasPaciente)" class="formulario">
-              <div class="entradas">
-                <i class="fas fa-user"></i>
-                <!-- Input que é para digitar o nome do(a) Usuário(a) -->
-                <input
-                  class="nome"
-                  v-model="listasPaciente.description"
-                  type="text"
-                  placeholder="Nome Completo"
-                  
-                />
-              </div>
-              <div class="entradas">
-                <i class="fas fa-stethoscope"></i>
-                <!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
-                <input
-                  class="medicoResponsavel"
-                  type="text"
-                  placeholder="Digite o medico responsavel"
-                  
-                />
-              </div>
-              <div class="entradas">
-                <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
-                <i class="fas fa-address-card"></i>
-                <input
-                  v-maska="'###.###.###-##'"
-                  class="cpf"
-                  type="text"
-                  placeholder="CPF"
-                  
-                />
-              </div>
-              <div class="entradas">
-                <i class="fas fa-key"></i>
-                <!-- Input que é para digitar a senha do(a) Usuário(a)  -->
-                <input
-                  class="senha"
-                  v-model="senha"
-                  type="password"
-                  placeholder="Senha"
-                  
-                />
-              </div>
-              <div class="entradas">
-                <i class="fas fa-key"></i>
-                <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
-                <input
-                  class="confimarSenha"
-                  v-model="confirmeSenha"
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  
-                />
-              </div>
-              <!-- Botão para cadastrar o Paciente -->
-              <button class="btn" @submit="confimarSenha">Cadastrar</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <button
-        class="modal-close is-large"
-        aria-label="close"
-        @click="$emit('esconder')"
-      ></button>
-    </div>
-  </div>
+	<div>
+		<administracao @paciente="showModalUser()" />
+		<div>
+			<div class="modal-background" @click="$emit('esconder')"></div>
+			<div class="modal-content">
+				<div class="conteinerModalCadastrarPaciente">
+					<div class="contentEsquerda">
+						<!-- Imagem de paciente -->
+						<img :src="paciente" class="paciente" />
+					</div>
+					<div class="contentDireita">
+						<!-- Título -->
+						<h1 class="tituloAzul">
+							Cadastrar
+							<span class="tituloVermelho">Paciente</span>
+						</h1>
+						<form
+							@submit.prevent="addListaPaciente(listasPaciente)"
+							class="formulario"
+						>
+							<div class="entradas">
+								<i class="fas fa-user"></i>
+								<!-- Input que é para digitar o nome do(a) Usuário(a) -->
+								<input
+									class="nome"
+									v-model="name"
+									type="text"
+									placeholder="Nome Completo"
+                  					required
+								/>
+							</div>
+							<div class="entradas">
+								<i class="fas fa-stethoscope"></i>
+								<!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
+								<input
+                  					v-model="data"
+									class="medicoResponsavel"
+									type="text"
+									placeholder="Digite o medico responsavel"
+                  					required
+								/>
+							</div>
+							<div class="entradas">
+								<!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
+								<i class="fas fa-address-card"></i>
+								<input
+									v-maska="'###.###.###-##'"
+                  					v-model="cpf"
+									class="cpf"
+									type="text"
+									placeholder="CPF"
+                  					required
+								/>
+							</div>
+							<div class="entradas">
+								<i class="fas fa-key"></i>
+								<!-- Input que é para digitar a senha do(a) Usuário(a)  -->
+								<input
+									class="senha"
+									v-model="password"
+									type="password"
+									placeholder="Senha"
+                  					required
+								/>
+							</div>
+							<div class="entradas">
+								<i class="fas fa-key"></i>
+								<!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
+								<input
+									class="confimarSenha"
+									v-model="confirmPassword"
+									type="password"
+									placeholder="Confirmar Senha"
+                  					required
+								/>
+							</div>
+							<!-- Botão para cadastrar o Paciente -->
+							<button class="btn" @click="cadastrarPaciente()">
+								Cadastrar
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<button
+				class="modal-close is-large"
+				aria-label="close"
+				@click="$emit('esconder')"
+			></button>
+		</div>
+	</div>
 </template>
 
 <script>
-export default {
-  name: "cadastrarPaciente",
-  data() {
-    return {
-      // Nome das imagens que estão sendo utilizadas 
-      paciente: "/img/paciente.png",
-      cadastrar: "/img/Cadastrar Médico.svg",
-      nome: "/img/name 1.png",
-      ouvircoracao: "/img/ouvircoracao.png",
-      // Lista dos pacientes
-      listaPacientes: [],
-      listasPaciente: {checked: false},
-      senha:"",
-      confirmeSenha: "",
+import axios from 'axios';
 
-    };
-  },
-  methods: {
-    // Função que adiciona os pacientes e recebe como parâmetro "listasPaciente"
-    addListaPaciente(listasPaciente) {
+export default {
+	name: "cadastrarPaciente",
+	data() {
+		return {
+			// Nome das imagens que estão sendo utilizadas
+			paciente: "/img/paciente.png",
+			cadastrar: "/img/Cadastrar Médico.svg",
+			nome: "/img/name 1.png",
+			ouvircoracao: "/img/ouvircoracao.png",
+			// Lista dos pacientes
+			listaPacientes: [],
+			listasPaciente: { checked: false },
+
+     	    // Variaveis do cadastro
+			password: "",
+			confirmPassword: "",
+			cpf: "",
+			name: "",
+			data: "",
+
+		};
+	},
+	methods: {
+		// Função que adiciona os pacientes e recebe como parâmetro "listasPaciente"
+		addListaPaciente(listasPaciente) {
 			listasPaciente.id = Date.now();
 			this.listaPacientes.push(listasPaciente);
 			this.listasPaciente = { checked: false };
 		},
-   /*/ confirmarSenha() {
-      if(this.senha == this.confirmeSenha) {
-        console.log("deu certo")
-        return true
-      } else {
-        console.log("deu errado")
-        return false
-      }
-    },/*/
-   // cadastrar() {
-  //  let resSenha = confirmarSenha()
-  // },
-  },
+    
+		cadastrarPaciente() {
+			if(this.password == this.confirmPassword){
+				this.cpf = this.cpf.replace(/[.-]/g, "");
+				axios
+				.post("http://localhost:8080/user", {
+					name: this.name,
+					password: this.password,
+					cpf: this.cpf,
+					data: this.data,
+				})
+				.then((res) => {
+					
+					this.name = ""
+					this.password = ""
+					this.confirmPassword = ""
+					this.cpf = ""
+					this.data = ""
+					
+					console.log(res);
+				})
+				.catch((err) => {
+					let msgErro = err.response.data.err;
+					console.log(msgErro);
+				});
+				this.$emit('esconder');
+			}else{
+				console.log("A senha digitada está diferente do campo confirmar senha");
+				this.$emit('esconder');
+				return {err: "A senha digitada está diferente do campo confirmar senha"}
+			}
+		},
+	},
 };
 </script>
 
 <style scoped>
 .modal-background {
-  opacity: 70%;
+  opacity: 80%;
 }
 
 .modal-content {
-  width: 60vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	width: 60vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
 }
 
 .conteinerModalCadastrarPaciente {
   width: 100%;
-  height: 60vh;
+  height: 65vh;
   background: #fff;
-  border-radius: 8px;
   display: flex;
 }
 
 .paciente {
-  height: 100%;
+	height: 100%;
 }
 
 .contentDireita {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .tituloAzul {
-  font-size: 35px;
-  font-weight: 700;
-  padding-top: 4%;
-  color: #2e4a7d;
+	font-size: 35px;
+	font-weight: 700;
+	padding-top: 4%;
+	color: #2e4a7d;
 }
 
 .tituloVermelho {
-  color: rgb(245, 80, 135);
+	color: rgb(245, 80, 135);
 }
 
 .formulario {
-  width: 90%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 2%;
+	width: 90%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	padding-top: 2%;
 }
 
 .entradas {
-  width: 100%;
-  height: 11%;
-  font-size: 18px;
-  margin-top: 3.5%;
-  display: flex;
+	width: 100%;
+	height: 11%;
+	font-size: 18px;
+	margin-top: 3.5%;
+	display: flex;
 }
 
 .entradas > input {
-  width: 100%;
-  height: 100%;
-  padding-left: 10%;
+	width: 100%;
+	height: 100%;
+	padding-left: 10%;
 }
 
 .fas {
-  width: 5%;
-  color: #2e4a7d;
-  align-self: center;
-  position: relative;
-  left: 7%;
+	width: 5%;
+	color: #2e4a7d;
+	align-self: center;
+	position: relative;
+	left: 7%;
 }
 
 .btn {
-  width: 85%;
-  height: 11%;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 8px;
-  font-size: 20px;
-  margin: 4% 0 0 4%;
-  color: #fff;
-  border: none;
-  background-color: #2e4a7d;
-  align-self: center;
+	width: 85%;
+	height: 11%;
+	cursor: pointer;
+	transition: 0.3s;
+	border-radius: 8px;
+	font-size: 20px;
+	margin: 4% 0 0 4%;
+	color: #fff;
+	border: none;
+	background-color: #2e4a7d;
+	align-self: center;
 }
 
 .btn:hover {
-  border: 1px solid #2e4a7d;
-  background-color: #ffd666;
-  color: #2e4a7d;
+	border: 1px solid #2e4a7d;
+	background-color: #ffd666;
+	color: #2e4a7d;
 }
 </style>

@@ -8,8 +8,8 @@ router.use(cors());
 const UserController = require("../controllers/UserController");
 const LaudoController = require("../controllers/LaudoController");
 const adminAuth = require("../middleware/admAuth");
-const medicoAuth = require("../middleware/admAuth");
-const pacienteAuth = require("../middleware/admAuth");
+const medicoAuth = require("../middleware/medAuth");
+const pacienteAuth = require("../middleware/pacienteAuth");
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -50,6 +50,10 @@ router.post('/user', UserController.createNewUser); // REQ: CPF , NAME , PASSWOR
 router.post('/recoverpassword', UserController.recoverPassword); // REQ JSON: CPF
 router.post('/changepassword', UserController.changePassword); // REQ JSON: TOKEN, PASSWORD
 router.post('/login', UserController.login); // REQ JSON: CPF, SENHA
+
+router.post('/login/adm', adminAuth, UserController.validate); 
+router.post('/login/medico', medicoAuth, UserController.validate);
+router.post('/login/paciente', pacienteAuth, UserController.validate);  
 
 try{
     router.post('/upload', upload , (req, res) =>{

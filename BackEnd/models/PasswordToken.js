@@ -9,7 +9,7 @@ class PasswordToken{
         if(user != undefined){
 
             try{
-                let token = Date.now();
+                let token = Date.now(); //Nessa linha não tem "await"
 
                 await knex.insert({
                     user_id: user.id,

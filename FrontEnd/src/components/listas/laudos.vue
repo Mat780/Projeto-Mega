@@ -1,29 +1,17 @@
 <template>
-  <!-- div que está contendo todas as outra divs -->
   <div class="conteinerLaudos">
-    <!-- div que possui os laudos dentro dela -->
     <div class="contentLaudos">
-      <!-- Mensagem crua -->
       <span class="tituloLaudos">Laudo do Eletrocardiograma</span>
-      <!-- linha branca dentro de laudos -->
       <hr class="linhaLaudos" />
-      <!-- imagem dos laudos -->
       <img :src="imgLaudos" class="imgLaudos" />
     </div>
-    <!-- Parte inferior dentro do "divconteinerLaudos" -->
     <div class="content2Laudos">
-      <!-- Parte esquerda do laudo que possui a data -->
       <div class="parteEsquerdaLaudos">
-        <!-- Imagem do calendário do lado esquerdo dos laudos -->
         <img :src="calendario" class="calendario" />
-        <!-- Linha ao lado direito do calendário -->
         <div class="divLinha"></div>
       </div>
-      <!-- Botão para baixar o laudo -->
       <button class="btnBaixarLaudo">
-        <!-- Imagem de download -->
         <img :src="download" />
-        <!-- Descrição do botão de baixar laudo -->
         Baixar Laudo
       </button>
     </div>
@@ -37,7 +25,6 @@ export default {
   },
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas no código
       download: "/img/download.png",
       imgLaudos: "/img/imgLaudos.png",
       calendario: "/img/caledario.png",
@@ -101,12 +88,12 @@ export default {
   display: flex;
 }
 
-.calendario {
+.calendario{
   padding-left: 10%;
   align-self: center;
 }
 
-.divLinha {
+.divLinha{
   height: 55%;
   border-right: 2px solid #2e4a7d;
   align-self: center;

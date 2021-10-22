@@ -1,66 +1,78 @@
 <template>
   <div class="laudo">
     <div class="parteEsquerda">
-      <!-- Títulos -->
       <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
-      <!-- Títulos(0 nome do médico que fez o laudo) -->
       <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
     </div>
-    <!-- Parte direita da "class=laudo" -->
     <div class="parteDireita">
       <div class="parteBtns">
-        <!-- Botão que faz o download -->
         <button class="btn">
-          <!-- Imagem de download -->
           <img :src="download" class="img download" />
         </button>
-        <!-- Botão ao clicar ele remove o laudo -->
-        <button @click="$emit('remove', laudo)" class="btn">
-          <!-- Imagem de excluir -->
+        <button class="btn" @click="aparecerExcluirLaudo">
           <img :src="excluir" class="img excluir" />
         </button>
       </div>
-      <!-- Título -->
       <h6 class="DataDoLaudo">{{ laudo.description2 }}</h6>
     </div>
+    <confirmarLaudo
+      :class="{ modal: true, 'is-active': modalExcluirLaudo }"
+      @esconder="esconderExcluirLaudo"
+      @remove="remove"
+    />
   </div>
 </template>
 
 <script>
+import confirmarLaudo from "../modais/confirmarLaudo.vue";
+
 export default {
   props: {
     laudo: { type: Object, required: true },
   },
+  components: {
+    confirmarLaudo,
+  },
   data() {
     return {
-      // Imagens que estão sendo utilizadas no código
       excluir: "/img/excluir.png",
       download: "/img/download.png",
+      modalExcluirLaudo: false,
     };
+  },
+  methods: {
+    aparecerExcluirLaudo() {
+      this.modalExcluirLaudo = true;
+    },
+    esconderExcluirLaudo() {
+      this.modalExcluirLaudo = false;
+    },
+    remove(laudo) {
+      this.$emit("remove", laudo);
+    },
   },
 };
 </script>
 
 <style scoped>
-
 .laudo {
-	width: 98%;
-	height: 20%;
-	background-image: linear-gradient(to top, #ffd66680, #ffd666);
-	border-radius: 8px;
-	margin-bottom: 4%;
-	display: flex;
-	justify-content: space-between;
+  width: 98%;
+  height: 20%;
+  background-image: linear-gradient(to top, #ffd66680, #ffd666);
+  border-radius: 8px;
+  margin-bottom: 4%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .parteEsquerda {
-	padding-top: 2.5%;
-	padding-left: 5%;
+  padding-top: 2.5%;
+  padding-left: 5%;
 }
 
 .parteDireita {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .nomeDoLaudo {
@@ -69,20 +81,19 @@ export default {
 }
 
 .nomeDoMedico {
-	width: 100%;
-	font-size: 13px;
-	color: #999898;
-	position: relative;
-	bottom: 20%;
+  width: 100%;
+  font-size: 13px;
+  color: #999898;
+  position: relative;
+  bottom: 20%;
 }
 
 .DataDoLaudo {
-	width: 100%;
-	color: #999898;
-	position: relative;
-	top: 8%;
-	right: 6%;
-
+  width: 100%;
+  color: #999898;
+  position: relative;
+  top: 8%;
+  right: 6%;
 }
 
 .parteBtns {

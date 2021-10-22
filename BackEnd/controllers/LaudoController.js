@@ -5,7 +5,7 @@ class LaudoController{
 
     async remove(req, res){
 
-        let id = req.params.id;
+        let id = req.params.id; //Nessa linha não tem "await"
 
         let result = await Laudo.deleteLaudo(id);
 

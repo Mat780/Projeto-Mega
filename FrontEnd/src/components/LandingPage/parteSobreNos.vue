@@ -1,50 +1,23 @@
 <template>
   <div id="content">
-    <div>
-      <div class="parte_Direita">
-        <!-- Ao clicar, ele irá trocar para uma imagem jogando-a para esquerda -->
-        <button class="LandingBotoes" @click="TrocarEsquerda">
-          <!-- Imagem que está sendo utilizada com o nome "SetaEsquerda" -->
-          <img class="LandingBotoesImg" :src="SetaEsquerda" />
-        </button>
-
-        <img :src="ImgAtt" style="width: 80%;transition: 0.5s;" />
-        <!-- Ao clicar, ele irá trocar para uma imagem jogando-a para esquerda -->
-        <button class="LandingBotoes" @click="TrocarDireita">
-          <!-- Imagem que está sendo utilizada com o nome "SetaDireita" -->
-          <img class="LandingBotoesImg" :src="SetaDireita" />
-        </button>
-      </div>
-      <div style="display: flex; justify-content: space-evenly; height: 4.2vh;">
-        <!-- Bolinhas que estão na parte inferior das imagens que passam para o lado esquerdo e direito  -->
-        <div id="BolinhasDoCarrossel">
-          <div class="BolasCarrossel">
-            <!-- Bolinha de número 1 que está sendo usada na parte inferior do quadrado-->
-            <div v-if="Bcarro1" class="BolasCarrosselIluminada"></div>
-          </div>
-          <div class="BolasCarrossel">
-            <!-- Bolinha de número 2 que está sendo usada na parte inferior do quadrado-->
-            <div v-if="Bcarro2" class="BolasCarrosselIluminada"></div>
-          </div>
-          <div class="BolasCarrossel">
-            <!-- Bolinha de número 3 que está sendo usada na parte inferior do quadrado-->
-            <div v-if="Bcarro3" class="BolasCarrosselIluminada"></div>
-          </div>
-          <div class="BolasCarrossel">
-            <!-- Bolinha de número 4 que está sendo usada na parte inferior do quadrado-->
-            <div v-if="Bcarro4" class="BolasCarrosselIluminada"></div>
-          </div>
-          <div class="BolasCarrossel">
-            <!-- Bolinha de número 5 que está sendo usada na parte inferior do quadrado-->
-            <div v-if="Bcarro5" class="BolasCarrosselIluminada"></div>
-          </div>
-        </div>
-      </div>
+    <div class="carrosel">
+      <ul>
+        <li>
+          <img :src="Carrossel" class="img" />
+        </li>
+        <li>
+          <img :src="Carrossel4" class="img" />
+        </li>
+        <li>
+          <img :src="Carrossel3" class="img" />
+        </li>
+        <li>
+          <img :src="Carrossel5" class="img" />
+        </li>
+      </ul>
     </div>
     <div class="parte_Esquerda">
-      <!-- Título -->
       <h1 id="titulo">Sobre Nós</h1>
-      <!-- Descrição -->
       <p id="descricao">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
         nesciunt, iusto suscipit modi optio molestias vero perferendis itaque
@@ -65,104 +38,85 @@ export default {
   name: "parteSobreNos",
   data() {
     return {
-      // Imagens que estão sendo utilizadas no código
-      SetaEsquerda: "/img/SetaEsquerda.svg",
-      SetaDireita: "/img/SetaDireita.svg",
-      Carrossel2: "/img/Carrossel2.svg",
+      Carrossel: "/img/carrosel.png",
       Carrossel3: "/img/Carrossel3.svg",
       Carrossel4: "/img/Carrossel4.svg",
       Carrossel5: "/img/Carrossel5.svg",
-      ImgAtt: "/img/imagen4.png",
-      imagen4: "/img/imagen4.png",
-      // Contador recebendo valor "0"
-      cont: 0,
-      Bcarro1: true,
-      Bcarro2: false,
-      Bcarro3: false,
-      Bcarro4: false,
-      Bcarro5: false,
     };
-  },
-  methods: {
-    // Função que troca as imagens 
-    TrocaDeImgs() {
-      if (this.cont == 0) {
-        this.ImgAtt = this.imagen4;
-        this.Bcarro1 = true;
-
-        this.Bcarro5 = false;
-        this.Bcarro2 = false;
-      } else if (this.cont == 1) {
-        this.ImgAtt = this.Carrossel2;
-        this.Bcarro2 = true;
-
-        this.Bcarro1 = false;
-        this.Bcarro3 = false;
-      } else if (this.cont == 2) {
-        this.ImgAtt = this.Carrossel3;
-        this.Bcarro3 = true;
-
-        this.Bcarro2 = false;
-        this.Bcarro4 = false;
-      } else if (this.cont == 3) {
-        this.ImgAtt = this.Carrossel4;
-        this.Bcarro4 = true;
-
-        this.Bcarro3 = false;
-        this.Bcarro5 = false;
-      } else if (this.cont == 4) {
-        this.ImgAtt = this.Carrossel5;
-        this.Bcarro5 = true;
-
-        this.Bcarro1 = false;
-        this.Bcarro4 = false;
-      }
-    },
-    // Função que ao clicar na seta da esquerda, vai trocar para imagem da esquerda.
-    TrocarEsquerda() {
-      if (this.cont == 0) {
-        this.cont = 4;
-      } else {
-        this.cont--;
-      }
-      this.TrocaDeImgs();
-    },
-    // Função que ao clicar na seta da direita, vai trocar para imagem da direita.
-    TrocarDireita() {
-      if (this.cont == 4) {
-        this.cont = 0;
-      } else {
-        this.cont++;
-      }
-      this.TrocaDeImgs();
-    },
   },
 };
 </script>
 
 <style scoped>
+
 #content {
   display: flex;
   color: rgba(46, 74, 125, 0.8);
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding: 5% 0 5% 5%;
   background-image: url("/img/Bola.png");
   background-repeat: no-repeat;
   background-position: top;
   background-position-y: -40vh;
+  z-index: 0;
 }
-.parte_Direita {
+
+.carrosel {
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  width: 2400px;
   display: flex;
-  width: 50vw;
-  height: 65vh;
-  padding-left: 1%;
-  background-color: transparent;
 }
-#imagen7 {
-  width: 75%;
-  height: 90%;
-  margin: 3% 0 0 18%;
+
+li {
+  position: relative;
+  animation: slide 10s infinite ease-out;
 }
+
+@keyframes slide {
+  0% {
+    left: 0px;
+  }
+  15% {
+    left: 0px;
+  }
+
+  25% {
+    left: -600px;
+  }
+  35% {
+    left: -600px;
+  }
+
+  50% {
+    left: -1200px;
+  }
+  65% {
+    left: -1200px;
+  }
+
+  80% {
+    left: -1800px;
+  }
+  92% {
+    left: -1800px;
+  }
+
+  100% {
+    left: 0px;
+  }
+}
+
+img {
+  width: 600px;
+  height: 400px;
+}
+
 .parte_Esquerda {
   width: 50%;
   height: 65vh;
@@ -170,6 +124,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 3%;
 }
 #titulo {
   margin-top: 5%;

@@ -1,70 +1,73 @@
 <template>
-  <!-- Parte completa -->
   <div class="contenier">
-    <!-- Parte de cima -->
     <div class="contentCima">
       <div class="MeusPacientes">
-        <!-- Mensagem crua -->
         <span class="MeusFiltros">Filtrar por:</span>
-        <button class="btn">
-          <!-- Imagem de filtrar -->
-          <img :src="filtrar" class="imgFiltrar" />
-          <!-- Parágrafo -->
-          <p class="text">Meus Pacientes</p>
+        <button class="btn" @click="ligarFiltro()">
+          <img :src="filtrar" class="imgFiltrar" :class="{imgFiltrarAtivada : ligada}"/>
+          <p class="textPacientes">Meus Pacientes</p>
         </button>
       </div>
-      <!-- Div de realizar pesquisa -->
       <div class="pesquisar">
-        <!-- Mensagem crua -->
         <span class="MeusFiltros">Buscar por:</span>
         <div class="divPesquisar">
-          <!-- Botão de pesquisar -->
           <button class="btnPesquisar">
-            <!-- Imagem de pesquisa -->
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
-          <!-- Parte que recebe a pesquisa -->
           <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
-      <!-- Local onde se encontra a imagem da doutora e seu nome -->
       <div class="personaMedico">
-        <!-- text com o nome do médico -->
         <div class="TextPersona">
-          <!-- Mensagem crua -->
           <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
-          <!-- Mensagem crua -->
           <span class="medico">Médico</span>
         </div>
-        <!-- Imagem utilizada com o nome "imagem5" -->
         <img :src="imagem5" class="imagem5" />
       </div>
     </div>
-    <!-- Linha divisória -->
     <hr class="linha" />
     <div class="contentEmbaixo">
-      <!-- Parte em baixo da linha -->
       <div class="contentEmbaixo2">
-        <pacientes />
+        <pacientes @click="ChangeUpload" />
       </div>
     </div>
+    <!--modal para ver de erro-->
+    <erro
+      :class="{ modal: true, 'is-active': modalErro }"
+      @esconder="esconderErro"
+    />
   </div>
 </template>
 
 <script>
 import pacientes from "../listas/pacientes";
+import erro from "../modais/erro.vue";
 
 export default {
   name: "listaPacientes",
   components: {
     pacientes,
+    erro,
   },
   data() {
     return {
       filtrar: "../img/filtrar.png",
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
+      modalErro: false,
+      ligada: false
     };
+  },
+  methods: {
+    esconderErro() {
+      this.modalErro = false;
+    },
+    ChangeUpload() {
+      this.$router.push({ path: "/Login/ListarPacientes/Upload" });
+    },
+    ligarFiltro(){
+      this.ligada = !this.ligada
+    }
   },
 };
 </script>
@@ -110,12 +113,11 @@ export default {
   padding-left: 5%;
 }
 
-.text {
+.textPacientes {
   font-size: 0.9em;
-
-  padding-top: 1%;
   padding-left: 12%;
   text-align: left;
+  align-self: center;
 }
 
 .imgFiltrar {
@@ -123,6 +125,11 @@ export default {
   width: 27%;
   align-self: center;
 }
+
+.imgFiltrarAtivada{
+  filter: grayscale(0);
+}
+
 
 .imgFiltrarActive {
   width: 27%;

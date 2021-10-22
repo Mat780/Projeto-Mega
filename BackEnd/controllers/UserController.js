@@ -6,7 +6,6 @@ const validator = require("validator")
 
 const secret = "fhuidshfhufgdejifpgfgfgnjfgruhifjrolr"
 
-
 class UserController{
 
     async index(req, res){
@@ -15,7 +14,7 @@ class UserController{
     }
 
     async findUser(req, res){
-        let id = req.params.id;
+        let id = req.params.id; //Nessa linha não tem "await"
         let user = await User.findById(id, "usuario");
 
         if(user == undefined){
@@ -29,6 +28,8 @@ class UserController{
 
     async createNewUser(req, res){
         var {cpf , name, password, role, data} = req.body;
+        var dataOk = 0;
+
         if(name == undefined){
             res.status(400);
             res.json({err: "Nome não inserido"});
@@ -54,6 +55,21 @@ class UserController{
                 res.json({err: "Especialidade não foi definida"});
             }
             return;
+        }else{
+            console.log(role);
+            if(role == 0){
+                let isDataOk = await User.medicoConfirm(data);
+                dataOk = isDataOk.idMed;
+
+                if(!isDataOk.status){
+                    res.status(400);
+                    res.json({err: "O médico não existe"})
+                    return;
+                }
+            }else if(role == 1){
+                dataOk = data;
+            }
+            
         }
 
         let cpfExists = await User.findCPF(cpf);
@@ -63,16 +79,17 @@ class UserController{
             res.json({err: "O CPF já está cadastrado"});
             return;
         }
-
-        let isCpfValid = await User.testaCPF(cpf);
-
+        let isCpfValid = await User.testaCPF(cpf).catch(err =>{
+            console.log(err)
+        })
+            
         if(!isCpfValid){
             res.status(400);
             res.json({err: "CPF inválido"});
             return;
         }
-        
-        await User.new(cpf, password, name, role, data);
+
+        await User.new(cpf, password, name, role, dataOk);
 
         res.status(200);
         res.json("Tudo Ok");
@@ -80,9 +97,8 @@ class UserController{
     }
 
     async edit(req, res){
-        let {id, name, cpf, password} = req.body;
-        let result = await User.update(id, cpf, name, password);
-
+        let {id ,name, cpf, password, data} = req.body;
+        let result = await User.update(id ,cpf, name, password, data);
         if(result != undefined){
             if(result.status){
                 res.status(200);
@@ -99,7 +115,7 @@ class UserController{
     }
 
     async remove(req, res){
-        let id = req.params.id;
+        let id = req.params.id; //Nessa linha não tem "await"
 
         let result = await User.deleteUser(id);
 
@@ -114,7 +130,7 @@ class UserController{
     }
 
     async recoverPassword(req, res){
-        var cpf = req.body.cpf;
+        var cpf = req.body.cpf; //Nessa linha não tem "await"
         let result = await PasswordToken.create(cpf);
 
         if(result.status){
@@ -129,8 +145,8 @@ class UserController{
     }
 
     async changePassword(req, res){
-        let token = req.body.token;
-        let password = req.body.password;
+        let token = req.body.token; //Nessa linha não tem "await"
+        let password = req.body.password; //Nessa linha não tem "await"
 
         let isTokenValid = await PasswordToken.validate(token);
         if(isTokenValid.status){
@@ -160,13 +176,14 @@ class UserController{
         let user = await User.findByCPF(cpf);
 
         if(user.status){
-            let resultado = await bcrypt.compare(password, user.senha);
+            user = user.result;
+
+            let resultado = bcrypt.compare(password, user.senha);
 
             if(resultado){
                 let token = jwt.sign({cpf : user.cpf, role: user.role}, secret);
-
                 res.status(200);
-                res.json({token: token});
+                res.json({token: token, role: user.role});
 
             }else{
                 res.status(406);
@@ -204,6 +221,11 @@ class UserController{
             res.send("Não foi encontrado nenhum paciente");
         }
 
+    }
+
+    async validate(req, res){
+        res.status(200);
+        res.send("Passou na rota");
     }
 
 }
