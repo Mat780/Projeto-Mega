@@ -13,7 +13,7 @@
         <!-- Importando icon -->
         <i class="fas fa-user-plus"></i>
       </div>
-      <div class="btn pacienteEstorado" @click="irListarPaciente()">
+      <div class="btn pacienteEstorado" @click="irListarPaciente()" v-if="listaPaciente">
         <!-- importando icon -->
         <i class="fas fa-user-injured"></i>
       </div>
@@ -38,7 +38,8 @@ export default {
 
   props: {
     adm: Boolean,
-    addPaciente: Boolean
+    addPaciente: Boolean,
+    listaPaciente: Boolean
   },
 
   methods: {

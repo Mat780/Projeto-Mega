@@ -1,6 +1,6 @@
 <template>
   <div class="conteiner">
-    <SideBar :adm=false :addPaciente=false :name=name />
+    <SideBar :adm=false :addPaciente=false :name=name :listaPaciente=true />
     <administracao />
   </div>
 </template>

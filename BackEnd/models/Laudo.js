@@ -21,20 +21,20 @@ class Laudo{
     }
 
     async puxarLaudos(id){
-
+        console.log(id);
         try{
-            let result = await knex.select(["idLaudos" ,"file", "data"]).where({idPaciente: id}).table("laudos");
+            let result = await knex.select(["idLaudos" , "data", "nameLaudo"]).where({idPaciente: id}).table("laudos");
             
             if(result.length > 0){
-                return result[0];
+                return {status: true, result: result};
             }else{
-                return undefined;
+                return {status: false, err: "Erro ao puxar laudos"};
             }
 
         }catch(err){
             console.log(err);
             //Nessa linha não tem "return undefined"
-            return undefined;
+            return {status: false, err: "Erro ao consultar o banco de dados em busca de laudos"};
         }
 
     }
@@ -57,9 +57,11 @@ class Laudo{
     }
 
 
-    // async addLaudo(id){
+    async addLaudo(idPaciente){
 
-    // }
+        // Pegar ID do MedicoResp
+
+    }
 
 
 }

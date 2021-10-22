@@ -25,16 +25,18 @@
           <!-- imagem que está sendo utilizada no código -->
           <img :src="imagem6" class="imagem6" />
           <!-- Mensagem crua -->
-          <span class="contentEmbaixoText">Laudos de Elliot Alderson</span>
+          <span class="contentEmbaixoText">Laudos de {{ nomePaciente }}</span>
         </div>
         <!-- Linha divisória -->
         <hr class="contentEmbaixoLinha" />
         <div class="Laudos">
-          <laudo
-            v-for="l in laudos.slice().reverse()"
-            :key="l.id"
+          <Laudo
+            v-for="l in laudos.slice()"
+            :key="l.idPaciente"
             @remove="removeLista"
             :laudo="l"
+            :name="nomeMedico"
+            :file="DropzoneFile.value"
           />
         </div>
       </div>
@@ -45,8 +47,8 @@
         </div>
         <!-- Linha divisória -->
         <hr class="contentEmbaixoLinha" />
-        <form @submit.prevent="addLaudo(laudo)" class="formulario">
-          <DropZone @drop.prevent="drop" @change="selectedFile" />
+        <div class="formulario">
+          <DropZone @drop.prevent="drop" @change="selectedFile()" />
           <span id="NomeDoArquivo" class="file-info"
             >Arquivo: {{ DropzoneFile.name }}</span
           >
@@ -75,18 +77,19 @@
               />
             </div>
             <!-- Botão de enviar os laudos -->
-            <button class="btn btnEnviar">Enviar Laudo</button>
+            <button class="btn btnEnviar" @click.prevent="addLaudo(laudo)">Enviar Laudo</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import laudo from "../listas/laudo.vue";
+import Laudo from "../listas/laudo.vue";
 import DropZone from "./DropZone.vue";
 import { ref } from "vue";
+import axios from "axios";
 
 export default {
   name: "CompUpload",
@@ -101,33 +104,90 @@ export default {
       // Lista utilizada
       laudos: [],
       laudo: { checked: false },
+      nomeMedico: "",
+      nomePaciente: "",
     };
   },
 
   components: {
-    laudo,
+    Laudo,
     DropZone,
   },
 
   methods: {
     // Adiciona laudos
     addLaudo(laudo) {
-      laudo.id = Date.now();
+      laudo.data = Date.now();
       this.laudos.push(laudo);
       this.laudo = { checked: false };
+
+      let date_ob = new Date(Date.now);
+      let date = date_ob.getDate();
+      let month = date_ob.getMonth() + 1;
+      let year = date_ob.getFullYear();
+      date_ob = year + "-" + month + "-" + date;
+
+      const formData = new FormData();
+      formData.append('file', DropzoneFile.value);
+      console.log(formData);
+      
+      // axios.post("http://localhost:8080/upload", {
+      //   file: DropzoneFile.value,
+      //   name: this.laudo.description,
+      //   data: this.laudo.description2,
+      //   date: date_ob
+      // })
+
     },
+    
     // remove o laudo
-    removeLista(laudo) {
-      if (laudo) {
-        console.log(laudo);
-        const index = this.laudos.findIndex((item) => item.id === laudo.id);
-        this.laudos.splice(index, 1);
-      }
+    removeLista(id) {
+      axios.delete("http://localhost:8080/laudo/" + id);
+      this.$router.go();
     },
+
+    pegaNome(){
+      this.nomeMedico = this.name;
+      this.nomePaciente = this.namePacient;
+    },
+
+    pullLaudos(){
+      let dataa = localStorage.getItem("idPaciente");
+      dataa = parseInt(dataa);
+      
+      axios.post("http://localhost:8080/laudos", {
+        idPaciente: dataa
+      }).then(data => {
+        if (data.data.length > 0) {
+          data.data.forEach((value, index) => {
+            let laudo = {checked: false}
+
+            value.data = value.data.split("T");
+
+            laudo.idLaudo = value.idLaudos;
+            laudo.description2 = value.data[0];
+            laudo.description = value.nameLaudo;
+            
+
+            this.laudos[index] = laudo;
+            console.log(this.laudos)
+          })
+        }
+
+      }).catch(error => {
+        console.log(error);
+      })
+    }
   },
 
   props: {
-    name: String
+    name: String,
+    namePacient: String,
+  },
+
+  beforeMount() {
+    this.pegaNome();
+    this.pullLaudos();
   },
 
   setup() {
@@ -139,6 +199,7 @@ export default {
 
     const selectedFile = () => {
       DropzoneFile.value = document.querySelector(".DropzoneFile").files[0];
+      console.log(DropzoneFile.value);
     };
 
     return { DropzoneFile, drop, selectedFile };

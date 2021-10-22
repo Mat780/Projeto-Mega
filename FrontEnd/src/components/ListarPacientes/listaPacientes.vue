@@ -41,10 +41,17 @@
     <!-- Linha divisória -->
     <hr class="linha" />
     <div class="contentEmbaixo">
-      <div class="contentEmbaixo2">
-        <!-- Mudar para upload -->
-        <pacientes @click="ChangeUpload" />
-      </div>
+      
+      <!-- Mudar para upload -->
+
+      <pacientes v-for="p in pac.slice().reverse()"
+      :key="p.id"
+      :name="p.nome"
+      :cpf="p.cpf"
+      :idPaciente="p.idPaciente"
+      />
+    
+      
     </div>
     <!--modal para ver de erro-->
     <erro
@@ -57,6 +64,7 @@
 <script>
 import pacientes from "../listas/pacientes";
 import erro from "../modais/erro.vue";
+import axios from "axios"
 
 export default {
   name: "listaPacientes",
@@ -72,6 +80,7 @@ export default {
       imagem5: "../img/imagem5.png",
       modalErro: false,
       ligada: false,
+      pac: [],
     };
   },
   methods: {
@@ -79,17 +88,24 @@ export default {
     esconderErro() {
       this.modalErro = false;
     },
-    // Função que muda para Upload
-    ChangeUpload() {
-      this.$router.push({ path: "/Login/ListarPacientes/Upload" });
-    },
     // Função que liga os filtros
     ligarFiltro() {
       this.ligada = !this.ligada;
     },
+    pullPacientes(){
+      axios.get("http://localhost:8080/pacientes").then(data => {
+        data.data.forEach((value, index) => {
+          this.pac[index] = value
+        })
+        console.log(this.pac[0]);
+      })
+    }
   },
   props: {
     name: String
+  },
+  beforeMount(){
+    this.pullPacientes();
   }
 };
 </script>
@@ -106,6 +122,11 @@ export default {
 .contentCima {
   width: 90%;
   height: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#imprimirPacientes{
   display: flex;
   justify-content: space-between;
 }
@@ -240,10 +261,9 @@ export default {
   width: 90%;
   height: 75%;
   overflow-y: scroll;
+  display: grid;
+  grid-row-gap: 3vh;
+  grid-template-columns: auto auto 60vh;
 }
 
-.contentEmbaixo2 {
-  width: 99%;
-  height: 100%;
-}
 </style>

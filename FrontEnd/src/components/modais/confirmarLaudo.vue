@@ -69,6 +69,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 6%;
 }
 
 .btn {

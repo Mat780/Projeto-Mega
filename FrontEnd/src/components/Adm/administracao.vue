@@ -18,7 +18,8 @@
       <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
-        <!-- add v-for aqui -->
+        <!-- PACIENTES -->
+
         <div class="listaFilhas">
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
@@ -35,6 +36,8 @@
             </button>
           </div>
         </div>
+
+
       </div>
       <!-- listas -->
     </div>

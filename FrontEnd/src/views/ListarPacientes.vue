@@ -1,6 +1,6 @@
 <template>
   <div class="conteiner">
-    <SideBar @aparecer="AparecerCadastrarPaciente" :addPaciente=true :adm=adm />
+    <SideBar @aparecer="AparecerCadastrarPaciente" :addPaciente=true :adm=adm :listaPaciente=false />
     <listaPacientes :name=name />
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"

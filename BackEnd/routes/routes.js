@@ -40,42 +40,30 @@ var upload = multer({
 }).single('pdf');
 
 
-
 router.get('/user', UserController.index);
 router.get('/user/:id', UserController.findUser);
 router.get('/pacientes', UserController.pullPacientes);
 router.get('/medicos', UserController.pullMedicos);
 
+
 router.post('/user', UserController.createNewUser); // REQ: CPF , NAME , PASSWORD
 router.post('/recoverpassword', UserController.recoverPassword); // REQ JSON: CPF
 router.post('/changepassword', UserController.changePassword); // REQ JSON: TOKEN, PASSWORD
 router.post('/login', UserController.login); // REQ JSON: CPF, SENHA
+router.post('/laudos', LaudoController.pullLaudos);
 
-// router.post('/login/adm', adminAuth, UserController.validate); 
-// router.post('/login/medico', medicoAuth, UserController.validate);
-// router.post('/login/paciente', pacienteAuth, UserController.validate);  
+router.post('/login/adm', adminAuth, UserController.validate); 
+router.post('/login/medico', medicoAuth, UserController.validate);
+router.post('/login/paciente', pacienteAuth, UserController.validate);  
 
-router.post('/login/adm', UserController.validate); 
-router.post('/login/medico', UserController.validate);
-router.post('/login/paciente', UserController.validate);  
 
-try{
-    router.post('/upload', upload , (req, res) =>{
-        if(req.file == undefined){
-            res.status(406);
-            res.send("O arquivo está no formato errado, o formato correto é do tipo .pdf");
-            return;
-        }else{
-            console.log(req.file);
-            res.status(200);
-            res.send("Upload de um arquivo com sucesso!");
-        }
-    }); // REQ MULTIPART: FILE
-}catch(err){
-    res.status(406);
-    res.send("O arquivo está no formato errado, o formato correto é do tipo .pdf");
-}
-
+// try{
+//     router.post('/upload', upload , LaudoController.add)
+// }catch{
+//     console.log("Error");
+//     res.status(406);
+//     res.json({message : "O arquivo está no formato errado, o formato correto é do tipo .pdf"});
+// }
 
 router.put('/user', UserController.edit); // REQ JSON: ID  OPC JSON: CPF, NAME, PASSWORD
 
