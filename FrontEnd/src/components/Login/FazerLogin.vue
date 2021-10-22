@@ -33,7 +33,7 @@
       <input
         :type="typeSenha"
         class="ControleLogin"
-        v-model="senha"
+        v-model="password"
         placeholder="Escreva aqui sua senha"
         id="senhaLogin"
         @input="trocaPatoSenha()"
@@ -41,7 +41,7 @@
 
       <!-- Botão do olho de mostrar/ocultar senha -->
       <button
-        style="width: 15%; border: none; background: none"
+        id="olhoLogin"
         @click="trocaOlho"
       >
         <!-- Imagem do olho que muda conforme está visivel ou não a senha -->
@@ -180,6 +180,13 @@ export default {
   grid-template-columns: 1% 99%;
 }
 
+#olhoLogin{
+  width: 10%;
+  border: none; 
+  background: none;
+  text-align: end;
+}
+
 .FazerLogin {
   background-image: url("/img/duckIdle.png");
   background-repeat: no-repeat;
@@ -235,7 +242,7 @@ h4 {
   outline: none;
   border: none;
   height: 5.6vh;
-  width: 14.8vw;
+  width: 15.8vw;
 }
 
 .imgs {

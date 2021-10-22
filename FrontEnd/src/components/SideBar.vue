@@ -15,9 +15,9 @@
       </div>
     </div>
 
-    <div class="btn">
+    <div class="btn" @click="ChangeLogin">
       <!-- Imagem do logout -->
-      <img :src="logout" class="img" @click="ChangeLogin" />
+      <img :src="logout" class="img"/>
     </div>
   </div>
 </template>

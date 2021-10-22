@@ -57,6 +57,11 @@ class Laudo{
     }
 
 
+    // async addLaudo(id){
+
+    // }
+
+
 }
 
 module.exports = new Laudo()

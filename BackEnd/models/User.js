@@ -43,7 +43,6 @@ class User{
                 let result = await knex.select(["id", "nome", "cpf", "senha", "role"]).where({cpf: cpf}).table("usuario");
                 if(result.length > 0){
                     result = result[0];
-                    console.log(result);
                     return {status: true, result};
                 }else{
                     return {status: false, err: "Erro usuario não existe"};
@@ -180,7 +179,7 @@ class User{
 
         if(user != undefined){
             var editUser = {};
-
+            user = user.result;
             //ASSIM QUE PEGAR O ID HABILITAR
             /*
             if(cpf != undefined && cpf !=user.cpf){
@@ -212,6 +211,7 @@ class User{
                 })
 
                 role = role[0].role;
+                role = 2;
 
                 if(role == 1 || role == 2) {
                     await knex.update({especialidade: data}).where({idUser: user.id}).table("medico").then(d =>{
@@ -259,7 +259,7 @@ class User{
     async pullPacientes(){
 
         try{
-            let result = await knex.select(["paciente.medicoResp", "paciente.idUser", "usuario.cpf", "usuario.nome"])
+            let result = await knex.select(["paciente.idUser","usuario.cpf", "usuario.nome"])
                                 .table("paciente")
                                 .innerJoin("usuario", "usuario.id", "paciente.idUser");
             return result;
@@ -272,7 +272,7 @@ class User{
     async pullMedicos(){
 
         try{
-            let result = await knex.select(["medico.especialidade", "medico.idUser", "usuario.cpf", "usuario.nome"])
+            let result = await knex.select(["medico.idUser","usuario.cpf", "usuario.nome"])
                                 .table("medico")
                                 .innerJoin("usuario", "usuario.id", "medico.idUser");
             return result;

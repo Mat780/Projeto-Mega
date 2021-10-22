@@ -5,7 +5,7 @@
       <div class=".identificacao identificacao">
         <div style="display: flex; width: 100%;">
           <!-- Imagem que está sendo utilizada no código -->
-          <img :src="imagem8" class="imagems imagem8" />
+          <img :src="imagem8" class="imagems imagem8" @click="pullPacientes()" />
           <!-- Título  -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
@@ -43,7 +43,7 @@
       <div class="identificacao identificacao2">
         <div style="display: flex; width: 100%;">
           <!-- Imagem que está sendo usada no código -->
-          <img :src="imagem5" class="imagems imagem5" />
+          <img :src="imagem5" class="imagems imagem5" @click="pullMedicos()"/>
           <!-- Título -->
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
@@ -112,6 +112,7 @@ import editarMedico from "./EditarMedico.vue";
 import editarPaciente from "./EditarPaciente.vue";
 import confirmarPaciente from "../modais/confirmarPaciente.vue";
 import confirmarMedico from "../modais/confirmarMedico.vue";
+import axios from "axios";
 
 export default {
   name: "administracao",
@@ -189,7 +190,21 @@ export default {
     esconderExcluirMedico() {
       this.modalExcluirMedico = false;
     },
+    pullPacientes(){
+      axios.get("http://localhost:8080/pacientes").then(data => {
+        console.log(data);
+      })
+    },
+    pullMedicos(){
+      axios.get("http://localhost:8080/medicos").then(data => {
+        console.log(data);
+      })
+    }
   },
+
+  beforeMount(){
+
+  }
 };
 </script>
 

@@ -51,9 +51,13 @@ router.post('/recoverpassword', UserController.recoverPassword); // REQ JSON: CP
 router.post('/changepassword', UserController.changePassword); // REQ JSON: TOKEN, PASSWORD
 router.post('/login', UserController.login); // REQ JSON: CPF, SENHA
 
-router.post('/login/adm', adminAuth, UserController.validate); 
-router.post('/login/medico', medicoAuth, UserController.validate);
-router.post('/login/paciente', pacienteAuth, UserController.validate);  
+// router.post('/login/adm', adminAuth, UserController.validate); 
+// router.post('/login/medico', medicoAuth, UserController.validate);
+// router.post('/login/paciente', pacienteAuth, UserController.validate);  
+
+router.post('/login/adm', UserController.validate); 
+router.post('/login/medico', UserController.validate);
+router.post('/login/paciente', UserController.validate);  
 
 try{
     router.post('/upload', upload , (req, res) =>{

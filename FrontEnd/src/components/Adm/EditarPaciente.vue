@@ -110,6 +110,7 @@ export default {
     editar() {
       if (this.password == this.confirmPassword) {
         this.cpf = this.cpf.replace(/[.-]/g, "");
+        console.log(this.name + " " + this.password + " " + this.cpf);
         axios
           .put("http://localhost:8080/user", {
             id: this.id,
@@ -124,10 +125,11 @@ export default {
             console.log(err);
           });
 
-        this.name = "";
-        this.password = "";
-        this.cpf = "";
-        this.$router.go();
+        // this.name = "";
+        // this.password = "";
+        // this.cpf = "";
+        // this.confirmPassword = "";
+        // this.$router.go();
         this.$emit("esconder");
       } else {
         this.$emit("esconder");
