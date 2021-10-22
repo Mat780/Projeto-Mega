@@ -22,8 +22,8 @@
         <listaPaciente
           v-for="lP in listaDePacientes.slice().reverse()"
           :key="lP.id"
-          @remove="removeLista"
-          :laudo="lp"
+          @remove="removeListaPaciente"
+          :listaPaciente="lp"
         />
       </div>
       <!-- listas -->
@@ -50,8 +50,8 @@
         <listaMedico
           v-for="lM in listaDeMedicos.slice().reverse()"
           :key="lM.id"
-          @remove="removeLista"
-          :laudo="lM"
+          @remover="removeListaMedico"
+          :listaMedico="lm"
         />
       </div>
       <!-- listas -->
@@ -64,17 +64,8 @@
     />
     <cadastrarMedico
       :class="{ modal: true, 'is-active': modalCadastrarMedico }"
-      @esconder="esconderCadastrarMedico"
-    />
-    <editarMedico
-      :class="{ modal: true, 'is-active': modalEditarMedico }"
       @addListaMedico="addMedico(listaDeMedico)"
-      @esconder="esconderEditarMedico"
-    />
-
-    <confirmarMedico
-      :class="{ modal: true, 'is-active': modalExcluirMedico }"
-      @esconder="esconderExcluirMedico"
+      @esconder="esconderCadastrarMedico"
     />
   </div>
   <!-- conteiner -->
@@ -83,8 +74,6 @@
 <script>
 import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
-import editarMedico from "./EditarMedico.vue";
-import confirmarMedico from "../modais/confirmarMedico.vue";
 import listaPaciente from "../listas/listaPaciente.vue";
 import listaMedico from "../listas/listaMedico.vue";
 
@@ -93,8 +82,6 @@ export default {
   components: {
     cadastrarPaciente,
     cadastrarMedico,
-    editarMedico,
-    confirmarMedico,
     listaPaciente,
     listaMedico,
   },
@@ -109,8 +96,6 @@ export default {
       // Modal que recebe false pra não executar diretamente tal função
       modalCadastrarPaciente: false,
       modalCadastrarMedico: false,
-      modalEditarMedico: false,
-      modalExcluirMedico: false,
       listaDePacientes: [],
       listaDePaciente: { checked: false },
       listaDeMedicos: [],
@@ -126,34 +111,13 @@ export default {
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
     },
-    // Função que executa "esconderEditarMedico()"
-    esconderEditarMedico() {
-      this.modalEditarMedico = false;
-    },
     // Função que executa "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
-    // Função que executa "AparecerEditarPaciente()"
-    AparecerEditarPaciente() {
-      this.modalEditarPaciente = true;
-    },
     // Função que executa "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
-    },
-    // Função que executa "AparecerEditarMedico()"
-    AparecerEditarMedico() {
-      this.modalEditarMedico = true;
-    },
-
-    // Função que aoarece o "aparecerExcluirMedico()"
-    aparecerExcluirMedico() {
-      this.modalExcluirMedico = true;
-    },
-    // Função que esconde o "esconderExcluirMedico()"
-    esconderExcluirMedico() {
-      this.modalExcluirMedico = false;
     },
     // Adiciona as lista de Pacientes
     addPaciente(listaDePaciente) {
@@ -162,7 +126,7 @@ export default {
       this.listaDePaciente = { checked: false };
     },
     // remove as lista de Pacientes
-    removeLista(listaDePaciente) {
+    removeListaPaciente(listaDePaciente) {
       if (listaDePaciente) {
         console.log(listaDePaciente);
         const index = this.listaDePacientes.findIndex(
@@ -178,11 +142,11 @@ export default {
       this.listaDeMedico = { checked: false };
     },
     // remove as lista de Medicos
-    removeLista(listaDeMedico) {
+    removeListaMedico(listaDeMedico) {
       if (listaDeMedico) {
         console.log(listaDeMedico);
         const index = this.listaDeMedicos.findIndex(
-          (item) => item.id === listaDeMedicos.id
+          (item) => item.id === listaDeMedico.id
         );
         this.listaDeMedicos.splice(index, 1);
       }

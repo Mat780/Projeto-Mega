@@ -1,102 +1,95 @@
 <template>
   <div>
-    <!-- Mostra o modal ao usuário -->
-    <administracao @paciente="showModalUser()" />
-    <div>
-      <div class="modal-background" @click="$emit('esconder')"></div>
-      <div class="modal-content">
-        <div class="conteinerModalCadastrarPaciente">
-          <div class="contentEsquerda">
-            <!-- Imagem de paciente -->
-            <img :src="paciente" class="paciente" />
-          </div>
-          <div class="contentDireita">
-            <!-- Título -->
-            <h1 class="tituloAzul">
+    <div class="modal-background" @click="$emit('esconder')"></div>
+    <div class="modal-content">
+      <div class="conteinerModalCadastrarPaciente">
+        <div class="contentEsquerda">
+          <!-- Imagem de paciente -->
+          <img :src="paciente" class="paciente" />
+        </div>
+        <div class="contentDireita">
+          <!-- Título -->
+          <h1 class="tituloAzul">
+            Cadastrar
+            <!-- Mensagem crua -->
+            <span class="tituloVermelho">Paciente</span>
+          </h1>
+          <form @submit.prevent="$emit('addListaPaciente')" class="formulario">
+            <div class="entradas">
+              <!-- import icon -->
+              <i class="fas fa-user"></i>
+              <!-- Input que é para digitar o nome do(a) Usuário(a) -->
+              <input
+                class="nome"
+                v-model="name"
+                type="text"
+                placeholder="Nome Completo"
+                required
+              />
+            </div>
+            <div class="entradas">
+              <!-- import icon -->
+              <i class="fas fa-stethoscope"></i>
+              <!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
+              <input
+                v-model="data"
+                class="medicoResponsavel"
+                type="text"
+                placeholder="Digite o medico responsavel"
+                required
+              />
+            </div>
+            <div class="entradas">
+              <!-- import icon -->
+              <i class="fas fa-address-card"></i>
+              <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
+              <input
+                v-maska="'###.###.###-##'"
+                v-model="cpf"
+                class="cpf"
+                type="text"
+                placeholder="CPF"
+                required
+              />
+            </div>
+            <div class="entradas">
+              <!-- import icon -->
+              <i class="fas fa-key"></i>
+              <!-- Input que é para digitar a senha do(a) Usuário(a)  -->
+              <input
+                class="senha"
+                v-model="password"
+                type="password"
+                placeholder="Senha"
+                required
+              />
+            </div>
+            <div class="entradas">
+              <!-- import icon -->
+              <i class="fas fa-key"></i>
+              <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
+              <input
+                class="confimarSenha"
+                v-model="confirmPassword"
+                type="password"
+                placeholder="Confirmar Senha"
+                required
+              />
+            </div>
+            <!-- Botão para cadastrar o Paciente -->
+            <button class="btn" @click="cadastrarPaciente()">
               Cadastrar
-              <!-- Mensagem crua -->
-              <span class="tituloVermelho">Paciente</span>
-            </h1>
-            <form
-              @submit.prevent="$emit('addListaPaciente')"
-              class="formulario"
-            >
-              <div class="entradas">
-                <!-- import icon -->
-                <i class="fas fa-user"></i>
-                <!-- Input que é para digitar o nome do(a) Usuário(a) -->
-                <input
-                  class="nome"
-                  v-model="name"
-                  type="text"
-                  placeholder="Nome Completo"
-                  required
-                />
-              </div>
-              <div class="entradas">
-                <!-- import icon -->
-                <i class="fas fa-stethoscope"></i>
-                <!-- Input que é para digitar o nome do(a) Médico(a) responsável -->
-                <input
-                  v-model="data"
-                  class="medicoResponsavel"
-                  type="text"
-                  placeholder="Digite o medico responsavel"
-                  required
-                />
-              </div>
-              <div class="entradas">
-                <!-- import icon -->
-                <i class="fas fa-address-card"></i>
-                <!-- Input que é para digitar o cpf do(a) Usuário(a) responsável -->
-                <input
-                  v-maska="'###.###.###-##'"
-                  v-model="cpf"
-                  class="cpf"
-                  type="text"
-                  placeholder="CPF"
-                  required
-                />
-              </div>
-              <div class="entradas">
-                <!-- import icon -->
-                <i class="fas fa-key"></i>
-                <!-- Input que é para digitar a senha do(a) Usuário(a)  -->
-                <input
-                  class="senha"
-                  v-model="password"
-                  type="password"
-                  placeholder="Senha"
-                  required
-                />
-              </div>
-              <div class="entradas">
-                <!-- import icon -->
-                <i class="fas fa-key"></i>
-                <!-- Input que é para confirmar a senha do(a) Usuário(a)  -->
-                <input
-                  class="confimarSenha"
-                  v-model="confirmPassword"
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  required
-                />
-              </div>
-              <!-- Botão para cadastrar o Paciente -->
-              <button class="btn" @click="cadastrarPaciente()">
-                Cadastrar
-              </button>
-            </form>
-          </div>
+            </button>
+          </form>
         </div>
       </div>
-      <!-- "Botão" para fechar o modal que ocupa o resto da tela -->
-      <button
-        class="modal-close is-large"
-        aria-label="close"
-        @click="$emit('esconder')"
-      ></button>
     </div>
+    <!-- "Botão" para fechar o modal que ocupa o resto da tela -->
+    <button
+      class="modal-close is-large"
+      aria-label="close"
+      @click="$emit('esconder')"
+    ></button>
   </div>
 </template>
 

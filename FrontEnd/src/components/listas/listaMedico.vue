@@ -14,18 +14,60 @@
         <img :src="excluir" class="btn3Excluir" />
       </button>
     </div>
+    <confirmarMedico
+      :class="{ modal: true, 'is-active': modalExcluirMedico }"
+      @esconder="esconderExcluirMedico"
+      @remover="remover"
+    />
+    <editarMedico
+      :class="{ modal: true, 'is-active': modalEditarMedico }"
+      @esconder="esconderEditarMedico"
+    />
   </div>
 </template>
 
 <script>
+import confirmarMedico from "../modais/confirmarMedico.vue";
+import editarMedico from "../Adm/EditarMedico.vue";
+
 export default {
-  name: "listaMedico",
-   data() {
+  props: {
+    listaMedico: { type: Object, required: true },
+  },
+  components: {
+    editarMedico,
+    confirmarMedico,
+  },
+  data() {
     return {
       // Nome das imagens que estão sendo utilizadas
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
+      modalExcluirMedico: false,
+      modalEditarMedico: false,
     };
+  },
+  methods: {
+    // Função que executa "esconderEditarMedico()"
+    esconderEditarMedico() {
+      this.modalEditarMedico = false;
+    },
+    // Função que executa "AparecerEditarMedico()"
+    AparecerEditarMedico() {
+      this.modalEditarMedico = true;
+    },
+    // Função que aoarece o "aparecerExcluirMedico()"
+    aparecerExcluirMedico() {
+      this.modalExcluirMedico = true;
+    },
+    // Função que esconde o "esconderExcluirMedico()"
+    esconderExcluirMedico() {
+      this.modalExcluirMedico = false;
+    },
+    // Função que executa "remove(medico)"
+    remover(listaDeMedico) {
+      this.$emit("remover", listaDeMedico);
+    },
   },
 };
 </script>

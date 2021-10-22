@@ -14,7 +14,7 @@
         </div>
         <div class="btns">
           <!-- Botão sim -->
-          <button class="btn btnSim" @click="$emit('esconder')">Sim</button>
+          <button class="btn btnSim" @click="$emit('remover', true)">Sim</button>
           <!-- Botão não -->
           <button class="btn btnNao" @click="$emit('esconder')">Não</button>
         </div>
@@ -71,6 +71,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  margin-top: 6%;
 }
 
 .btn {
