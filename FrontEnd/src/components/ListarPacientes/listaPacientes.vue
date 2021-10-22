@@ -2,32 +2,47 @@
   <div class="contenier">
     <div class="contentCima">
       <div class="MeusPacientes">
+        <!-- Mensagem crua -->
         <span class="MeusFiltros">Filtrar por:</span>
+        <!--Botão para ligar o filtro -->
         <button class="btn" @click="ligarFiltro()">
-          <img :src="filtrar" class="imgFiltrar" :class="{imgFiltrarAtivada : ligada}"/>
+          <!-- Imagem de filtrar -->
+          <img
+            :src="filtrar"
+            class="imgFiltrar"
+            :class="{ imgFiltrarAtivada: ligada }"
+          />
+          <!-- Parágrafo  -->
           <p class="textPacientes">Meus Pacientes</p>
         </button>
       </div>
       <div class="pesquisar">
+        <!-- Mensagem crua -->
         <span class="MeusFiltros">Buscar por:</span>
         <div class="divPesquisar">
+          <!-- Botão de pesquisar -->
           <button class="btnPesquisar">
+            <!-- Imagem de pesquisar -->
             <img :src="pesquisar" class="imgPesquisar" />
           </button>
+          <!-- Pesquisar o paciente -->
           <input type="text" class="inputPesquisar" placeholder="Pesquisar" />
         </div>
       </div>
       <div class="personaMedico">
         <div class="TextPersona">
-          <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
+          <span class="olaMedido">Olá, Dr. {{name}}</span>
           <span class="medico">Médico</span>
         </div>
+        <!-- imagem que está sendo utilizada no código -->
         <img :src="imagem5" class="imagem5" />
       </div>
     </div>
+    <!-- Linha divisória -->
     <hr class="linha" />
     <div class="contentEmbaixo">
       <div class="contentEmbaixo2">
+        <!-- Mudar para upload -->
         <pacientes @click="ChangeUpload" />
       </div>
     </div>
@@ -51,24 +66,31 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       filtrar: "../img/filtrar.png",
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
       modalErro: false,
-      ligada: false
+      ligada: false,
     };
   },
   methods: {
+    // Função que esconde o erro
     esconderErro() {
       this.modalErro = false;
     },
+    // Função que muda para Upload
     ChangeUpload() {
       this.$router.push({ path: "/Login/ListarPacientes/Upload" });
     },
-    ligarFiltro(){
-      this.ligada = !this.ligada
-    }
+    // Função que liga os filtros
+    ligarFiltro() {
+      this.ligada = !this.ligada;
+    },
   },
+  props: {
+    name: String
+  }
 };
 </script>
 
@@ -126,10 +148,9 @@ export default {
   align-self: center;
 }
 
-.imgFiltrarAtivada{
+.imgFiltrarAtivada {
   filter: grayscale(0);
 }
-
 
 .imgFiltrarActive {
   width: 27%;

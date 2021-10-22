@@ -183,7 +183,7 @@ class UserController{
             if(resultado){
                 let token = jwt.sign({cpf : user.cpf, role: user.role}, secret);
                 res.status(200);
-                res.json({token: token, role: user.role});
+                res.json({token: token, role: user.role, name: user.nome});
 
             }else{
                 res.status(406);

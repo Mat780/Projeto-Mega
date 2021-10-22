@@ -1,21 +1,24 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
+      <!-- Imagem pato -->
       <img :src="pato" class="pato" />
     </div>
     <div>
-      <div class="btn adm" @click="voltarAdm">
+      <div class="btn adm" @click="voltarAdm" v-if="adm">
+        <!-- Importanto icon -->
         <i class="fas fa-address-card"></i>
       </div>
-      <div class="btn addPaciente" @click="$emit('aparecer')">
+      <div class="btn addPaciente" @click="$emit('aparecer')" v-if="addPaciente">
+        <!-- Importanto icon -->
         <i class="fas fa-user-plus"></i>
       </div>
     </div>
 
     <div class="btn">
+      <!-- Imagem do logout -->
       <img :src="logout" class="img" @click="ChangeLogin" />
     </div>
-
   </div>
 </template>
 
@@ -28,12 +31,20 @@ export default {
       logout: "/img/logout.png",
     };
   },
+
+  props: {
+    adm: Boolean,
+    addPaciente: Boolean
+  },
+
   methods: {
     ChangeLogin() {
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       this.$router.push({ path: "/Login" });
     },
-     voltarAdm() {
+    // Função que executa "voltarAdm()"
+    voltarAdm() {
       this.$router.push({ path: "/Login/Adm" });
     },
   },

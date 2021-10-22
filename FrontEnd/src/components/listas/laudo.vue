@@ -1,18 +1,28 @@
 <template>
   <div class="laudo">
+    <!-- Parte esquerda do laudo -->
     <div class="parteEsquerda">
+      <!-- Título -->
       <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
+      <!-- Título -->
       <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
     </div>
+    <!-- Parte direita do laudo -->
     <div class="parteDireita">
+      <!-- div de botões -->
       <div class="parteBtns">
+        <!-- Botão de download -->
         <button class="btn">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="download" class="img download" />
         </button>
+        <!-- Ao clicar, executa a função "aparecerExcluirLaudo()" -->
         <button class="btn" @click="aparecerExcluirLaudo">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="excluir" class="img excluir" />
         </button>
       </div>
+      <!-- Título -->
       <h6 class="DataDoLaudo">{{ laudo.description2 }}</h6>
     </div>
     <confirmarLaudo
@@ -35,18 +45,22 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       excluir: "/img/excluir.png",
       download: "/img/download.png",
       modalExcluirLaudo: false,
     };
   },
   methods: {
+    // Função que executa "aparecerExcluirLaudo()"
     aparecerExcluirLaudo() {
       this.modalExcluirLaudo = true;
     },
+    // Função que executa "esconderExcluirLaudo()"
     esconderExcluirLaudo() {
       this.modalExcluirLaudo = false;
     },
+    // Função que executa "remove(laudo)"
     remove(laudo) {
       this.$emit("remove", laudo);
     },

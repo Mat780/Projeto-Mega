@@ -70,54 +70,56 @@
 import axios from "axios";
 // Exporta os arquivos do componente
 export default {
-    // Nome do componente
-	name: "FazerLogin",
+  // Nome do componente
+  name: "FazerLogin",
 
-    // A data contêm as variaveis e informações do componente
-	data() {
-		return {
-			pessoa: "./img/Pessoa.svg",
-			chave: "./img/Chave.svg",
-			cadeado: "./img/Cadeado.svg",
-			olho: "./img/OlhoFechado.svg",
-			typeSenha: "password",
-			password: "",
-			cpf: "",
-			duckIdle: '/img/duckIdle.png',
-			tipoPatoEscritor: false,
-			tipoPatoSenha: false
-		};
-	},
+  // A data contêm as variaveis e informações do componente
+  data() {
+    return {
+      pessoa: "./img/Pessoa.svg",
+      chave: "./img/Chave.svg",
+      cadeado: "./img/Cadeado.svg",
+      olho: "./img/OlhoFechado.svg",
+      typeSenha: "password",
+      password: "",
+      cpf: "",
+      duckIdle: "/img/duckIdle.png",
+      tipoPatoEscritor: false,
+      tipoPatoSenha: false,
+    };
+  },
 
-    // Os methods contêm as funções do componente
-	methods: {
+  // Os methods contêm as funções do componente
+  methods: {
+    login() {
+      this.cpf = this.cpf.replace(/[.-]/g, "");
+      axios
+        .post("http://localhost:8080/login", {
+          cpf: this.cpf,
+          password: this.password,
+        })
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("role", res.data.role);
+          localStorage.setItem("name", res.data.name);
+          if (res.data.role == 0) {
+            this.$router.push({ path: "/Login/ListaLaudos" });
+          } else if (res.data.role == 1) {
+            this.$router.push({ path: "/Login/ListarPacientes" });
+          } else if (res.data.role == 2) {
+            this.$router.push({ path: "/Login/Adm" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
 
-		login(){
-			this.cpf = this.cpf.replace(/[.-]/g, "");
-			axios.post("http://localhost:8080/login", {
-				cpf: this.cpf,
-				password: this.password,
-			}).then(res => {
-        console.log(res.data.token);
-				localStorage.setItem("token", res.data.token);
-				if(res.data.role == 0){
-					this.$router.push({ path: "/Login/ListaLaudos"})
-				}else if(res.data.role == 1){
-					this.$router.push({ path: "/Login/ListarPacientes"})
-				}else if(res.data.role == 2){
-					this.$router.push({ path: "/Login/Adm"})
-				}
-
-			}).catch(err => {
-				console.log(err);
-			});
-		},
-
-        // O trocaOlho faz 2 coisas:
-        // Ele troca a imagem do olho para aberto caso a senha esteja legivel
-        // Ou ele troca para o olho fechado caso a senha esteja ilegivel
-        // E por fim ele ainda troca o tipo da senha para legivel ou ilegivel 
-		trocaOlho() {
+    // O trocaOlho faz 2 coisas:
+    // Ele troca a imagem do olho para aberto caso a senha esteja legivel
+    // Ou ele troca para o olho fechado caso a senha esteja ilegivel
+    // E por fim ele ainda troca o tipo da senha para legivel ou ilegivel
+    trocaOlho() {
       // Ele compara o typeSenha para saber se ele está como senha ou não
       if (this.typeSenha == "password") {
         // Caso ele esteja como uma senha ele troca para texto
@@ -136,12 +138,12 @@ export default {
         this.olho = "./img/OlhoFechado.svg";
       }
     },
-    
+
     trocaPatoParado() {
       this.tipoPatoEscritor = false;
       this.tipoPatoSenha = false;
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoEscritor() {
       this.tipoPatoEscritor = true;
       this.tipoPatoSenha = false;
@@ -150,7 +152,7 @@ export default {
         this.tipoPatoEscritor = false;
       }, 1200);
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoSenha() {
       if (this.typeSenha == "password") {
         this.tipoPatoSenha = true;
@@ -165,7 +167,6 @@ export default {
       }
     },
   },
-
 };
 </script>
 

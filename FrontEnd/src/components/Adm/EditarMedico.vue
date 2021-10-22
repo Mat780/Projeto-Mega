@@ -6,21 +6,27 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
       />
     </head>
+    <!-- Mostra o modal ao usuário -->
     <administracao @paciente="showModalUser()" />
     <div>
       <div class="modal-background" @click="$emit('esconder')"></div>
       <div class="modal-content">
         <div class="conteinerModalCadastrarPaciente">
           <div class="contentEsquerda">
+            <!-- Imagem de paciente -->
             <img :src="doctor" class="doctor" />
           </div>
           <div class="contentDireita">
+            <!-- Título -->
             <h1 class="tituloAzul">
+              <!-- Mensagem crua -->
               Editar <span class="tituloVermelho">Medico</span>
             </h1>
             <form class="formulario">
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-user"></i>
+                <!-- Input que é para digitar o nome do(a) Médico(a) -->
                 <input
                   class="nome"
                   type="text"
@@ -30,7 +36,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-user-md"></i>
+                <!-- Input que é para digitar a especialidade do(a) Médico(a)-->
                 <input
                   class="especialidade"
                   type="text"
@@ -40,7 +48,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-address-card"></i>
+                <!-- Input que é para digitar o cpf do(a) Médico(a)-->
                 <input
                   v-maska="'###.###.###-##'"
                   class="cpf"
@@ -51,7 +61,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-key"></i>
+                <!-- Input que é para digitar a senha do(a) Médico(a)  -->
                 <input
                   class="senha"
                   type="password"
@@ -61,7 +73,9 @@
                 />
               </div>
               <div class="entradas">
+                <!-- import icon -->
                 <i class="fas fa-key"></i>
+                <!-- Input que é para confirmar a senha do(a) Médico(a)  -->
                 <input
                   class="confimarSenha"
                   type="password"
@@ -76,6 +90,7 @@
           </div>
         </div>
       </div>
+      <!-- "Botão" para fechar o modal que ocupa o resto da tela -->
       <button
         class="modal-close is-large"
         aria-label="close"
@@ -92,6 +107,7 @@ export default {
   name: "editarMedico",
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       doctor: "/img/doctor.png",
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
@@ -100,41 +116,44 @@ export default {
       cpf: "",
       password: "",
       confirmPassword: "",
-      data: ""
+      data: "",
     };
   },
   methods: {
+    // Função que executa "editar()"
     editar() {
-
-        if(this.password == this.confirmPassword){
-          this.cpf = this.cpf.replace(/[.-]/g, "");
-          axios.put("http://localhost:8080/user", {
-              id: this.id,
-              name: this.name,
-              password: this.password,
-              cpf: this.cpf,
-              data: this.data
+      if (this.password == this.confirmPassword) {
+        this.cpf = this.cpf.replace(/[.-]/g, "");
+        axios
+          .put("http://localhost:8080/user", {
+            id: this.id,
+            name: this.name,
+            password: this.password,
+            cpf: this.cpf,
+            data: this.data,
           })
-            .then((res) => {
-              console.log(res);
+          .then((res) => {
+            console.log(res);
           })
-            .catch((err) => {
-              console.log(err);
+          .catch((err) => {
+            console.log(err);
           });
-          
-          this.name = ""
-          this.password = ""
-          this.confirmPassword = ""
-          this.cpf = ""
-          this.data = ""
-          this.$emit('esconder');
-          
-        }else{
-          this.$emit('esconder');
-          console.log("A senha digitada está diferente do campo confirmar senha");
-          return {err: "A senha digitada está diferente do campo confirmar senha"}
-        }
-		},
+
+        this.name = "";
+        this.password = "";
+        this.confirmPassword = "";
+        this.cpf = "";
+        this.data = "";
+        this.$router.go();
+        this.$emit("esconder");
+      } else {
+        this.$emit("esconder");
+        console.log("A senha digitada está diferente do campo confirmar senha");
+        return {
+          err: "A senha digitada está diferente do campo confirmar senha",
+        };
+      }
+    },
   },
 };
 </script>

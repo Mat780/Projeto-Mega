@@ -5,7 +5,7 @@
       <SideBar />
 
       <!-- Puxa o componente CompUpload para a página -->
-      <CompUpload />
+      <CompUpload :name=name />
     </div>
   </div>
 </template>
@@ -21,11 +21,38 @@ export default {
   // Nome do componente 
   name: "Upload",
 
+  data(){
+    return{
+      name: ""
+    }
+  },
+
   // Componentes importados
   components: {
     SideBar,
     CompUpload,
   },
+
+  methods: {
+    pegaNome(){
+      let name = localStorage.getItem("name");
+      name = name.split(" ");
+
+      let len = name.length - 1;
+
+      if(len > 0){
+        name = name[0] + " " + name[len];
+      }else{
+        name = name[0]
+      }
+
+      this.name = name;
+    }
+  },
+
+  beforeMount(){
+    this.pegaNome();
+  }
 
 };
 

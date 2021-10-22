@@ -3,21 +3,27 @@
     <div class="carrosel">
       <ul>
         <li>
+          <!-- imagem que está sendo utilizada no código -->
           <img :src="Carrossel" class="img" />
         </li>
         <li>
+          <!-- imagem que está sendo utilizada no código -->
           <img :src="Carrossel4" class="img" />
         </li>
         <li>
+          <!-- imagem que está sendo utilizada no código -->
           <img :src="Carrossel3" class="img" />
         </li>
         <li>
+          <!-- imagem que está sendo utilizada no código -->
           <img :src="Carrossel5" class="img" />
         </li>
       </ul>
     </div>
     <div class="parte_Esquerda">
+      <!-- Título -->
       <h1 id="titulo">Sobre Nós</h1>
+      <!-- Descrição -->
       <p id="descricao">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
         nesciunt, iusto suscipit modi optio molestias vero perferendis itaque
@@ -38,6 +44,7 @@ export default {
   name: "parteSobreNos",
   data() {
     return {
+      //Nome das imagens que estão sendo utilizadas no código -->
       Carrossel: "/img/carrosel.png",
       Carrossel3: "/img/Carrossel3.svg",
       Carrossel4: "/img/Carrossel4.svg",
@@ -48,7 +55,6 @@ export default {
 </script>
 
 <style scoped>
-
 #content {
   display: flex;
   color: rgba(46, 74, 125, 0.8);

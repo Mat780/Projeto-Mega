@@ -4,13 +4,18 @@
     <div class="content content1">
       <div class=".identificacao identificacao">
         <div style="display: flex; width: 100%;">
+          <!-- Imagem que está sendo utilizada no código -->
           <img :src="imagem8" class="imagems imagem8" />
+          <!-- Título  -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
+        <!-- Botão que executa a função "AparecerCadastrarPaciente()" -->
         <button class="btn btnAdd" @click="AparecerCadastrarPaciente">
+          <!-- Imagem de adicionar -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
+      <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
         <!-- add v-for aqui -->
@@ -18,10 +23,14 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Botão que executa a função "AparecerEditarPaciente()" -->
             <button class="btn btn2" @click="AparecerEditarPaciente">
+              <!-- Imagem de editar -->
               <img :src="editar" class="btn2Editar" />
             </button>
+            <!-- Ao clicar nesse botão irá executar a função "AparecerExcluirPaciente()" -->
             <button class="btn btn3" @click="AparecerExcluirPaciente">
+              <!-- Imagem que está sendo utilizada no código -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -33,13 +42,18 @@
     <div class="content content2">
       <div class="identificacao identificacao2">
         <div style="display: flex; width: 100%;">
+          <!-- Imagem que está sendo usada no código -->
           <img :src="imagem5" class="imagems imagem5" />
+          <!-- Título -->
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
+        <!-- Ao clicar nesse botão irá executar a função "AparecerCadastrarMedico()" -->
         <button class="btn btnAdd" @click="AparecerCadastrarMedico">
+          <!-- Imagem de adicionar -->
           <img :src="adicionar" class="imgAdd" />
         </button>
       </div>
+      <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
         <!-- add v-for aqui -->
@@ -47,10 +61,14 @@
           <div class="detalheAzulFilha"></div>
           <div class="textos"></div>
           <div class="btns">
+            <!-- Ao clicar nesse botão irá executar a função "AparecerEditarMedico()" -->
             <button class="btn btn2" @click="AparecerEditarMedico">
+              <!-- Imagem de editar -->
               <img :src="editar" class="btn2Editar" />
             </button>
+            <!-- Ao clicar nesse botão irá executar a função "aparecerExcluirMedico()" -->
             <button class="btn btn3" @click="aparecerExcluirMedico">
+              <!-- Imagem de "excluir" -->
               <img :src="excluir" class="btn3Excluir" />
             </button>
           </div>
@@ -107,11 +125,13 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas
       imagem5: "/img/Medica.svg",
       imagem8: "/img/Paciente.svg",
       adicionar: "/img/adicionar.png",
       excluir: "img/excluir.png",
       editar: "img/LaudoImg.png",
+      // Modal que recebe false pra não executar diretamente tal função
       modalCadastrarPaciente: false,
       modalEditarPaciente: false,
       modalCadastrarMedico: false,
@@ -121,39 +141,51 @@ export default {
     };
   },
   methods: {
+    // Função que executa "esconderCadastroPaciente()"
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
+    // Função que executa "esconderEditarPaciente()"
     esconderEditarPaciente() {
       this.modalEditarPaciente = false;
     },
+    // Função que executa "esconderCadastrarMedico()"
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
     },
+    // Função que executa "esconderEditarMedico()"
     esconderEditarMedico() {
       this.modalEditarMedico = false;
     },
+    // Função que executa "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
+    // Função que executa "AparecerEditarPaciente()"
     AparecerEditarPaciente() {
       this.modalEditarPaciente = true;
     },
+    // Função que executa "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
+    // Função que executa "AparecerEditarMedico()"
     AparecerEditarMedico() {
       this.modalEditarMedico = true;
     },
+    // Função que aparece o "AparecerExcluirPaciente()"
     AparecerExcluirPaciente() {
       this.modalExcluirPaciente = true;
     },
+    // Função que esconde o "esconderExcluirPaciente()"
     esconderExcluirPaciente() {
       this.modalExcluirPaciente = false;
     },
+    // Função que aoarece o "aparecerExcluirMedico()"
     aparecerExcluirMedico() {
       this.modalExcluirMedico = true;
     },
+    // Função que esconde o "esconderExcluirMedico()"
     esconderExcluirMedico() {
       this.modalExcluirMedico = false;
     },
