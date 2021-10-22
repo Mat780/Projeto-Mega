@@ -5,11 +5,11 @@
       <img :src="pato" class="pato" />
     </div>
     <div>
-      <div class="btn adm" @click="voltarAdm">
+      <div class="btn adm" @click="voltarAdm" v-if="adm">
         <!-- Importanto icon -->
         <i class="fas fa-address-card"></i>
       </div>
-      <div class="btn addPaciente" @click="$emit('aparecer')">
+      <div class="btn addPaciente" @click="$emit('aparecer')" v-if="addPaciente">
         <!-- Importanto icon -->
         <i class="fas fa-user-plus"></i>
       </div>
@@ -30,9 +30,16 @@ export default {
       logout: "/img/logout.png",
     };
   },
+
+  props: {
+    adm: Boolean,
+    addPaciente: Boolean
+  },
+
   methods: {
     ChangeLogin() {
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
       this.$router.push({ path: "/Login" });
     },
     // Função que executa "voltarAdm()"

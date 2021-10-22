@@ -127,14 +127,14 @@ export default {
 						let msgErro = err.response.data.err;
 						console.log(msgErro);
 					});
-				/*
+				
 				this.name = "";
 				this.password = "";
 				this.confirmPassword = "";
 				this.cpf = "";
 				this.data = "";
 				this.$emit("esconder");
-				*/
+				this.$router.go();
 			} else {
 				console.log(
 					"A senha digitada está diferente do campo confirmar senha"

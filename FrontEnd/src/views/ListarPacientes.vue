@@ -1,7 +1,7 @@
 <template>
   <div class="conteiner">
-    <SideBar @aparecer="AparecerCadastrarPaciente"/>
-    <listaPacientes />
+    <SideBar @aparecer="AparecerCadastrarPaciente" :addPaciente=true :adm=adm />
+    <listaPacientes :name=name />
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
       @esconder="esconderCadastroPaciente"
@@ -24,6 +24,8 @@ export default {
   data() {
     return {
       modalCadastrarPaciente: false,
+      adm: false,
+      name: ""
     };
   },
   methods: {
@@ -35,7 +37,31 @@ export default {
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
+    apareceAdm(){
+      if(localStorage.getItem('role') == 2){
+        this.adm = true;
+      }
+    },
+    pegaNome(){
+      let name = localStorage.getItem("name");
+      name = name.split(" ");
+
+      let len = name.length - 1;
+
+      if(len > 0){
+        name = name[0] + " " + name[len];
+      }else{
+        name = name[0]
+      }
+
+      this.name = name;
+    }
   },
+  beforeMount() {
+    this.apareceAdm();
+    this.pegaNome();
+  }
+
 };
 </script>
 

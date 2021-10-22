@@ -100,6 +100,8 @@ export default {
 			}).then(res => {
         console.log(res.data.token);
 				localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role", res.data.role);
+        localStorage.setItem("name", res.data.name);
 				if(res.data.role == 0){
 					this.$router.push({ path: "/Login/ListaLaudos"})
 				}else if(res.data.role == 1){

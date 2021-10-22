@@ -8,7 +8,7 @@
         <input type="text" class="Pesquisar" placeholder="Pesquisar" />
       </div>
       <div class="personaPaciente">
-        <span class="olPaciente"> Olá, Elliot Alderson</span>
+        <span class="olPaciente"> Olá, {{name}}</span>
         <img :src="imagem6" class="imagem6" />
       </div>
     </div>
@@ -34,8 +34,29 @@ export default {
     return {
       pesquisar: "/img/pesquisar.png",
       imagem6: "/img/imagem6.png",
+      name: ""
     };
   },
+  methods: {
+    pegaNome(){
+      let name = localStorage.getItem("name");
+      name = name.split(" ");
+
+      let len = name.length - 1;
+
+      if(len > 0){
+        name = name[0] + " " + name[len];
+      }else{
+        name = name[0]
+      }
+
+      this.name = name;
+    }
+  },
+
+  beforeMount(){
+    this.pegaNome();
+  }
 };
 </script>
 

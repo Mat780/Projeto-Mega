@@ -1,6 +1,6 @@
 <template>
   <div class="conteiner">
-    <SideBar />
+    <SideBar :adm=false :addPaciente=false :name=name />
     <administracao />
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {
     administracao,
     SideBar,
-  },
+  }
 };
 </script>
 

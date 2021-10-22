@@ -151,6 +151,7 @@ export default {
 					console.log(msgErro);
 				});
 				this.$emit('esconder');
+				this.$router.go();
 			}else{
 				console.log("A senha digitada está diferente do campo confirmar senha");
 				this.$emit('esconder');

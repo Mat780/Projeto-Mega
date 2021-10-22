@@ -129,7 +129,7 @@ export default {
           this.cpf = ""
           this.data = ""
           this.$emit('esconder');
-          
+          this.$router.go();
         }else{
           this.$emit('esconder');
           console.log("A senha digitada está diferente do campo confirmar senha");

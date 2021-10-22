@@ -110,11 +110,13 @@ export default {
               console.log(err);
           });
           
-          this.name = ""
-          this.password = ""
-          this.cpf = ""
-          
+          this.name = "";
+          this.password = "";
+          this.confirmPassword = "";
+          this.cpf = "";
           this.$emit('esconder');
+          this.$router.go();
+          
         }else{
           this.$emit('esconder');
           console.log("A senha digitada está diferente do campo confirmar senha");

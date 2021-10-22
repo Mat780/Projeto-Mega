@@ -9,7 +9,7 @@
       </div>
       <div class="personaMedico">
         <div class="TextPersona">
-          <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
+          <span class="olaMedido">Olá, Dr. {{name}}</span>
           <span class="medico">Médico</span>
         </div>
         <img :src="imagem5" class="imagem5" />
@@ -78,11 +78,6 @@ import { ref } from "vue";
 export default {
   name: "CompUpload",
 
-  components: {
-    laudo,
-    DropZone,
-  },
-
   data() {
     return {
       imagem5: "/img/imagem5.png",
@@ -92,6 +87,11 @@ export default {
       laudos: [],
       laudo: { checked: false },
     };
+  },
+
+  components: {
+    laudo,
+    DropZone,
   },
 
   methods: {
@@ -109,6 +109,10 @@ export default {
     },
   },
 
+  props: {
+    name: String
+  },
+
   setup() {
     let DropzoneFile = ref("");
 
@@ -122,6 +126,7 @@ export default {
 
     return { DropzoneFile, drop, selectedFile };
   },
+
 };
 </script>
 

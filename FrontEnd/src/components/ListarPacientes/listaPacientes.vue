@@ -19,7 +19,7 @@
       </div>
       <div class="personaMedico">
         <div class="TextPersona">
-          <span class="olaMedido">Olá, Dr. Hans Chucrute</span>
+          <span class="olaMedido">Olá, Dr. {{name}}</span>
           <span class="medico">Médico</span>
         </div>
         <img :src="imagem5" class="imagem5" />
@@ -72,6 +72,9 @@ export default {
       this.ligada = !this.ligada
     }
   },
+  props: {
+    name: String
+  }
 };
 </script>
 
