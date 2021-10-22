@@ -18,7 +18,7 @@
               <span class="tituloVermelho">Paciente</span>
             </h1>
             <form
-              @submit.prevent="addListaPaciente(listasPaciente)"
+              @submit.prevent="$emit('addListaPaciente')"
               class="formulario"
             >
               <div class="entradas">
@@ -112,9 +112,6 @@ export default {
       cadastrar: "/img/Cadastrar Médico.svg",
       nome: "/img/name 1.png",
       ouvircoracao: "/img/ouvircoracao.png",
-      // Lista dos pacientes
-      listaPacientes: [],
-      listasPaciente: { checked: false },
 
       // Variaveis do cadastro
       password: "",
@@ -125,12 +122,6 @@ export default {
     };
   },
   methods: {
-    // Função que adiciona os pacientes e recebe como parâmetro "listasPaciente"
-    addListaPaciente(listasPaciente) {
-      listasPaciente.id = Date.now();
-      this.listaPacientes.push(listasPaciente);
-      this.listasPaciente = { checked: false };
-    },
     // Função que cadastra os pacientes
     cadastrarPaciente() {
       if (this.password == this.confirmPassword) {
@@ -148,7 +139,6 @@ export default {
             this.confirmPassword = "";
             this.cpf = "";
             this.data = "";
-            this.$router.go();
             console.log(res);
           })
           .catch((err) => {

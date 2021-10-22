@@ -15,7 +15,10 @@
             <h1 class="tituloAzul">
               Cadastrar <span class="tituloVermelho">Medico</span>
             </h1>
-            <form class="formulario">
+            <form
+              @submit.prevent="$emit('addListaMedico')"
+              class="formulario"
+            >
               <div class="entradas">
                 <!-- import icon -->
                 <i class="fas fa-user"></i>
@@ -97,60 +100,59 @@
 import axios from "axios";
 
 export default {
-	name: "cadastrarMedico",
-	data() {
-		return {
-			// Nome das imagens que estão sendo utilizadas
-			doctor: "/img/doctor.png",
-			cadastrar: "/img/Cadastrar Médico.svg",
-			nome: "/img/name 1.png",
-			ouvircoracao: "/img/ouvircoracao.png",
+  name: "cadastrarMedico",
+  data() {
+    return {
+      // Nome das imagens que estão sendo utilizadas
+      doctor: "/img/doctor.png",
+      cadastrar: "/img/Cadastrar Médico.svg",
+      nome: "/img/name 1.png",
+      ouvircoracao: "/img/ouvircoracao.png",
 
-			// Variaveis do cadastro do(a) Médico(a)
-			name: "",
-			cpf: "",
-			data: "",
-			password: "",
-			confirmPassword: "",
-		};
-	},
-	methods: {
-		cadastrarMedico() {
-			if (this.password == this.confirmPassword) {
-				this.cpf = this.cpf.replace(/[.-]/g, "");
-				axios.post("http://localhost:8080/user", {
-						name: this.name,
-						password: this.password,
-						cpf: this.cpf,
-						data: this.data,
-            			role: 1
-					})
-					.then((res) => {
-						console.log(res);
-					})
-					.catch((err) => {
-						let msgErro = err.response.data.err;
-						console.log(msgErro);
-					});
-				
-				this.name = "";
-				this.password = "";
-				this.confirmPassword = "";
-				this.cpf = "";
-				this.data = "";
-				this.$emit("esconder");
-				this.$router.go();
-			} else {
-				console.log(
-					"A senha digitada está diferente do campo confirmar senha"
-				);
-				this.$emit("esconder");
-				return {
-					err: "A senha digitada está diferente do campo confirmar senha",
-				};
-			}
-		},
-	},
+      // Variaveis do cadastro do(a) Médico(a)
+      name: "",
+      cpf: "",
+      data: "",
+      password: "",
+      confirmPassword: "",
+    };
+  },
+  methods: {
+    cadastrarMedico() {
+      if (this.password == this.confirmPassword) {
+        this.cpf = this.cpf.replace(/[.-]/g, "");
+        axios
+          .post("http://localhost:8080/user", {
+            name: this.name,
+            password: this.password,
+            cpf: this.cpf,
+            data: this.data,
+            role: 1,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            let msgErro = err.response.data.err;
+            console.log(msgErro);
+          });
+
+        this.name = "";
+        this.password = "";
+        this.confirmPassword = "";
+        this.cpf = "";
+        this.data = "";
+        this.$emit("esconder");
+        this.$router.go();
+      } else {
+        console.log("A senha digitada está diferente do campo confirmar senha");
+        this.$emit("esconder");
+        return {
+          err: "A senha digitada está diferente do campo confirmar senha",
+        };
+      }
+    },
+  },
 };
 </script>
 
