@@ -3,8 +3,8 @@
     <div class="contentCima">
       <div class="MeusPacientes">
         <span class="MeusFiltros">Filtrar por:</span>
-        <button class="btn">
-          <img :src="filtrar" class="imgFiltrar" />
+        <button class="btn" @click="ligarFiltro()">
+          <img :src="filtrar" class="imgFiltrar" :class="{imgFiltrarAtivada : ligada}"/>
           <p class="textPacientes">Meus Pacientes</p>
         </button>
       </div>
@@ -55,6 +55,7 @@ export default {
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
       modalErro: false,
+      ligada: false
     };
   },
   methods: {
@@ -64,6 +65,9 @@ export default {
     ChangeUpload() {
       this.$router.push({ path: "/Login/ListarPacientes/Upload" });
     },
+    ligarFiltro(){
+      this.ligada = !this.ligada
+    }
   },
 };
 </script>
@@ -121,6 +125,11 @@ export default {
   width: 27%;
   align-self: center;
 }
+
+.imgFiltrarAtivada{
+  filter: grayscale(0);
+}
+
 
 .imgFiltrarActive {
   width: 27%;

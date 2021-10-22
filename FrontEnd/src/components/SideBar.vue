@@ -12,8 +12,8 @@
       </div>
     </div>
 
-    <div id="quadrado2">
-      <img :src="logout" id="logout" @click="ChangeLogin" />
+    <div class="btn">
+      <img :src="logout" class="img" @click="ChangeLogin" />
     </div>
 
   </div>
@@ -62,17 +62,8 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-#quadrado2 {
-  width: 3.5vw;
-  height: 8vh;
-  background-color: #12afcb;
-  border-radius: 16px;
-  margin-bottom: 20%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-}
-
-img {
-  height: 8vh;
+.img {
+  width: 4.2vh;
 }
 
 #logout {
@@ -90,6 +81,11 @@ img {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: .4s;
+}
+
+.btn:hover {
+  background-color: #0d8ea5;
 }
 
 .fas {

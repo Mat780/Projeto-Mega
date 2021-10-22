@@ -5,9 +5,7 @@
       <div class="conteiner">
         <div class="pergunta">
           <i class="fas fa-exclamation-triangle"></i>
-          <span class="textPergunta"
-            >Quer realmente excluir esse Medico?</span
-          >
+          <span class="textPergunta">Quer realmente excluir esse Medico?</span>
         </div>
         <div class="btns">
           <button class="btn btnSim" @click="$emit('esconder')">Sim</button>
@@ -30,6 +28,11 @@ export default {
 </script>
 
 <style scoped>
+
+.modal-background {
+  opacity: 80%;
+}
+
 .modal-content {
   width: 25vw;
   display: flex;
@@ -72,7 +75,7 @@ export default {
   color: #fff;
   margin-left: 3%;
   font-size: 1em;
-  transition:  .3s;
+  transition: 0.3s;
   cursor: pointer;
 }
 

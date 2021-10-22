@@ -126,7 +126,7 @@ button {
     color: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: 1.5px solid #2e4a7d;
-    transition: .3s ease all;
+    transition: .5s ease all;
 }
 
 button:hover{

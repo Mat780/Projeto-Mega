@@ -23,15 +23,6 @@
                 />
               </div>
               <div class="entradas">
-                <i class="fas fa-stethoscope"></i>
-                <input
-                  class="medicoResponsavel"
-                  type="text"
-                  placeholder="Digite o medico responsavel"
-                  required
-                />
-              </div>
-              <div class="entradas">
                 <i class="fas fa-address-card"></i>
                 <input
                   v-maska="'###.###.###-##'"
@@ -91,7 +82,7 @@ export default {
 
 <style scoped>
 .modal-background {
-  opacity: 70%;
+  opacity: 80%;
 }
 
 .modal-content {
@@ -170,7 +161,7 @@ export default {
   transition: 0.3s;
   border-radius: 8px;
   font-size: 20px;
-  margin: 4% 0 0 4%;
+  margin: 8% 0 0 4%;
   color: #fff;
   border: none;
   background-color: #2e4a7d;

@@ -30,6 +30,11 @@ export default {
 </script>
 
 <style scoped>
+
+.modal-background {
+  opacity: 80%;
+}
+
 .modal-content {
   width: 25vw;
   display: flex;

@@ -110,12 +110,15 @@ export default {
       if (this.typeSenha == "password") {
         // Caso ele esteja como uma senha ele troca para texto
         this.typeSenha = "text";
-
+        this.tipoPatoSenha = false;
+        this.tipoPatoEscritor = false;
         // E altera o olho para um olho aberto ao invés de fechado
         this.olho = "./img/OlhoAberto.svg";
       } else {
         // Se ele não estiver como senha, troca-se o tipo dela para senha
         this.typeSenha = "password";
+        this.tipoPatoEscritor = false;
+        this.tipoPatoSenha = true;
 
         // E assim o olho se fecha também, para completar o ciclo infinito
         this.olho = "./img/OlhoFechado.svg";
@@ -147,7 +150,7 @@ export default {
       setTimeout(() => {
         this.tipoPatoSenha = false;
         this.tipoPatoEscritor = false;
-      }, 500);
+      }, 1200);
     },
 
     trocaPatoSenha() {
@@ -160,7 +163,7 @@ export default {
         setTimeout(() => {
           this.tipoPatoSenha = false;
           this.tipoPatoEscritor = false;
-        }, 500);
+        }, 1500);
       }
     },
   },

@@ -105,14 +105,11 @@ export default {
 </script>
 
 <style scoped>
-* {
-	font-family: Nunito;
-}
 
 .conteiner {
 	display: flex;
 	width: 100%;
-	padding-bottom: 2vh;
+	padding-bottom: 5vh;
 }
 
 form {

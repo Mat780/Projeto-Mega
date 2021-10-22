@@ -97,7 +97,7 @@ export default {
 
 <style scoped>
 .modal-background {
-  opacity: 70%;
+  opacity: 80%;
 }
 
 .modal-content {

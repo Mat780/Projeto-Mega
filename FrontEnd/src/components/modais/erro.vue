@@ -10,7 +10,8 @@
           </span>
         </div>
         <div class="tipoErro">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laojafiohaisuhlnslhoadhfd
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Laojafiohaisuhlnslhoadhfd
         </div>
         <div class="btns">
           <button class="btn btnSim" @click="$emit('esconder')">Voltar</button>
@@ -32,6 +33,10 @@ export default {
 </script>
 
 <style scoped>
+.modal-background {
+  opacity: 80%;
+}
+
 .modal-content {
   width: 25vw;
   display: flex;
@@ -55,10 +60,10 @@ export default {
   align-self: center;
 }
 
-.texterror{
-    font-size: 28px;
-    position: relative;
-    bottom: 3px;
+.texterror {
+  font-size: 28px;
+  position: relative;
+  bottom: 3px;
 }
 
 .fas {
@@ -67,10 +72,10 @@ export default {
   margin-right: 4%;
 }
 
-.tipoErro{
-    width: 65%;
-    align-self: center;
-    margin: 4% 0 0 12%;
+.tipoErro {
+  width: 65%;
+  align-self: center;
+  margin: 4% 0 0 12%;
 }
 
 .btns {
