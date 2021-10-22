@@ -162,7 +162,7 @@ export default {
 
 <style scoped>
 .modal-background {
-	opacity: 70%;
+  opacity: 80%;
 }
 
 .modal-content {
@@ -170,14 +170,14 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 10px;
 }
 
 .conteinerModalCadastrarPaciente {
-	width: 100%;
-	height: 60vh;
-	background: #fff;
-	border-radius: 8px;
-	display: flex;
+  width: 100%;
+  height: 65vh;
+  background: #fff;
+  display: flex;
 }
 
 .paciente {

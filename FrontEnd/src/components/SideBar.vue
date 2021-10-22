@@ -1,14 +1,21 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
-      <!-- Imagem do patinho -->
-      <img :src="pato" style="height: 4em" />
+      <img :src="pato" class="pato" />
+    </div>
+    <div>
+      <div class="btn adm" @click="voltarAdm">
+        <i class="fas fa-address-card"></i>
+      </div>
+      <div class="btn addPaciente" @click="$emit('aparecer')">
+        <i class="fas fa-user-plus"></i>
+      </div>
     </div>
 
-    <div id="quadrado2">
-      <!-- Imagem da portinha que ao clicar vai para função "ChangeLogin()" -->
-      <img :src="logout" id="logout" @click="ChangeLogin" />
+    <div class="btn">
+      <img :src="logout" class="img" @click="ChangeLogin" />
     </div>
+
   </div>
 </template>
 
@@ -17,16 +24,17 @@ export default {
   name: "SideBar",
   data() {
     return {
-      // Nome das imagens que estão sendo utilizadas
       pato: "/img/DuckHealth.png",
       logout: "/img/logout.png",
     };
   },
   methods: {
-    // Função que ao sere ativada ela irá sair da página "Adm" e ir para "Login"
     ChangeLogin() {
       localStorage.removeItem('token');
       this.$router.push({ path: "/Login" });
+    },
+     voltarAdm() {
+      this.$router.push({ path: "/Login/Adm" });
     },
   },
 };
@@ -49,22 +57,39 @@ export default {
   width: 5vw;
   border-radius: 8px;
   display: flex;
-  margin-top: 20%;
+  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
 }
-#quadrado2 {
+
+.img {
+  width: 4.2vh;
+}
+
+#logout {
+  cursor: pointer;
+}
+
+.btn {
   width: 3.5vw;
   height: 8vh;
   background-color: #12afcb;
   border-radius: 16px;
   margin-bottom: 20%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.20);
-}
-
-img{
-  height: 8vh;
-}
-
-#logout {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  transition: .4s;
+}
+
+.btn:hover {
+  background-color: #0d8ea5;
+}
+
+.fas {
+  font-size: 25px;
 }
 </style>

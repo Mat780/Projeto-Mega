@@ -8,8 +8,8 @@ router.use(cors());
 const UserController = require("../controllers/UserController");
 const LaudoController = require("../controllers/LaudoController");
 const adminAuth = require("../middleware/admAuth");
-const medicoAuth = require("../middleware/admAuth");
-const pacienteAuth = require("../middleware/admAuth");
+const medicoAuth = require("../middleware/medAuth");
+const pacienteAuth = require("../middleware/pacienteAuth");
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
