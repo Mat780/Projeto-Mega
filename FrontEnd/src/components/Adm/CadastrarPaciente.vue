@@ -83,6 +83,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- "Botão" para fechar o modal que ocupa o resto da tela -->
 			<button
 				class="modal-close is-large"
 				aria-label="close"

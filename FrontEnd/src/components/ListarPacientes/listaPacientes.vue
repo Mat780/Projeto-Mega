@@ -51,6 +51,7 @@ export default {
   },
   data() {
     return {
+      // Nome das imagens que estão sendo utilizadas no código
       filtrar: "../img/filtrar.png",
       pesquisar: "../img/pesquisar.png",
       imagem5: "../img/imagem5.png",
@@ -59,9 +60,11 @@ export default {
     };
   },
   methods: {
+    // Função que esconde o erro
     esconderErro() {
       this.modalErro = false;
     },
+    // Função que muda para Upload
     ChangeUpload() {
       this.$router.push({ path: "/Login/ListarPacientes/Upload" });
     },

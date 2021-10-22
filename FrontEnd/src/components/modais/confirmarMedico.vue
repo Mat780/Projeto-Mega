@@ -3,16 +3,24 @@
     <div class="modal-background" @click="$emit('esconder')"></div>
     <div class="modal-content">
       <div class="conteiner">
+        <!-- Perguntar se quer msm excluir -->
         <div class="pergunta">
+          <!-- Importanto icon -->
           <i class="fas fa-exclamation-triangle"></i>
-          <span class="textPergunta">Quer realmente excluir esse Medico?</span>
+          <!-- Mensagem crua -->
+          <span class="textPergunta"
+            >Quer realmente excluir esse Medico?</span
+          >
         </div>
         <div class="btns">
+          <!-- Botão sim -->
           <button class="btn btnSim" @click="$emit('esconder')">Sim</button>
+          <!-- Botão não -->
           <button class="btn btnNao" @click="$emit('esconder')">Não</button>
         </div>
       </div>
     </div>
+    <!-- Botão -->
     <button
       class="modal-close is-large"
       aria-label="close"

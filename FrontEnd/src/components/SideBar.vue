@@ -1,13 +1,16 @@
 <template>
   <div id="sidebar">
     <div id="quadrado1">
+      <!-- Imagem pato -->
       <img :src="pato" class="pato" />
     </div>
     <div>
       <div class="btn adm" @click="voltarAdm">
+        <!-- Importanto icon -->
         <i class="fas fa-address-card"></i>
       </div>
       <div class="btn addPaciente" @click="$emit('aparecer')">
+        <!-- Importanto icon -->
         <i class="fas fa-user-plus"></i>
       </div>
     </div>
@@ -15,7 +18,6 @@
     <div class="btn">
       <img :src="logout" class="img" @click="ChangeLogin" />
     </div>
-
   </div>
 </template>
 
@@ -33,7 +35,8 @@ export default {
       localStorage.removeItem('token');
       this.$router.push({ path: "/Login" });
     },
-     voltarAdm() {
+    // Função que executa "voltarAdm()"
+    voltarAdm() {
       this.$router.push({ path: "/Login/Adm" });
     },
   },

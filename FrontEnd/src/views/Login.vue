@@ -1,24 +1,24 @@
 <template>
-    <div>
-        <div id="LoginBlock">
-            <div>
-                <div id='LoginTopoBotao'>
-                    <button id='LoginBotao' @click="Voltar">
-                        <img id='LoginImgBotao' :src="DuckHealth2">
-                    </button>
-                    <div>
-
-                    </div>
-                </div>
-                <img id='LoginImg1' :src="Bg1">
-            </div>
-            <div id="LoginBox">
-                <FazerLogin/>
-            </div>
-            <div>
-                <img id="LoginImg2" :src="Bg2">
-            </div>
+    <div id="LoginBlock">
+      <div>
+        <div id="LoginTopoBotao">
+          <!-- Botão que executa "Voltar"-->
+          <button id="LoginBotao" @click="Voltar">
+            <!-- Imagem que está sendo utilizada no Código -->
+            <img id="LoginImgBotao" :src="DuckHealth2" />
+          </button>
+          <div></div>
         </div>
+        <!-- Imagem que está sendo utilizada no Código -->
+        <img id="LoginImg1" :src="Bg1" />
+      </div>
+      <div id="LoginBox">
+        <FazerLogin />
+      </div>
+      <div>
+        <!-- Imagem que está sendo utilizada no Código -->
+        <img id="LoginImg2" :src="Bg2" />
+      </div>
     </div>
 </template>
 
@@ -32,6 +32,7 @@ export default {
     },
     data(){
         return{
+             // Nome das imagens que estão sendo utilizadas no código
             DuckHealth: '/img/DuckHealth.svg',
             DuckHealth2: '/img/DuckHealth.png',
             Bg1: '/img/LoginBg1.svg',

@@ -141,7 +141,7 @@ export default {
       this.tipoPatoEscritor = false;
       this.tipoPatoSenha = false;
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoEscritor() {
       this.tipoPatoEscritor = true;
       this.tipoPatoSenha = false;
@@ -150,7 +150,7 @@ export default {
         this.tipoPatoEscritor = false;
       }, 1200);
     },
-
+    // Função que executa "trocaPatoParado()"
     trocaPatoSenha() {
       if (this.typeSenha == "password") {
         this.tipoPatoSenha = true;
