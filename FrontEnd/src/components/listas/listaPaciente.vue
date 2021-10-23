@@ -1,7 +1,10 @@
 <template>
   <div class="listaFilhas">
     <div class="detalheAzulFilha"></div>
-    <div class="textos"></div>
+    <div class="textos">
+      <span class="cardNameAdm">{{this.name}}</span>
+      <span class="cardCpfAdm">{{this.cardCpf}}</span>
+    </div>
     <div class="btns">
       <!-- Botão que executa a função "AparecerEditarPaciente()" -->
       <button class="btn btn2" @click="AparecerEditarPaciente">
@@ -17,11 +20,12 @@
     <confirmarPaciente
       :class="{ modal: true, 'is-active': modalExcluirPaciente }"
       @esconder="esconderExcluirPaciente"
-      @remove="remove"
+      @remove="excluirPaciente"
     />
     <editarPaciente
       :class="{ modal: true, 'is-active': modalEditarPaciente }"
       @esconder="esconderEditarPaciente"
+      :cpfProps="this.cpf"
     />
   </div>
 </template>
@@ -32,7 +36,9 @@ import editarPaciente from "../Adm/EditarPaciente.vue";
 
 export default {
   props: {
-    listaPaciente: { type: Object, required: true },
+    name: String,
+    cpf: String,
+    idPaciente: Number,
   },
   components: {
     confirmarPaciente,
@@ -45,6 +51,7 @@ export default {
       editar: "img/LaudoImg.png",
       modalExcluirPaciente: false,
       modalEditarPaciente: false,
+      cardCpf: "",
     };
   },
   methods: {
@@ -65,10 +72,38 @@ export default {
       this.modalEditarPaciente = false;
     },
     // Função que executa "remove(laudo)"
-    remove(listaDePaciente) {
-      this.$emit("remove", listaDePaciente);
+    excluirPaciente(){
+      this.$emit("remove", this.cpf);
     },
+
+    cpfApplier(){
+      let cpfMudado = "";
+      cpfMudado = cpfMudado + this.cpf[0];
+      cpfMudado = cpfMudado + this.cpf[1];
+      cpfMudado = cpfMudado + this.cpf[2];
+      cpfMudado = cpfMudado + "."
+
+      cpfMudado = cpfMudado + this.cpf[3];
+      cpfMudado = cpfMudado + this.cpf[4];
+      cpfMudado = cpfMudado + this.cpf[5];
+      cpfMudado = cpfMudado + "."
+
+      cpfMudado = cpfMudado + this.cpf[6];
+      cpfMudado = cpfMudado + this.cpf[7];
+      cpfMudado = cpfMudado + this.cpf[8];
+      cpfMudado = cpfMudado + '-'
+      
+      cpfMudado = cpfMudado + this.cpf[9];
+      cpfMudado = cpfMudado + this.cpf[10];
+
+      this.cardCpf = cpfMudado;
+    }
+    
   },
+
+  beforeMount(){
+    this.cpfApplier();
+  }
 };
 </script>
 
@@ -92,6 +127,23 @@ export default {
 .textos {
   width: 70%;
   height: 100%;
+  padding-left: 3%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardNameAdm{
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2e4a7d;
+}
+
+.cardCpfAdm{
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #2e4a7db4;
 }
 
 .btns {

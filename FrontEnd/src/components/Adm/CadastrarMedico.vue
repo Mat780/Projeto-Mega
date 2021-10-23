@@ -129,6 +129,7 @@ export default {
             this.cpf = "";
             this.data = "";
             console.log(res);
+            this.$router.go();
           })
           .catch((err) => {
             let msgErro = err.response.data.err;

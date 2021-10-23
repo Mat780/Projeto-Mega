@@ -44,13 +44,14 @@ router.get('/user', UserController.index);
 router.get('/user/:id', UserController.findUser);
 router.get('/pacientes', UserController.pullPacientes);
 router.get('/medicos', UserController.pullMedicos);
-
+router.get('/user/:cpf', UserController.findUserWithCpf);
 
 router.post('/user', UserController.createNewUser); // REQ: CPF , NAME , PASSWORD
 router.post('/recoverpassword', UserController.recoverPassword); // REQ JSON: CPF
 router.post('/changepassword', UserController.changePassword); // REQ JSON: TOKEN, PASSWORD
 router.post('/login', UserController.login); // REQ JSON: CPF, SENHA
 router.post('/laudos', LaudoController.pullLaudos);
+
 
 router.post('/login/adm', adminAuth, UserController.validate); 
 router.post('/login/medico', medicoAuth, UserController.validate);

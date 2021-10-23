@@ -9,7 +9,6 @@ class User{
             let result = await knex.select(["id", "nome", "cpf"]).table("usuario");
             return result;
         }catch(err){
-            console.log(err);
             return [];
         }
 
@@ -29,7 +28,6 @@ class User{
             }
 
         }catch(err){
-            console.log(err);
             //FALTA MUDAR AQUI: RAUL
             return undefined;
         }
@@ -49,7 +47,6 @@ class User{
                 }
     
             }catch(err){
-                console.log(err);
                 return {status: false, err: "Erro ao achar o usuario"};
             }
         }else{
@@ -107,37 +104,35 @@ class User{
             let result = await this.findCPF(cpf);
                     if(!result){
                         await knex.insert({cpf, senha:password, nome:name, role: role}).table("usuario").catch(err =>{
-                            console.log(err);
+
                             return {status: false, err: "Erro ao cadastrar usuario"};
                         });
 
                         await knex.select('id').where('cpf', cpf).table("usuario").then(dataIn =>{
-                            console.log(role);
+
                             if(role == 0){
                                 knex.insert({idUser: dataIn[0].id, medicoResp: data}).table("paciente").then(d =>{
-                                    console.log(d);
+
                                 }).catch(err =>{
-                                    console.log(err);
+
                                     return {status: false, err: "Erro ao cadastrar paciente"};
                                 });
                             } else if(role == 1){
                                 knex.insert({idUser: dataIn[0].id, especialidade: data}).table("medico").then(d =>{
-                                    console.log(d);
+
                                 }).catch(err =>{
-                                    console.log(err);
+
                                     return {status: false, err: "Erro ao cadastrar médico"};
                                 });
                             } else if(role == 2){
                                 knex.insert({idUser: dataIn[0].id, especialidade: data}).table("administrador").then(d =>{
-                                    console.log(d);
+
                                 }).catch(err =>{
-                                    console.log(err);
+
                                     return {status: false, err: "Erro ao cadastrar administrador"};
                                 });
                             }
 
-                        }).catch(err =>{
-                            console.log(err);
                         })
     
 
@@ -155,7 +150,7 @@ class User{
 
         try{
             let result = await knex.select("*").from("usuario").where({cpf: cpf});
-            console.log(result);
+
             if(result.length > 0){
                 return true;
             }else{
@@ -163,7 +158,6 @@ class User{
             }
 
         }catch(err){
-            console.log(err);
             return false;
         }
 
@@ -201,12 +195,12 @@ class User{
             
             try{
                 await knex.update(editUser).where({id: user.id}).table("usuario").catch(err => {
-                    console.log(err);
+
                     return {status: false, err: "Erro ao atualizar tabela usuario"};
                 });
                 
                 let role = await knex.select("role").table("usuario").where({id: user.id}).catch(err => {
-                    console.log(err);
+
                     return {status: false, err: "Erro ao pegar a role de usuario"}
                 })
 
@@ -215,16 +209,16 @@ class User{
 
                 if(role == 1 || role == 2) {
                     await knex.update({especialidade: data}).where({idUser: user.id}).table("medico").then(d =>{
-                        console.log(d);
+
                     }).catch( err => {
-                        console.log(err);
+
                         return {status: false, err: "Erro ao atualizar tabela medico"};
                     });
                 }
                 
                 return {status: true}
             }catch(err){
-                console.log(err);
+
                 return {status: false, err: "O usuario não existe"};
             }
 
@@ -234,12 +228,12 @@ class User{
 
     }
 
-    async deleteUser(id){
-        var user = await this.findById(id, "usuario");
+    async deleteUser(cpf){
+        var user = await this.findByCPF(cpf);
 
         if(user != undefined){
             try{
-                await knex.delete().where({id: id}).table("usuario");
+                await knex.delete().where({cpf: cpf}).table("usuario");
                 return {status: true};
             }catch(err){
                 return {status: false, err: "Ocorreu um erro durante o delete"}
@@ -264,7 +258,7 @@ class User{
                                 .innerJoin("usuario", "usuario.id", "paciente.idUser");
             return result;
         }catch(err){
-            console.log(err);
+
             return [];
         }
     }
@@ -277,7 +271,7 @@ class User{
                                 .innerJoin("usuario", "usuario.id", "medico.idUser");
             return result;
         }catch(err){
-            console.log(err);
+
             return [];
         }
     }
@@ -290,7 +284,7 @@ class User{
                 .innerJoin("medico", "medico.idUser", "usuario.id")
             
         }catch(err){
-            console.log(err);
+
             return {status: false, err: "Erro ao achar o medico informado"};
         }
 

@@ -105,6 +105,10 @@ export default {
       data: "",
     };
   },
+  props: {
+    cpfProps: String,
+  },
+
   methods: {
     // Função que executa "editar()"
     editar() {
@@ -119,6 +123,7 @@ export default {
             cpf: this.cpf,
           })
           .then((res) => {
+            this.$router.go();
             console.log(res);
           })
           .catch((err) => {
@@ -139,7 +144,14 @@ export default {
         };
       }
     },
+
+    pullInfo(){
+      axios.get("http://localhost:8080/user/" + this.cpfProps).then((data =>{
+        console.log(data);
+      }))
+    }
   },
+
 };
 </script>
 

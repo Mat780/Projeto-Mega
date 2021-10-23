@@ -1,7 +1,10 @@
 <template>
   <div class="listaFilhas">
     <div class="detalheAzulFilha"></div>
-    <div class="textos"></div>
+    <div class="textos">
+      <span class="cardNameAdm">{{this.name}}</span>
+      <span class="cardCpfAdm">{{this.cardCpf}}</span>
+    </div>
     <div class="btns">
       <!-- Ao clicar nesse botão irá executar a função "AparecerEditarMedico()" -->
       <button class="btn btn2" @click="AparecerEditarMedico">
@@ -32,7 +35,9 @@ import editarMedico from "../Adm/EditarMedico.vue";
 
 export default {
   props: {
-    listaMedico: { type: Object, required: true },
+    name: String,
+    cpf: String,
+    idMedico: Number
   },
   components: {
     editarMedico,
@@ -45,6 +50,7 @@ export default {
       editar: "img/LaudoImg.png",
       modalExcluirMedico: false,
       modalEditarMedico: false,
+      cardCpf: ""
     };
   },
   methods: {
@@ -64,11 +70,36 @@ export default {
     esconderExcluirMedico() {
       this.modalExcluirMedico = false;
     },
-    // Função que executa "remove(medico)"
-    remover(listaDeMedico) {
-      this.$emit("remover", listaDeMedico);
-    },
+    
+    cpfApplier(){
+      let cpfMudado = "";
+      cpfMudado = cpfMudado + this.cpf[0];
+      cpfMudado = cpfMudado + this.cpf[1];
+      cpfMudado = cpfMudado + this.cpf[2];
+      cpfMudado = cpfMudado + "."
+
+      cpfMudado = cpfMudado + this.cpf[3];
+      cpfMudado = cpfMudado + this.cpf[4];
+      cpfMudado = cpfMudado + this.cpf[5];
+      cpfMudado = cpfMudado + "."
+
+      cpfMudado = cpfMudado + this.cpf[6];
+      cpfMudado = cpfMudado + this.cpf[7];
+      cpfMudado = cpfMudado + this.cpf[8];
+      cpfMudado = cpfMudado + '-'
+      
+      cpfMudado = cpfMudado + this.cpf[9];
+      cpfMudado = cpfMudado + this.cpf[10];
+
+      this.cardCpf = cpfMudado;
+    }
+    
   },
+
+  beforeMount(){
+    this.cpfApplier();
+  }
+  
 };
 </script>
 
@@ -92,6 +123,23 @@ export default {
 .textos {
   width: 70%;
   height: 100%;
+  padding-left: 3%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardNameAdm{
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2e4a7d;
+}
+
+.cardCpfAdm{
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #2e4a7db4;
 }
 
 .btns {

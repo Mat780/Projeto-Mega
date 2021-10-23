@@ -19,12 +19,25 @@
       <hr class="linha" />
       <div class="listas">
         <!-- Pacientes -->
-        <listaPaciente
-          v-for="lP in listaDePacientes.slice().reverse()"
-          :key="lP.id"
-          @remove="removeListaPaciente"
-          :listaPaciente="lp"
+
+        <ListaPaciente
+          v-for="lP in listaPacientes.slice()"
+          :key="lP.idUser"
+          @remove="removerUsuario"
+          :name="lP.name"
+          :cpf="lP.cpf"
+          :idPaciente="lP.idPaciente"
         />
+
+        <!-- <Laudo
+            v-for="l in laudos.slice()"
+            :key="l.idPaciente"
+            @remove="removeLista"
+            :laudo="l"
+            :name="nomeMedico"
+            :file="DropzoneFile.value"
+          /> -->
+
       </div>
       <!-- listas -->
     </div>
@@ -47,11 +60,13 @@
       <hr class="linha" />
       <div class="listas">
         <!-- Médico -->
-        <listaMedico
-          v-for="lM in listaDeMedicos.slice().reverse()"
+        <ListaMedico
+          v-for="lM in listaMedicos.slice().reverse()"
           :key="lM.id"
           @remover="removeListaMedico"
-          :listaMedico="lm"
+          :name="lM.name"
+          :cpf="lM.cpf"
+          :idMedico="lM.idMedico"
         />
       </div>
       <!-- listas -->
@@ -59,12 +74,10 @@
     <!-- content2 -->
     <cadastrarPaciente
       :class="{ modal: true, 'is-active': modalCadastrarPaciente }"
-      @addListaPaciente="addPaciente(listaDePaciente)"
       @esconder="esconderCadastroPaciente"
     />
     <cadastrarMedico
       :class="{ modal: true, 'is-active': modalCadastrarMedico }"
-      @addListaMedico="addMedico(listaDeMedico)"
       @esconder="esconderCadastrarMedico"
     />
   </div>
@@ -74,8 +87,8 @@
 <script>
 import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
-import listaPaciente from "../listas/listaPaciente.vue";
-import listaMedico from "../listas/listaMedico.vue";
+import ListaPaciente from "../listas/listaPaciente.vue";
+import ListaMedico from "../listas/listaMedico.vue";
 import axios from "axios"
 
 export default {
@@ -83,8 +96,8 @@ export default {
   components: {
     cadastrarPaciente,
     cadastrarMedico,
-    listaPaciente,
-    listaMedico,
+    ListaPaciente,
+    ListaMedico,
   },
   data() {
     return {
@@ -97,10 +110,9 @@ export default {
       // Modal que recebe false pra não executar diretamente tal função
       modalCadastrarPaciente: false,
       modalCadastrarMedico: false,
-      listaDePacientes: [],
-      listaDePaciente: { checked: false },
-      listaDeMedicos: [],
-      listaDeMedico: { checked: false },
+      listaPacientes: [],
+      listaMedicos: [],
+
     };
   },
   methods: {
@@ -120,52 +132,47 @@ export default {
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
-    // Adiciona as lista de Pacientes
-    addPaciente(listaDePaciente) {
-      listaDePaciente.id = Date.now();
-      this.listaDePacientes.push(listaDePaciente);
-      this.listaDePaciente = { checked: false };
+
+    // remove o usuário
+    removerUsuario(cpf) {
+      axios.delete("http://localhost:8080/user/" + cpf);
+      this.$router.go();
     },
-    // remove as lista de Pacientes
-    removeListaPaciente(listaDePaciente) {
-      if (listaDePaciente) {
-        console.log(listaDePaciente);
-        const index = this.listaDePacientes.findIndex(
-          (item) => item.id === listaDePaciente.id
-        );
-        this.listaDePacientes.splice(index, 1);
-      }
-    },
-    // Adiciona as lista de Medicos
-    addMedico(listaDeMedico) {
-      listaDeMedico.id = Date.now();
-      this.listaDeMedicos.push(listaDeMedico);
-      this.listaDeMedico = { checked: false };
-    },
-    // remove as lista de Medicos
-    removeListaMedico(listaDeMedico) {
-      if (listaDeMedico) {
-        console.log(listaDeMedico);
-        const index = this.listaDeMedicos.findIndex(
-          (item) => item.id === listaDeMedico.id
-        );
-        this.listaDeMedicos.splice(index, 1);
-      }
-    },
+    
     pullPacientes(){
       axios.get("http://localhost:8080/pacientes").then(data => {
-        console.log(data);
+        console.log(data.data);
+        data.data.forEach((value, index) => {
+          let lista = {}
+
+          lista.idPaciente = value.idPaciente;
+          lista.cpf = value.cpf;
+          lista.name = value.nome;
+
+          this.listaPacientes[index] = lista;
+        })
       })
     },
     pullMedicos(){
       axios.get("http://localhost:8080/medicos").then(data => {
-        console.log(data);
+        console.log(data.data);
+        data.data.forEach((value, index) => {
+          let lista = {}
+          
+          lista.idMedico = value.idMedico;
+          lista.cpf = value.cpf;
+          lista.name = value.nome;
+
+          this.listaMedicos[index] = lista;
+        })
       })
-    }
+    },
+    
   },
 
   beforeMount(){
-
+    this.pullPacientes();
+    this.pullMedicos();
   }
 };
 </script>
@@ -250,7 +257,7 @@ export default {
 .listas {
   width: 91%;
   height: 72%;
-  margin-top: 3%;
+  margin-bottom: 3%;
   overflow-y: scroll;
 }
 

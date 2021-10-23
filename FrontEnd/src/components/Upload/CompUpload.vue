@@ -170,7 +170,6 @@ export default {
             
 
             this.laudos[index] = laudo;
-            console.log(this.laudos)
           })
         }
 

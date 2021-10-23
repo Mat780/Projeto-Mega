@@ -263,7 +263,7 @@ export default {
   overflow-y: scroll;
   display: grid;
   grid-row-gap: 3vh;
-  grid-template-columns: auto auto 60vh;
+  grid-template-columns: 22em 22em 22em;
 }
 
 </style>
