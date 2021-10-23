@@ -14,7 +14,7 @@
         </div>
         <div class="btns">
           <!-- Botão sim -->
-          <button class="btn btnSim" @click="$emit('esconder')">Sim</button>
+          <button class="btn btnSim" @click="$emit('remove', true)">Sim</button>
           <!-- Botão não -->
           <button class="btn btnNao" @click="$emit('esconder')">Não</button>
         </div>

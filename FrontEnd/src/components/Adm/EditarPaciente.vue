@@ -105,11 +105,16 @@ export default {
       data: "",
     };
   },
+  props: {
+    cpfProps: String,
+  },
+
   methods: {
     // Função que executa "editar()"
     editar() {
       if (this.password == this.confirmPassword) {
         this.cpf = this.cpf.replace(/[.-]/g, "");
+        console.log(this.name + " " + this.password + " " + this.cpf);
         axios
           .put("http://localhost:8080/user", {
             id: this.id,
@@ -118,16 +123,18 @@ export default {
             cpf: this.cpf,
           })
           .then((res) => {
+            this.$router.go();
             console.log(res);
           })
           .catch((err) => {
             console.log(err);
           });
 
-        this.name = "";
-        this.password = "";
-        this.cpf = "";
-        this.$router.go();
+        // this.name = "";
+        // this.password = "";
+        // this.cpf = "";
+        // this.confirmPassword = "";
+        // this.$router.go();
         this.$emit("esconder");
       } else {
         this.$emit("esconder");
@@ -137,7 +144,14 @@ export default {
         };
       }
     },
+
+    pullInfo(){
+      axios.get("http://localhost:8080/user/" + this.cpfProps).then((data =>{
+        console.log(data);
+      }))
+    }
   },
+
 };
 </script>
 

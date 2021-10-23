@@ -5,7 +5,7 @@
       <div class=".identificacao identificacao">
         <div style="display: flex; width: 100%;">
           <!-- Imagem que está sendo utilizada no código -->
-          <img :src="imagem8" class="imagems imagem8" />
+          <img :src="imagem8" class="imagems imagem8" @click="pullPacientes()" />
           <!-- Título  -->
           <h2 class="titulo">Lista de Pacientes</h2>
         </div>
@@ -18,23 +18,26 @@
       <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
-        <!-- add v-for aqui -->
-        <div class="listaFilhas">
-          <div class="detalheAzulFilha"></div>
-          <div class="textos"></div>
-          <div class="btns">
-            <!-- Botão que executa a função "AparecerEditarPaciente()" -->
-            <button class="btn btn2" @click="AparecerEditarPaciente">
-              <!-- Imagem de editar -->
-              <img :src="editar" class="btn2Editar" />
-            </button>
-            <!-- Ao clicar nesse botão irá executar a função "AparecerExcluirPaciente()" -->
-            <button class="btn btn3" @click="AparecerExcluirPaciente">
-              <!-- Imagem que está sendo utilizada no código -->
-              <img :src="excluir" class="btn3Excluir" />
-            </button>
-          </div>
-        </div>
+        <!-- Pacientes -->
+
+        <ListaPaciente
+          v-for="lP in listaPacientes.slice()"
+          :key="lP.idUser"
+          @remove="removerUsuario"
+          :name="lP.name"
+          :cpf="lP.cpf"
+          :idPaciente="lP.idPaciente"
+        />
+
+        <!-- <Laudo
+            v-for="l in laudos.slice()"
+            :key="l.idPaciente"
+            @remove="removeLista"
+            :laudo="l"
+            :name="nomeMedico"
+            :file="DropzoneFile.value"
+          /> -->
+
       </div>
       <!-- listas -->
     </div>
@@ -43,7 +46,7 @@
       <div class="identificacao identificacao2">
         <div style="display: flex; width: 100%;">
           <!-- Imagem que está sendo usada no código -->
-          <img :src="imagem5" class="imagems imagem5" />
+          <img :src="imagem5" class="imagems imagem5" @click="pullMedicos()"/>
           <!-- Título -->
           <h2 class="titulo tituloM">Lista de Médicos</h2>
         </div>
@@ -56,23 +59,15 @@
       <!-- Linha divisória -->
       <hr class="linha" />
       <div class="listas">
-        <!-- add v-for aqui -->
-        <div class="listaFilhas">
-          <div class="detalheAzulFilha"></div>
-          <div class="textos"></div>
-          <div class="btns">
-            <!-- Ao clicar nesse botão irá executar a função "AparecerEditarMedico()" -->
-            <button class="btn btn2" @click="AparecerEditarMedico">
-              <!-- Imagem de editar -->
-              <img :src="editar" class="btn2Editar" />
-            </button>
-            <!-- Ao clicar nesse botão irá executar a função "aparecerExcluirMedico()" -->
-            <button class="btn btn3" @click="aparecerExcluirMedico">
-              <!-- Imagem de "excluir" -->
-              <img :src="excluir" class="btn3Excluir" />
-            </button>
-          </div>
-        </div>
+        <!-- Médico -->
+        <ListaMedico
+          v-for="lM in listaMedicos.slice().reverse()"
+          :key="lM.id"
+          @remover="removeListaMedico"
+          :name="lM.name"
+          :cpf="lM.cpf"
+          :idMedico="lM.idMedico"
+        />
       </div>
       <!-- listas -->
     </div>
@@ -85,22 +80,6 @@
       :class="{ modal: true, 'is-active': modalCadastrarMedico }"
       @esconder="esconderCadastrarMedico"
     />
-    <editarMedico
-      :class="{ modal: true, 'is-active': modalEditarMedico }"
-      @esconder="esconderEditarMedico"
-    />
-    <editarPaciente
-      :class="{ modal: true, 'is-active': modalEditarPaciente }"
-      @esconder="esconderEditarPaciente"
-    />
-    <confirmarPaciente
-      :class="{ modal: true, 'is-active': modalExcluirPaciente }"
-      @esconder="esconderExcluirPaciente"
-    />
-    <confirmarMedico
-      :class="{ modal: true, 'is-active': modalExcluirMedico }"
-      @esconder="esconderExcluirMedico"
-    />
   </div>
   <!-- conteiner -->
 </template>
@@ -108,20 +87,17 @@
 <script>
 import cadastrarPaciente from "./CadastrarPaciente.vue";
 import cadastrarMedico from "./CadastrarMedico.vue";
-import editarMedico from "./EditarMedico.vue";
-import editarPaciente from "./EditarPaciente.vue";
-import confirmarPaciente from "../modais/confirmarPaciente.vue";
-import confirmarMedico from "../modais/confirmarMedico.vue";
+import ListaPaciente from "../listas/listaPaciente.vue";
+import ListaMedico from "../listas/listaMedico.vue";
+import axios from "axios"
 
 export default {
   name: "administracao",
   components: {
     cadastrarPaciente,
     cadastrarMedico,
-    editarMedico,
-    editarPaciente,
-    confirmarPaciente,
-    confirmarMedico,
+    ListaPaciente,
+    ListaMedico,
   },
   data() {
     return {
@@ -133,11 +109,10 @@ export default {
       editar: "img/LaudoImg.png",
       // Modal que recebe false pra não executar diretamente tal função
       modalCadastrarPaciente: false,
-      modalEditarPaciente: false,
       modalCadastrarMedico: false,
-      modalEditarMedico: false,
-      modalExcluirPaciente: false,
-      modalExcluirMedico: false,
+      listaPacientes: [],
+      listaMedicos: [],
+
     };
   },
   methods: {
@@ -145,51 +120,60 @@ export default {
     esconderCadastroPaciente() {
       this.modalCadastrarPaciente = false;
     },
-    // Função que executa "esconderEditarPaciente()"
-    esconderEditarPaciente() {
-      this.modalEditarPaciente = false;
-    },
     // Função que executa "esconderCadastrarMedico()"
     esconderCadastrarMedico() {
       this.modalCadastrarMedico = false;
-    },
-    // Função que executa "esconderEditarMedico()"
-    esconderEditarMedico() {
-      this.modalEditarMedico = false;
     },
     // Função que executa "AparecerCadastrarPaciente()"
     AparecerCadastrarPaciente() {
       this.modalCadastrarPaciente = true;
     },
-    // Função que executa "AparecerEditarPaciente()"
-    AparecerEditarPaciente() {
-      this.modalEditarPaciente = true;
-    },
     // Função que executa "AparecerCadastrarMedico()"
     AparecerCadastrarMedico() {
       this.modalCadastrarMedico = true;
     },
-    // Função que executa "AparecerEditarMedico()"
-    AparecerEditarMedico() {
-      this.modalEditarMedico = true;
+
+    // remove o usuário
+    removerUsuario(cpf) {
+      axios.delete("http://localhost:8080/user/" + cpf);
+      this.$router.go();
     },
-    // Função que aparece o "AparecerExcluirPaciente()"
-    AparecerExcluirPaciente() {
-      this.modalExcluirPaciente = true;
+    
+    pullPacientes(){
+      axios.get("http://localhost:8080/pacientes").then(data => {
+        console.log(data.data);
+        data.data.forEach((value, index) => {
+          let lista = {}
+
+          lista.idPaciente = value.idPaciente;
+          lista.cpf = value.cpf;
+          lista.name = value.nome;
+
+          this.listaPacientes[index] = lista;
+        })
+      })
     },
-    // Função que esconde o "esconderExcluirPaciente()"
-    esconderExcluirPaciente() {
-      this.modalExcluirPaciente = false;
+    pullMedicos(){
+      axios.get("http://localhost:8080/medicos").then(data => {
+        console.log(data.data);
+        data.data.forEach((value, index) => {
+          let lista = {}
+          
+          lista.idMedico = value.idMedico;
+          lista.cpf = value.cpf;
+          lista.name = value.nome;
+
+          this.listaMedicos[index] = lista;
+        })
+      })
     },
-    // Função que aoarece o "aparecerExcluirMedico()"
-    aparecerExcluirMedico() {
-      this.modalExcluirMedico = true;
-    },
-    // Função que esconde o "esconderExcluirMedico()"
-    esconderExcluirMedico() {
-      this.modalExcluirMedico = false;
-    },
+    
   },
+
+  beforeMount(){
+    this.pullPacientes();
+    this.pullMedicos();
+  }
 };
 </script>
 
@@ -229,6 +213,7 @@ export default {
   font-size: 1.5em;
   align-self: center;
   margin-left: 2%;
+  color: #2e4a7d;
 }
 
 .tituloM {
@@ -272,7 +257,7 @@ export default {
 .listas {
   width: 91%;
   height: 72%;
-  margin-top: 3%;
+  margin-bottom: 3%;
   overflow-y: scroll;
 }
 

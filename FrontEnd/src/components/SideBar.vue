@@ -6,18 +6,22 @@
     </div>
     <div>
       <div class="btn adm" @click="voltarAdm" v-if="adm">
-        <!-- Importanto icon -->
+        <!-- Importando icon -->
         <i class="fas fa-address-card"></i>
       </div>
       <div class="btn addPaciente" @click="$emit('aparecer')" v-if="addPaciente">
-        <!-- Importanto icon -->
+        <!-- Importando icon -->
         <i class="fas fa-user-plus"></i>
+      </div>
+      <div class="btn pacienteEstorado" @click="irListarPaciente()" v-if="listaPaciente">
+        <!-- importando icon -->
+        <i class="fas fa-user-injured"></i>
       </div>
     </div>
 
-    <div class="btn">
+    <div class="btn" @click="ChangeLogin">
       <!-- Imagem do logout -->
-      <img :src="logout" class="img" @click="ChangeLogin" />
+      <img :src="logout" class="img"/>
     </div>
   </div>
 </template>
@@ -34,7 +38,8 @@ export default {
 
   props: {
     adm: Boolean,
-    addPaciente: Boolean
+    addPaciente: Boolean,
+    listaPaciente: Boolean
   },
 
   methods: {
@@ -46,6 +51,9 @@ export default {
     // Função que executa "voltarAdm()"
     voltarAdm() {
       this.$router.push({ path: "/Login/Adm" });
+    },
+    irListarPaciente(){
+      this.$router.push({ path: "/Login/ListarPacientes" });
     },
   },
 };

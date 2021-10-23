@@ -56,7 +56,6 @@ class UserController{
             }
             return;
         }else{
-            console.log(role);
             if(role == 0){
                 let isDataOk = await User.medicoConfirm(data);
                 dataOk = isDataOk.idMed;
@@ -79,9 +78,7 @@ class UserController{
             res.json({err: "O CPF já está cadastrado"});
             return;
         }
-        let isCpfValid = await User.testaCPF(cpf).catch(err =>{
-            console.log(err)
-        })
+        let isCpfValid = await User.testaCPF(cpf)
             
         if(!isCpfValid){
             res.status(400);
@@ -115,9 +112,9 @@ class UserController{
     }
 
     async remove(req, res){
-        let id = req.params.id; //Nessa linha não tem "await"
+        let cpf = req.params.id; //Nessa linha não tem "await"
 
-        let result = await User.deleteUser(id);
+        let result = await User.deleteUser(cpf);
 
         if(result.status){
             res.status(200);
@@ -156,7 +153,6 @@ class UserController{
             try{
                 await PasswordToken.setUsed(token);
             }catch(err){
-                console.log(err);
                 res.status(406);
                 res.send("O Token ao ser colocado como usado, acabou dando algum tipo de erro");
             }
@@ -178,7 +174,8 @@ class UserController{
         if(user.status){
             user = user.result;
 
-            let resultado = bcrypt.compare(password, user.senha);
+            let resultado = await bcrypt.compare(password, user.senha);
+
 
             if(resultado){
                 let token = jwt.sign({cpf : user.cpf, role: user.role}, secret);
@@ -226,6 +223,23 @@ class UserController{
     async validate(req, res){
         res.status(200);
         res.send("Passou na rota");
+    }
+
+    async findUserWithCpf(req, res){
+
+        let {cpf} = req.body;
+        console.log(cpf);
+        let user = await User.findByCPF(cpf);
+
+        console.log(user.result);
+        if(user.status){
+            res.status(200);
+            res.send(user.result)
+        }else{
+            res.status(406);
+            res.json({err: "ERRO"});
+        }
+
     }
 
 }

@@ -5,7 +5,7 @@
       <!-- Título -->
       <h4 class="nomeDoLaudo">{{ laudo.description }}</h4>
       <!-- Título -->
-      <h5 class="nomeDoMedico">Dr. Hans Chucrute</h5>
+      <h5 class="nomeDoMedico">Dr. {{name}}</h5>
     </div>
     <!-- Parte direita do laudo -->
     <div class="parteDireita">
@@ -39,6 +39,7 @@ import confirmarLaudo from "../modais/confirmarLaudo.vue";
 export default {
   props: {
     laudo: { type: Object, required: true },
+    name: String
   },
   components: {
     confirmarLaudo,
@@ -49,6 +50,7 @@ export default {
       excluir: "/img/excluir.png",
       download: "/img/download.png",
       modalExcluirLaudo: false,
+      idLaudo: ""
     };
   },
   methods: {
@@ -61,10 +63,20 @@ export default {
       this.modalExcluirLaudo = false;
     },
     // Função que executa "remove(laudo)"
-    remove(laudo) {
-      this.$emit("remove", laudo);
+    remove() {
+      this.$emit("remove", this.laudo.idLaudo);
     },
+
+    pullIdLaudo() {
+      this.idLaudo = this.laudo.idLaudo;
+      console.log(this.idLaudo);
+    }
   },
+
+  beforeMount(){
+    this.pullIdLaudo();
+  }
+
 };
 </script>
 
