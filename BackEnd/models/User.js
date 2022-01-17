@@ -102,43 +102,44 @@ class User{
             var password = await bcrypt.hash(password, 10);
 
             let result = await this.findCPF(cpf);
-                    if(!result){
-                        await knex.insert({cpf, senha:password, nome:name, role: role}).table("usuario").catch(err =>{
 
-                            return {status: false, err: "Erro ao cadastrar usuario"};
+            if(!result){
+                await knex.insert({cpf, senha:password, nome:name, role: role}).table("usuario").catch(err =>{
+
+                    return {status: false, err: "Erro ao cadastrar usuario"};
+                });
+
+                await knex.select('id').where('cpf', cpf).table("usuario").then(dataIn =>{
+
+                    if(role == 0){
+                        knex.insert({idUser: dataIn[0].id, medicoResp: data}).table("paciente").then(d =>{
+
+                        }).catch(err =>{
+
+                            return {status: false, err: "Erro ao cadastrar paciente"};
                         });
+                    } else if(role == 1){
+                        knex.insert({idUser: dataIn[0].id, especialidade: data}).table("medico").then(d =>{
 
-                        await knex.select('id').where('cpf', cpf).table("usuario").then(dataIn =>{
+                        }).catch(err =>{
 
-                            if(role == 0){
-                                knex.insert({idUser: dataIn[0].id, medicoResp: data}).table("paciente").then(d =>{
+                            return {status: false, err: "Erro ao cadastrar médico"};
+                        });
+                    } else if(role == 2){
+                        knex.insert({idUser: dataIn[0].id, especialidade: data}).table("administrador").then(d =>{
 
-                                }).catch(err =>{
+                        }).catch(err =>{
 
-                                    return {status: false, err: "Erro ao cadastrar paciente"};
-                                });
-                            } else if(role == 1){
-                                knex.insert({idUser: dataIn[0].id, especialidade: data}).table("medico").then(d =>{
-
-                                }).catch(err =>{
-
-                                    return {status: false, err: "Erro ao cadastrar médico"};
-                                });
-                            } else if(role == 2){
-                                knex.insert({idUser: dataIn[0].id, especialidade: data}).table("administrador").then(d =>{
-
-                                }).catch(err =>{
-
-                                    return {status: false, err: "Erro ao cadastrar administrador"};
-                                });
-                            }
-
-                        })
-    
-
-                    }else{
-                        return {status: false, err: "O CPF já está cadastrado"}
+                            return {status: false, err: "Erro ao cadastrar administrador"};
+                        });
                     }
+
+                })
+
+
+            }else{
+                return {status: false, err: "O CPF já está cadastrado"}
+            }
 
         }catch(err){
             console.log(err);
