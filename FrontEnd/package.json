@@ -15,12 +15,18 @@
     "express": "^4.17.1",
     "maska": "^1.4.6",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "node-forge": ">=1.0.0",
+    "postcss": ">=8.2.13",
+    "glob-parent": ">=5.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
+    "@vue/compiler-sfc": "^3.0.0",
+    "node-forge": ">=1.0.0",
+    "postcss": ">=8.2.13",
+    "glob-parent": ">=5.1.2"
   }
 }
